@@ -49,6 +49,12 @@
 
 未来真正需要调用这份储备的信号，不是“某个技能看起来有趣”，而是某类任务开始重复出现、现有能力存在明显空白，或者准备接入新的外部服务和高风险权限。此时再从目录中选择单项能力进行本地化和验证。
 
+## 与 Matt Pocock Skills 的关系
+
+[Matt Pocock Skills](../mattpocock-skills.html) 更适合作为长期软件项目的工程主流程，覆盖澄清、领域建模、Spec、Ticket、TDD、诊断和双轴审查；本库更适合作为通用 Agent 能力候选池，为工程主流程补充 Goal、安全守卫、定时、外部研究或特定运维能力。
+
+两库不能直接整库叠加：`handoff`、`teach` 存在同名冲突，评审、研究、Agent 写作等能力也有功能重叠。建议以 Matt 的工程流程为骨架，再从本库按需选择没有路由冲突且通过权限审计的单项能力。完整对比见 [Matt Pocock Skills 研究文档](../mattpocock-skills-study/README.md#与-david-ondrej-skills-对比)。
+
 ## 当前结论
 
 | 维度 | 观察 | 对我们的判断 |
@@ -101,6 +107,7 @@
 - [完整技能分类目录](docs/skill-catalog.md)
 - [47 个 Skill 的调度与实现详解](docs/skill-dispatch-implementation-guide.md)
 - [采用与风险矩阵](docs/adoption-matrix.md)
+- [与 Matt Pocock Skills 的完整对比](../mattpocock-skills-study/README.md#与-david-ondrej-skills-对比)
 - [设计与浏览器验收记录](DELIVERY.md)
 - [上游 README](https://github.com/davidondrej/skills/blob/main/README.md)
 - [上游 MIT License](https://github.com/davidondrej/skills/blob/main/LICENSE)

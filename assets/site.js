@@ -101,6 +101,26 @@
       upstreamLabel: '原始仓库',
       upstreamUrl: 'https://github.com/davidondrej/skills',
     },
+    {
+      number: '06',
+      slug: 'mattpocock-skills-study',
+      title: 'Matt Pocock Skills',
+      kicker: 'SOFTWARE ENGINEERING FLOW MAP',
+      category: 'agent',
+      categoryLabel: 'Agent 框架',
+      status: '工程流程地图',
+      summary:
+        '面向真实软件工程的 Agent 工作流研究。按项目配置、需求澄清、探索、规格、架构、实现、验证和维护八阶段，整理 25 个 Skill 的能力与实现原理。',
+      value: '渐进加载、技能组合、领域记忆、纵向切片、TDD、系统诊断、双轴审查与跨会话交接',
+      deployment: '公开静态专题页提供流程浏览、关键词搜索和组合筛选；未安装或执行上游技能',
+      tags: ['25 Skills', 'Software Engineering', 'TDD', 'Domain Modeling', 'Agent Workflow'],
+      primaryLabel: '查看工程流程地图',
+      primaryUrl: './mattpocock-skills.html',
+      secondaryLabel: '阅读完整研究文档',
+      secondaryUrl: `${repository}/blob/main/mattpocock-skills-study/README.md`,
+      upstreamLabel: '原始仓库',
+      upstreamUrl: 'https://github.com/mattpocock/skills',
+    },
   ];
 
   const root = document.documentElement;
