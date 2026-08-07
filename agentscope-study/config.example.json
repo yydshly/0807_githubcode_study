@@ -1,0 +1,12 @@
+{
+  "provider": "minimax",
+  "model": "MiniMax-M3",
+  "api_key": "",
+  "base_url": "https://api.minimaxi.com/anthropic",
+  "max_tokens": 4096,
+  "temperature": 1.0,
+  "thinking": {
+    "type": "adaptive"
+  },
+  "stream": false
+}

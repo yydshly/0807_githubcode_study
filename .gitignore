@@ -1,0 +1,14 @@
+# Upstream reference checkout used for source-code auditing.
+# The study notes are tracked; the third-party repository is not embedded here.
+shadowbroker-study/upstream/
+shadowbroker-study/shadowbroker-run.out.log
+shadowbroker-study/shadowbroker-run.err.log
+
+# AgentScope isolated study environment and installer cache.
+agentscope-study/.venv/
+agentscope-study/config.local.json
+.uv-cache-agentscope/
+
+# Python runtime caches.
+__pycache__/
+*.py[cod]
