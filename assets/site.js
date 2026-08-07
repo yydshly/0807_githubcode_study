@@ -52,7 +52,7 @@
       summary:
         'AI 新闻雷达与编辑流水线研究。已核对 10 类信息源和 11 条采集路径，并完成 61 条真实抓取、统一建模、URL 去重与浏览器验收。',
       value: '来源适配器、Profile 路由、评分去重、MCP 分阶段接口与静态日报发布',
-      deployment: '本地抓取演示已验证；完整 AI 日报需要模型 Key，上游提供公开成品站',
+      deployment: '真实抓取快照已公开；上游站提供经过 AI 评分与编排的完整日报',
       tags: ['RSS / API / HTML', 'AI Scoring', 'Dedup', 'MCP', 'GitHub Pages'],
       primaryLabel: '查看专题总结',
       primaryUrl: './horizon.html',

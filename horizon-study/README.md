@@ -26,6 +26,14 @@ Horizon 是一条可自托管的 AI 新闻编辑流水线。代码当前注册�
 
 本机没有模型 API Key，因此本地演示只声称完成了真实采集、统一建模和 URL 去重。完整 AI 日报效果已在上游公开站点核验：2026-08-07 中文日报从 44 条内容中选出 16 条，并按科技新闻、科技博客和财经新闻编排。
 
+## 远端效果查看
+
+- [本仓库真实抓取快照](https://yydshly.github.io/0807_githubcode_study/horizon-study/demo-output/)：展示本次真实抓取、统一建模与 URL 去重结果，不包含伪造的 AI 评分。
+- [Horizon 上游完整 AI 日报](https://thysrael.github.io/Horizon/)：展示上游定时抓取后经过 AI 评分、语义去重、内容增强和版面编排的日报。
+- [本仓库 Horizon 专题总结](https://yydshly.github.io/0807_githubcode_study/horizon.html)：说明真实来源、抓取方式、时间窗口、处理链路以及与 AI 探测雷达的关系。
+
+下面的 `127.0.0.1:8879` 仅用于重新生成或调试本地快照，不是提供给远端访问者的入口。
+
 ## 重新运行
 
 安装环境位于 `horizon-study/.venv/`，上游审计副本位于被忽略的 `horizon-study/upstream/`。在上游目录执行：

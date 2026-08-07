@@ -12,7 +12,7 @@
 |---|---|---|---|---|---|
 | [shadowbroker-study](shadowbroker-study/) | ShadowBroker 多源公开信息获取与地图展示平台 | 阶段性完成，作为参考案例归档 | 值得参考来源治理、多协议接入、时空模型、可靠性和展示路线；不值得当前继续追求完整全球实时数据 | [上游原库](https://github.com/BigBodyCobain/Shadowbroker) · [阶段总结](shadowbroker-study/docs/stage-summary.md) · [技术路线](shadowbroker-study/docs/technical-routes-and-research-value.md) · [来源手册](shadowbroker-study/docs/source-entry-guide.md) | 本地界面：`127.0.0.1:3000`；公开演示待接入 |
 | [agentscope-study](agentscope-study/) | AgentScope Agent 开发框架与 MiniMax M3 接入验证 | 离线机制和真实模型链路已通过，等待固定案例对照评估 | 模型接入、工具调度、记忆接口和结构化输出基础设施有效；业务工具仍需自建，模型研判质量尚未证明 | [上游原库](https://github.com/agentscope-ai/agentscope) · [项目说明](agentscope-study/README.md) · [实测报告](agentscope-study/REPORT.md) | [公开 Web 演示](https://yydshly.github.io/0807_githubcode_study/agentscope.html) · `agentscope-study/run-minimax.cmd` |
-| [horizon-study](horizon-study/) | Horizon AI 新闻雷达与编辑流水线 | 安装、源码审计和真实抓取演示完成；完整本地 AI 链路等待模型 Key | 与 AI 探测雷达属于同一能力类型；公开自动化配置实际只有 14 个入口，核心价值在 Profile、评分去重和日报编排，而不是独有信息源 | [公开专题总结](https://yydshly.github.io/0807_githubcode_study/horizon.html) · [上游原库](https://github.com/Thysrael/Horizon) · [真实地址清单](horizon-study/docs/real-source-inventory.md) · [处理链路](horizon-study/docs/source-processing-pipeline.md) | 本地抓取页面：`127.0.0.1:8879`；[上游完整日报](https://thysrael.github.io/Horizon/) |
+| [horizon-study](horizon-study/) | Horizon AI 新闻雷达与编辑流水线 | 安装、源码审计和真实抓取演示完成；完整本地 AI 链路等待模型 Key | 与 AI 探测雷达属于同一能力类型；公开自动化配置实际只有 14 个入口，核心价值在 Profile、评分去重和日报编排，而不是独有信息源 | [公开专题总结](https://yydshly.github.io/0807_githubcode_study/horizon.html) · [上游原库](https://github.com/Thysrael/Horizon) · [真实地址清单](horizon-study/docs/real-source-inventory.md) · [处理链路](horizon-study/docs/source-processing-pipeline.md) | [本次真实抓取快照](https://yydshly.github.io/0807_githubcode_study/horizon-study/demo-output/)；[上游完整 AI 日报](https://thysrael.github.io/Horizon/) |
 
 ## 子项目之间的协作关系
 
@@ -96,7 +96,7 @@ Fish Speech 是生成式文生语音（TTS）模型及推理工具库。它接�
 |---|---|---|---|---|
 | ShadowBroker | 多源地图界面 | `http://127.0.0.1:3000` | [研究门户入口](https://yydshly.github.io/0807_githubcode_study/#projects) | 研究资料已公开；完整界面仅在本机运行。原项目依赖 Next.js 服务端代理和 Python 后端，不能原样完整运行在 GitHub Pages |
 | AgentScope | 框架能力、运行原理、MiniMax M3 接入和验证结果 | `agentscope-study/run-minimax.cmd` | [AgentScope 专题演示](https://yydshly.github.io/0807_githubcode_study/agentscope.html) | 静态交互演示已公开；真实模型调用只在本地运行，API Key 不进入 GitHub Pages |
-| Horizon | 多源新闻抓取与 AI 日报 | `http://127.0.0.1:8879` | [Horizon 专题总结](https://yydshly.github.io/0807_githubcode_study/horizon.html) · [上游完整日报](https://thysrael.github.io/Horizon/) | 专题总结与静态证据已公开；本地已验证 61 条真实抓取和 URL 去重；完整 AI 日报需模型 Key，本仓库不保存密钥 |
+| Horizon | 多源新闻抓取与 AI 日报 | [远端真实抓取快照](https://yydshly.github.io/0807_githubcode_study/horizon-study/demo-output/) | [Horizon 专题总结](https://yydshly.github.io/0807_githubcode_study/horizon.html) · [上游完整 AI 日报](https://thysrael.github.io/Horizon/) | 远端快照展示本次 61 条真实抓取与 URL 去重；上游站展示经过 AI 评分、语义去重和编排后的完整日报 |
 
 增加新的在线演示时，应同时补充：代码目录、用途、数据来源、运行状态、公开URL、部署方式和最后验证日期。
 
