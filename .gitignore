@@ -18,6 +18,9 @@ horizon-study/data/summaries/
 horizon-study/demo-output/raw-items.json
 .uv-cache-horizon/
 
+# Temporary upstream checkout used for the David Ondrej skills audit.
+.tmp/davidondrej-skills-inspect/
+
 # Python runtime caches.
 __pycache__/
 *.py[cod]

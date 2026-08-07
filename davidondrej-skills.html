@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="David Ondrej Skills 能力储备档案：47 个 Agent Skill 的分类、依赖、适配度与采用建议。" />
+    <meta name="theme-color" content="#f2efe7" />
+    <title>David Ondrej Skills · 能力储备雷达</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./assets/davidondrej-skills.css" />
+    <script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('study-theme');
+          const preferred = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          document.documentElement.dataset.theme = saved || preferred;
+        } catch (_) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href="./index.html" aria-label="返回研究总入口">
+          <span>08/07</span>
+          <strong>SKILL RESERVE</strong>
+        </a>
+        <nav aria-label="专题导航">
+          <a href="#verdict">判断</a>
+          <a href="#categories">分类</a>
+          <a href="#catalog">目录</a>
+          <a href="#adoption">采用</a>
+        </nav>
+        <div class="header-actions">
+          <a href="https://github.com/davidondrej/skills" target="_blank" rel="noreferrer">上游仓库 ↗</a>
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换深色主题" aria-pressed="false">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="verdict">
+        <div class="shell hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow"><span></span>CAPABILITY RESERVE · 2026/08/07</p>
+            <h1>全面的是方向，<em>不是开箱即用程度。</em></h1>
+            <p class="hero-lead">
+              这是一套覆盖 Agent 编排、研究、运维、技能创作与思考文档的个人工作流样本库。对我们的正确用法是：先作为能力地图储备，再按真实任务审计、改造和验证单个技能。
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#catalog">检索 47 个技能</a>
+              <a class="button secondary" href="./davidondrej-skills-study/README.md">阅读价值 README</a>
+            </div>
+          </div>
+
+          <aside class="verdict-panel" aria-label="研究判断摘要">
+            <div class="panel-head"><span>STUDY VERDICT</span><strong>按需吸收</strong></div>
+            <div class="metric-grid">
+              <div><strong id="skillTotal">47</strong><span>技能</span></div>
+              <div><strong>05</strong><span>类型</span></div>
+              <div><strong>18</strong><span>Codex 配置</span></div>
+              <div><strong>02</strong><span>技能脚本</span></div>
+            </div>
+            <dl>
+              <div><dt>最主要价值</dt><dd>流程设计与经验固化</dd></div>
+              <div><dt>最大适配成本</dt><dd>个人工具链、macOS 与外部服务</dd></div>
+              <div><dt>我们的策略</dt><dd>查重 → 审计 → 本地化 → 小样例验证</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section meaning">
+        <div class="shell split-heading">
+          <div><span class="section-index">01 / MEANING</span><h2>把它当作工作流样本库，而不是安装包。</h2></div>
+          <p>Skill 不会提高模型参数能力。它通过路由、步骤、工具说明、验证和失败处理，让已有能力更稳定、更可重复。</p>
+        </div>
+        <div class="shell meaning-grid">
+          <article><span>保留</span><h3>能力方向地图</h3><p>未来遇到长任务、多代理、研究、运维或知识沉淀问题时，先知道有哪些成熟流程可以参考。</p></article>
+          <article><span>吸收</span><h3>可验证的方法</h3><p>目标契约、停止条件、状态检查、失败回退、交接记录和安全边界可以进入我们的通用规范。</p></article>
+          <article><span>过滤</span><h3>个人环境耦合</h3><p>macOS、DeepAPI、OpenRouter、Herdr、Pi、Supabase 和作者私有目录都需要重新判断。</p></article>
+          <article><span>避免</span><h3>默认扩大权限</h3><p>生产推送、数据库、杀进程、浏览器登录态和付费服务不能因为“安装了 Skill”就自动获得授权。</p></article>
+        </div>
+      </section>
+
+      <section class="section categories" id="categories">
+        <div class="shell section-heading">
+          <div><span class="section-index">02 / CAPABILITY MAP</span><h2>五类能力，解决五种不同问题。</h2></div>
+          <p>分类回答“它想解决什么”；采用等级回答“我们现在该不该使用”。两个维度必须分开。</p>
+        </div>
+        <div class="shell category-list" id="categorySummary" aria-label="技能分类概览"></div>
+      </section>
+
+      <section class="section catalog" id="catalog">
+        <div class="shell catalog-layout">
+          <aside class="filter-panel" aria-label="技能目录筛选">
+            <div class="filter-intro">
+              <span class="section-index">03 / CATALOG</span>
+              <h2>能力目录</h2>
+              <p>搜索名称、用途、依赖或判断；分类和采用等级可以组合筛选。</p>
+            </div>
+
+            <label class="search-box" for="skillSearch">
+              <span aria-hidden="true">⌕</span>
+              <input id="skillSearch" type="search" placeholder="例如：worktree、研究、macOS" autocomplete="off" />
+            </label>
+
+            <fieldset>
+              <legend>能力类型</legend>
+              <div class="filter-buttons" id="categoryFilters"></div>
+            </fieldset>
+
+            <fieldset>
+              <legend>采用建议</legend>
+              <div class="filter-buttons" id="tierFilters"></div>
+            </fieldset>
+
+            <div class="filter-status">
+              <strong id="resultCount" aria-live="polite">显示 47 个技能</strong>
+              <button id="resetFilters" type="button">清空条件</button>
+            </div>
+          </aside>
+
+          <div class="catalog-results">
+            <div class="results-head">
+              <p>目录中的“建议”以当前 Windows + Codex 环境为基线，不代表上游项目的绝对质量。</p>
+              <a href="./davidondrej-skills-study/docs/skill-catalog.md">Markdown 完整目录 ↗</a>
+            </div>
+            <div class="skill-list" id="skillList" aria-live="polite"></div>
+            <div class="empty-state" id="emptyState" hidden>
+              <span>NO MATCH</span>
+              <h3>没有匹配的技能</h3>
+              <p>尝试清空筛选，或使用更宽泛的能力关键词。</p>
+              <button type="button" id="emptyReset">查看全部技能</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section adoption" id="adoption">
+        <div class="shell section-heading inverse">
+          <div><span class="section-index">04 / ADOPTION</span><h2>不是“装或不装”，而是四种处理方式。</h2></div>
+          <p>默认保留知识，只有真实重复任务出现时，才把候选技能推进到审计、改造和安装。</p>
+        </div>
+        <div class="shell adoption-grid">
+          <article data-tier-card="absorb"><span>01</span><h3>优先吸收</h3><p>方法通用、依赖少。先进入我们的工作规范，再决定是否做本地 Skill。</p><strong id="absorbCount">—</strong></article>
+          <article data-tier-card="adapt"><span>02</span><h3>改造后用</h3><p>方向有价值，但需要替换路径、工具、权限或平台假设。</p><strong id="adaptCount">—</strong></article>
+          <article data-tier-card="conditional"><span>03</span><h3>条件储备</h3><p>只有采用指定模型、服务或基础设施时才启用，不进入默认上下文。</p><strong id="conditionalCount">—</strong></article>
+          <article data-tier-card="avoid"><span>04</span><h3>不原样用</h3><p>高度个人化、生产绑定、环境不符或风险过高，只保留设计参考。</p><strong id="avoidCount">—</strong></article>
+        </div>
+        <div class="shell adoption-process" aria-label="技能采用流程">
+          <span>真实重复任务</span><i>→</i><span>查现有能力</span><i>→</i><span>审计依赖与权限</span><i>→</i><span>本地化</span><i>→</i><span>小样例评测</span><i>→</i><span>单项安装</span>
+        </div>
+      </section>
+
+      <section class="section boundaries">
+        <div class="shell boundaries-grid">
+          <div>
+            <span class="section-index">05 / BOUNDARIES</span>
+            <h2>格式可移植，流程不一定可移植。</h2>
+            <p>18 个 `openai.yaml` 说明作者考虑了 Codex 表现，但真正能否使用仍取决于脚本、命令、操作系统、外部服务、账号权限与当前产品行为。</p>
+          </div>
+          <div class="boundary-table" role="table" aria-label="研究边界">
+            <div class="table-row table-head" role="row"><span>本次完成</span><span>本次没有做</span></div>
+            <div class="table-row" role="row"><span>读取 47 个技能和辅助文件</span><span>安装或执行上游技能</span></div>
+            <div class="table-row" role="row"><span>分类、依赖、风险和采用判断</span><span>使用 API Key、账号或生产数据</span></div>
+            <div class="table-row" role="row"><span>Markdown 储备档案和可筛选网页</span><span>证明技能在 Windows 的成功率</span></div>
+          </div>
+        </div>
+        <div class="shell document-links">
+          <a href="./davidondrej-skills-study/README.md"><span>价值与意义</span><strong>README.md ↗</strong></a>
+          <a href="./davidondrej-skills-study/docs/skill-catalog.md"><span>47 项完整目录</span><strong>skill-catalog.md ↗</strong></a>
+          <a href="./davidondrej-skills-study/docs/adoption-matrix.md"><span>采用与风险判断</span><strong>adoption-matrix.md ↗</strong></a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="shell"><span>0807 CODE STUDY / DAVID ONDREJ SKILLS</span><span>公开源码能力审计 · 未执行上游技能</span></div>
+    </footer>
+
+    <script src="./assets/davidondrej-skills.js" defer></script>
+  </body>
+</html>

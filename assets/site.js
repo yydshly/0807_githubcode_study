@@ -81,6 +81,26 @@
       upstreamLabel: '原始仓库',
       upstreamUrl: 'https://github.com/mcncarl/yichen-skills',
     },
+    {
+      number: '05',
+      slug: 'davidondrej-skills-study',
+      title: 'David Ondrej Skills',
+      kicker: 'AGENT WORKFLOW RESERVE MAP',
+      category: 'agent',
+      categoryLabel: 'Agent 框架',
+      status: '能力储备',
+      summary:
+        '覆盖 Agent 编排、研究、运维、Skill 创作和思考文档的个人工作流样本库。完整归档 47 个技能，并按依赖、风险和当前 Codex 适配度分级。',
+      value: '技能路由、渐进加载、验证循环、长任务契约、多代理隔离、安全边界与个人技能库建设方法',
+      deployment: '公开静态专题页提供搜索与双维筛选；未安装或执行上游技能，也未接入任何账号、Key 或生产系统',
+      tags: ['47 Skills', 'Agent Workflow', 'Adoption Matrix', 'Codex', 'Safety Audit'],
+      primaryLabel: '查看能力雷达',
+      primaryUrl: './davidondrej-skills.html',
+      secondaryLabel: '进入研究档案',
+      secondaryUrl: `${repository}/tree/main/davidondrej-skills-study`,
+      upstreamLabel: '原始仓库',
+      upstreamUrl: 'https://github.com/davidondrej/skills',
+    },
   ];
 
   const root = document.documentElement;

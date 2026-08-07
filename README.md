@@ -1,6 +1,6 @@
 # 0807 GitHub Code Study
 
-这是一个持续扩展的研究总仓库，用于拆解、运行和评估尚未掌握的开源项目、技术路线与产品形态。当前已有四个独立子项目，后续会继续接入更多彼此独立或可以组合的研究项目。
+这是一个持续扩展的研究总仓库，用于拆解、运行和评估尚未掌握的开源项目、技术路线与产品形态。当前已有五个独立子项目，后续会继续接入更多彼此独立或可以组合的研究项目。
 
 仓库不以收集大量第三方源码为目标。每个子项目独立保存研究过程、实际运行结果、技术结论和复用建议；根 README 只负责总览、关联和入口导航。
 
@@ -14,6 +14,7 @@
 | [agentscope-study](agentscope-study/) | AgentScope Agent 开发框架与 MiniMax M3 接入验证 | 离线机制和真实模型链路已通过，等待固定案例对照评估 | 模型接入、工具调度、记忆接口和结构化输出基础设施有效；业务工具仍需自建，模型研判质量尚未证明 | [上游原库](https://github.com/agentscope-ai/agentscope) · [项目说明](agentscope-study/README.md) · [实测报告](agentscope-study/REPORT.md) | [公开 Web 演示](https://yydshly.github.io/0807_githubcode_study/agentscope.html) · `agentscope-study/run-minimax.cmd` |
 | [horizon-study](horizon-study/) | Horizon AI 新闻雷达与编辑流水线 | 安装、源码审计和真实抓取演示完成；完整本地 AI 链路等待模型 Key | 与 AI 探测雷达属于同一能力类型；公开自动化配置实际只有 14 个入口，核心价值在 Profile、评分去重和日报编排，而不是独有信息源 | [公开专题总结](https://yydshly.github.io/0807_githubcode_study/horizon.html) · [上游原库](https://github.com/Thysrael/Horizon) · [真实地址清单](horizon-study/docs/real-source-inventory.md) · [处理链路](horizon-study/docs/source-processing-pipeline.md) | [本次真实抓取快照](https://yydshly.github.io/0807_githubcode_study/horizon-study/demo-output/)；[上游完整 AI 日报](https://thysrael.github.io/Horizon/) |
 | [yichen-skills-study](yichen-skills-study/) | Yichen Skills 中文内容平台工作流集合 | 阶段性归档；不做整库集成，保留平台技术路线供后续专项验证 | 上层搜索、总结和文案能力较通用；真正有参考价值的是 X、小红书、抖音、公众号、小宇宙、B站和 YouTube 的差异化搜索、读取、下载、授权与回退方法 | [公开专题总结](https://yydshly.github.io/0807_githubcode_study/yichen-skills.html) · [上游原库](https://github.com/mcncarl/yichen-skills) · [平台技术矩阵](yichen-skills-study/docs/platform-acquisition-matrix.md) · [能力地图](yichen-skills-study/docs/skill-capability-map.md) | 静态研究专题页；没有部署登录态抓取器、后端服务或平台凭据 |
+| [davidondrej-skills-study](davidondrej-skills-study/) | David Ondrej 的个人 Agent Skill 工作流库 | 能力储备归档；完整整理 47 个技能，不做整库安装 | 最有价值的是 Skill 设计、Agent 编排、长任务契约、研究提示、安全边界和思考文档方法；具体流程普遍需要按 Windows/Codex 和我们的权限模型改造 | [公开能力雷达](https://yydshly.github.io/0807_githubcode_study/davidondrej-skills.html) · [上游原库](https://github.com/davidondrej/skills) · [完整目录](davidondrej-skills-study/docs/skill-catalog.md) · [采用矩阵](davidondrej-skills-study/docs/adoption-matrix.md) | 静态研究专题页；未安装技能，未使用 API Key、账号、生产数据库或作者工具链 |
 
 ## 子项目之间的协作关系
 
@@ -27,6 +28,7 @@ flowchart LR
     B["ShadowBroker 研究<br/>采集、统一、可靠性、时空展示"]
     H["Horizon 研究<br/>新闻采集、去重、AI 编辑与日报"]
     Y["Yichen Skills 研究<br/>中文内容平台路由、读取与归档参考"]
+    S["David Ondrej Skills 研究<br/>Agent 工作流与个人技能库方法储备"]
     C["规范化对象、事件和证据"]
     D["AgentScope 研究<br/>工具调用、核验、结构化研判"]
     F["后续独立研究项目<br/>卫星、新闻、空间计算、专题产品等"]
@@ -34,12 +36,14 @@ flowchart LR
     A --> B --> C --> D --> E
     A --> H --> C
     A --> Y --> C
+    S --> D
     F --> E
 ```
 
 - ShadowBroker 研究回答“信息从哪里来、怎样接入、怎样表示和展示”。
 - Horizon 研究回答“怎样把多源新闻组织成可配置、可重复的 AI 编辑流水线”。
 - Yichen Skills 研究回答“不同中文内容平台应该怎样搜索、读取、下载，并保持授权与来源边界”。
+- David Ondrej Skills 研究回答“怎样把重复的 Agent 工作方法写成可路由、可验证、可审计的技能，以及哪些能力值得我们按需吸收”。
 - AgentScope 研究回答“怎样让 Agent 调用确定性工具、核验来源并输出可审计结论”。
 - 这些研究之间未来应通过稳定的数据模型或 API 连接，而不是直接互相依赖内部代码。
 
@@ -102,6 +106,7 @@ Fish Speech 是生成式文生语音（TTS）模型及推理工具库。它接�
 | AgentScope | 框架能力、运行原理、MiniMax M3 接入和验证结果 | `agentscope-study/run-minimax.cmd` | [AgentScope 专题演示](https://yydshly.github.io/0807_githubcode_study/agentscope.html) | 静态交互演示已公开；真实模型调用只在本地运行，API Key 不进入 GitHub Pages |
 | Horizon | 多源新闻抓取与 AI 日报 | [远端真实抓取快照](https://yydshly.github.io/0807_githubcode_study/horizon-study/demo-output/) | [Horizon 专题总结](https://yydshly.github.io/0807_githubcode_study/horizon.html) · [上游完整 AI 日报](https://thysrael.github.io/Horizon/) | 远端快照展示本次 61 条真实抓取与 URL 去重；上游站展示经过 AI 评分、语义去重和编排后的完整日报 |
 | Yichen Skills | 中文内容平台获取与处理路线 | 无后端运行入口 | [Yichen Skills 专题总结](https://yydshly.github.io/0807_githubcode_study/yichen-skills.html) | 静态展示平台矩阵、Skill 能力、归档格式与阶段判断；没有部署账号登录态、Cookie、平台抓取器或付费 ASR |
+| David Ondrej Skills | Agent 工作流储备与采用判断 | 无后端运行入口 | [David Ondrej Skills 能力雷达](https://yydshly.github.io/0807_githubcode_study/davidondrej-skills.html) | 静态展示 47 个技能的分类、依赖、风险和采用等级；没有安装或执行上游技能 |
 
 增加新的在线演示时，应同时补充：代码目录、用途、数据来源、运行状态、公开URL、部署方式和最后验证日期。
 
@@ -113,7 +118,7 @@ Fish Speech 是生成式文生语音（TTS）模型及推理工具库。它接�
 https://yydshly.github.io/0807_githubcode_study/
 ```
 
-门户后续可以持续增加项目卡片和静态演示，不受当前四个项目限制。但 GitHub Pages 是静态托管，不运行 Python 后端、数据库、定时采集器或服务端长连接，也不应存放 API Key。因此建议采用两层结构：
+门户后续可以持续增加项目卡片和静态演示，不受当前五个项目限制。但 GitHub Pages 是静态托管，不运行 Python 后端、数据库、定时采集器或服务端长连接，也不应存放 API Key。因此建议采用两层结构：
 
 ```text
 GitHub Pages：总项目导航、研究结论、静态样例和演示入口
