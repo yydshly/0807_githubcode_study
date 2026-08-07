@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="0807 GitHub Code Study：持续扩展的开源项目研究、技术路线验证与在线演示总仓库。"
+    />
+    <meta name="theme-color" content="#f4f1e8" />
+    <title>0807 Code Study · 开源能力研究索引</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./assets/site.css" />
+    <script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('study-theme');
+          const preferred = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          document.documentElement.dataset.theme = saved || preferred;
+        } catch (_) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href="#top" aria-label="返回页面顶部">
+          <span class="brand-mark" aria-hidden="true">08<span>/</span>07</span>
+          <span class="brand-copy">
+            <strong>CODE STUDY</strong>
+            <small>RESEARCH INDEX</small>
+          </span>
+        </a>
+
+        <nav class="main-nav" aria-label="主要导航">
+          <a href="#projects">研究项目</a>
+          <a href="#method">研究方法</a>
+          <a href="#deployment">部署边界</a>
+        </nav>
+
+        <div class="header-actions">
+          <a
+            class="repo-link"
+            href="https://github.com/yydshly/0807_githubcode_study"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="在 GitHub 查看仓库"
+          >
+            <span>GitHub</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换深色主题">
+            <span class="theme-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="shell hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="status-dot"></span>持续扩展的公开研究总仓库</div>
+            <h1>
+              把没掌握的<span class="mobile-break"><br /></span>开源能力，
+              <em>拆成可复用的<span class="mobile-break"><br /></span>研究资产。</em>
+            </h1>
+            <p class="hero-lead">
+              不追求收藏大量代码。每个子项目都经过运行、来源审计、能力边界判断和技术路线提炼，最终留下能为后续产品直接复用的结论。
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#projects">浏览研究项目 <span aria-hidden="true">↓</span></a>
+              <a
+                class="button button-secondary"
+                href="https://github.com/yydshly/0807_githubcode_study/blob/main/README.md"
+                target="_blank"
+                rel="noreferrer"
+              >查看完整说明 <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="hero-note">
+              <span>PUBLIC RESEARCH INDEX</span>
+              <span aria-hidden="true">/</span>
+              <span>持续登记，不限制项目数量</span>
+            </div>
+          </div>
+
+          <aside class="topology-card" aria-label="当前研究能力链路">
+            <div class="topology-head">
+              <div>
+                <span class="micro-label">RESEARCH TOPOLOGY</span>
+                <h2>从入口到判断</h2>
+              </div>
+              <span class="live-badge">LIVE INDEX</span>
+            </div>
+            <ol class="topology-flow">
+              <li>
+                <span class="node-index">01</span>
+                <div><strong>来源与接入</strong><small>API · Feed · 消息流 · 设备</small></div>
+              </li>
+              <li>
+                <span class="node-index">02</span>
+                <div><strong>统一与核验</strong><small>对象 · 时间 · 空间 · 可靠性</small></div>
+              </li>
+              <li>
+                <span class="node-index">03</span>
+                <div><strong>展示与研判</strong><small>地图 · 历史 · Agent · 专题产品</small></div>
+              </li>
+            </ol>
+            <div class="topology-stats">
+              <div><strong id="projectCount">2</strong><span>首批项目</span></div>
+              <div><strong>01</strong><span>公开门户</span></div>
+              <div><strong>∞</strong><span>后续扩展</span></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section projects-section" id="projects">
+        <div class="shell">
+          <div class="section-heading">
+            <div>
+              <span class="section-index">01 / PROJECTS</span>
+              <h2>当前研究项目</h2>
+            </div>
+            <p>两个首批案例只是起点。后续项目保持独立归档，需要组合时再通过数据模型、API 或演示层连接。</p>
+          </div>
+
+          <div class="project-toolbar" aria-label="项目筛选工具">
+            <label class="search-box" for="projectSearch">
+              <span aria-hidden="true">⌕</span>
+              <input id="projectSearch" type="search" placeholder="搜索项目、能力或协议" autocomplete="off" />
+            </label>
+            <div class="filter-group" id="projectFilters" aria-label="按方向筛选">
+              <button type="button" data-filter="all" aria-pressed="true">全部</button>
+              <button type="button" data-filter="acquisition" aria-pressed="false">信息获取</button>
+              <button type="button" data-filter="agent" aria-pressed="false">Agent 框架</button>
+            </div>
+            <span class="result-count" id="resultCount" aria-live="polite">显示 2 个项目</span>
+          </div>
+
+          <div class="project-grid" id="projectGrid" aria-live="polite"></div>
+          <div class="empty-state" id="emptyState" hidden>
+            <span>NO MATCH</span>
+            <h3>暂时没有匹配的研究项目</h3>
+            <p>清除搜索条件，或者等待新的专题接入总仓库。</p>
+            <button class="text-button" id="resetFilters" type="button">清除筛选</button>
+          </div>
+          <noscript>
+            <p class="noscript-note">
+              当前项目：<a href="https://github.com/yydshly/0807_githubcode_study/tree/main/shadowbroker-study">ShadowBroker Study</a>
+              与 <a href="https://github.com/yydshly/0807_githubcode_study/tree/main/agentscope-study">AgentScope Study</a>。
+            </p>
+          </noscript>
+        </div>
+      </section>
+
+      <section class="section method-section" id="method">
+        <div class="shell">
+          <div class="section-heading compact">
+            <div>
+              <span class="section-index">02 / METHOD</span>
+              <h2>统一的研究方法</h2>
+            </div>
+            <p>能运行，不代表值得使用。研究结果必须说明证据、边界和下一步判断。</p>
+          </div>
+
+          <ol class="method-grid">
+            <li><span>01</span><strong>问题定义</strong><p>先说明解决什么，也说明不解决什么。</p></li>
+            <li><span>02</span><strong>本地运行</strong><p>记录依赖、错误、环境与真实效果。</p></li>
+            <li><span>03</span><strong>来源审计</strong><p>核对协议、许可、费用、覆盖和时效。</p></li>
+            <li><span>04</span><strong>证据分层</strong><p>区分观测、目录、推算、线索与结论。</p></li>
+            <li><span>05</span><strong>路线提炼</strong><p>保留可复用能力，不默认整体照搬。</p></li>
+            <li><span>06</span><strong>阶段决策</strong><p>明确继续深入、按需参考或停止投入。</p></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section deployment-section" id="deployment">
+        <div class="shell deployment-grid">
+          <div class="deployment-copy">
+            <span class="section-index">03 / DEPLOYMENT</span>
+            <h2>公开的是研究入口，<br />不是伪装的“全球实时系统”。</h2>
+            <p>
+              GitHub Pages 承载总项目导航、研究结论和静态演示。需要后端、数据库、定时抓取、私密 Key 或服务端长连接的完整能力，后续按实际产品需要独立部署。
+            </p>
+            <a
+              class="text-link"
+              href="https://github.com/yydshly/0807_githubcode_study#在线演示与运行入口"
+              target="_blank"
+              rel="noreferrer"
+            >查看运行入口登记 <span aria-hidden="true">↗</span></a>
+          </div>
+
+          <div class="deployment-matrix" aria-label="部署状态矩阵">
+            <div class="matrix-row matrix-head"><span>能力层</span><span>承载位置</span><span>状态</span></div>
+            <div class="matrix-row"><strong>研究门户与文档</strong><span>GitHub Pages</span><span class="state state-online">已上线</span></div>
+            <div class="matrix-row"><strong>静态数据与样例</strong><span>GitHub Pages</span><span class="state state-ready">可持续接入</span></div>
+            <div class="matrix-row"><strong>ShadowBroker 完整界面</strong><span>本机服务</span><span class="state state-local">仅本地</span></div>
+            <div class="matrix-row"><strong>AgentScope 模型调用</strong><span>本机 / 未来后端</span><span class="state state-local">离线验证</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section extend-section">
+        <div class="shell extend-card">
+          <div>
+            <span class="micro-label">NEXT RESEARCH SLOT</span>
+            <h2>下一个项目，继续放进同一套索引。</h2>
+            <p>创建独立目录、写清研究结论、登记演示状态，然后把它加入项目清单。总仓库会随研究方向增长，而不是围绕当前两个项目固化。</p>
+          </div>
+          <a
+            class="button button-light"
+            href="https://github.com/yydshly/0807_githubcode_study#新项目接入规则"
+            target="_blank"
+            rel="noreferrer"
+          >查看接入规则 <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <div><strong>0807 / CODE STUDY</strong><span>开源能力研究与复用索引</span></div>
+        <div class="footer-meta"><span>Last verified · 2026-08-07</span><a href="#top">回到顶部 ↑</a></div>
+      </div>
+    </footer>
+
+    <script src="./assets/site.js" defer></script>
+  </body>
+</html>
