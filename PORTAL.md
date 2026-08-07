@@ -138,3 +138,45 @@ Observable completion criteria: 档案完整；专题页在桌面/平板/手机�
 - 总项目：首页渲染4张项目卡片；“信息获取”筛选准确显示2张卡片
 - 运行状态：专题页与根门户的浏览器日志均为空
 - 验收边界：仅验证静态研究页面；未登录任何平台、未执行媒体下载或付费ASR
+
+## 扩展契约：QM 组织级 Agent 运行平台研究
+
+```text
+Entry mode: brief-led
+Request revision: 4
+Target user and context: 总项目维护者，以及需要判断 QM 是否适合作为组织级 Agent 基础设施的研发与技术决策人员
+Desired first impression: 先明确“权限驱动的隔离与运行环境装配”这一核心，再理解能力、实现链路、适用场景和采用边界
+Visual ambition: Editorial
+Experience architecture: Editorial Flow
+Visual constraints: 延续门户的纸张/墨色研究语言；以架构关系和边界为主，不依赖外部图片或字体；浅色与深色均可读
+Information constraints: 必须区分 QM 与多 Agent 编排器；能力说明必须和 Scope、ACL、Harness、Sandbox、Memory、Keychain、Queue 等实现机制对应；不得暗示已部署 QM 后端
+Operation constraints: 页面目录和能力映射支持鼠标与键盘；主题切换可用；外部与内部文档链接清晰
+State constraints: 浅色/深色状态完整；桌面/平板/手机阅读顺序稳定；静态页面不模拟虚假的后端运行状态
+Environment constraints: GitHub Pages 静态托管；不克隆、安装或部署 QM；不使用云账号、模型 Key、Slack、Postgres 或生产凭据
+Primary journey: 进入专题 → 识别核心判断 → 理解一次 Turn 的执行链 → 对照能力与实现 → 查看风险和对我们的意义 → 进入详细文档
+User-defined phases: 信息整理、Web描述、Markdown文档、根README合并、提交并推送main
+Required artifacts: qm-study/README、阶段报告、架构实现文档、采用与风险文档、静态专题页、专题样式与交互、根门户项目入口、根README登记、浏览器验收、Git提交与main推送
+Autonomy authorization: 用户明确要求整理、实现、合并到根README并直接提交远端main
+User-decision boundary: 不部署QM真实服务，不接入账号或凭据，不创建PR，不改动其他研究专题的结论
+Observable completion criteria: 文档结论与代码证据一致；专题页在1280/1024/390宽度无横向溢出；浅色/深色可读；目录交互和主题切换正确；首页出现第七个项目且筛选可发现；静态资源、相对链接和JS语法检查通过；提交成功并推送origin/main
+```
+
+### QM 扩展覆盖清单
+
+| 用户阶段 | 要求或产物 | 表面/状态 | 证据 | 阶段 | 状态 | 下一步 |
+|---|---|---|---|---|---|---|
+| 信息整理 | 核心判断、能力与实现机制、边界和采用建议 | Markdown | README、REPORT与两份专题文档的链接和结论一致 | Stage 0–3 | pass | 保持研究边界说明 |
+| Web描述 | 专题首屏、执行链、能力实现映射、风险和意义 | 桌面浅色 | 1280×720截图与DOM阅读顺序观察 | Stage 1–3 | pass | 无 |
+| Web描述 | 目录定位、主题切换与链接 | 桌面浅色/深色 | 点击状态、主题属性、焦点和目标区段 | Stage 4–6 | pass | 无 |
+| Web描述 | 响应式阅读 | 1280×720、1024×768、390×844 | 截图、scrollWidth与可见内容检查 | Stage 7 | pass | 无 |
+| 根README合并 | 第七个项目、协作关系、总体理解和在线入口 | Markdown/门户 | README相对链接、首页7张卡片、Agent筛选显示4张卡片 | Stage 3–6 | pass | 无 |
+| 工程交付 | HTML/CSS/JS/Markdown质量 | 静态文件 | JS语法、4个相对资源HTTP 200、diff检查与浏览器空日志 | Stage 9 | pass | 无 |
+| 提交并推送main | 本次文件提交并同步origin/main | Git | commit哈希、分支状态与远端同步状态 | Stage 9 | continue | 显式暂存、提交和推送后回填 |
+
+### QM 浏览器验收记录
+
+- 1280×720、1024×768、390×844 三档视口均满足 `scrollWidth = clientWidth`，没有横向溢出。
+- 浅色与深色首屏均完成可视检查；手机端标题、摘要、主操作和核心公式保持连续阅读顺序。
+- 能力筛选结果：全部 8 项、隔离与授权 3 项、执行与适配 3 项、持久化 3 项；状态文案与卡片数量一致。
+- 根门户渲染 7 张项目卡片；“Agent 框架”筛选显示 AgentScope、David Ondrej Skills、Matt Pocock Skills 与 QM 共 4 项。
+- 主题按钮、锚点、筛选按钮可聚焦，浏览器运行日志为空。

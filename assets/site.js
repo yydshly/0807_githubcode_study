@@ -121,6 +121,26 @@
       upstreamLabel: '原始仓库',
       upstreamUrl: 'https://github.com/mattpocock/skills',
     },
+    {
+      number: '07',
+      slug: 'qm-study',
+      title: 'QM',
+      kicker: 'ORG-LEVEL AGENT CONTROL PLANE',
+      category: 'agent',
+      categoryLabel: 'Agent 框架',
+      status: '架构研究完成',
+      summary:
+        '组织级 Agent 运行平台研究。核心不是总管 Agent，而是以 Scope 和共同权限为基础，动态装配记忆、文件、Skills、凭据、网络与持久沙箱。',
+      value: '权限驱动隔离、确定性执行门禁、可替换 Harness、持久沙箱、后台任务与审计路线',
+      deployment: '公开静态专题页展示架构与采用边界；未部署 QM 后端、云资源、数据库、Slack 或组织凭据',
+      tags: ['Scope / ACL', 'Harness', 'Sandbox', 'Keychain', 'Worker Lease'],
+      primaryLabel: '查看架构专题',
+      primaryUrl: './qm.html',
+      secondaryLabel: '进入研究档案',
+      secondaryUrl: `${repository}/tree/main/qm-study`,
+      upstreamLabel: '原始仓库',
+      upstreamUrl: 'https://github.com/yc-software/qm',
+    },
   ];
 
   const root = document.documentElement;

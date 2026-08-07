@@ -1,6 +1,6 @@
 # 0807 GitHub Code Study
 
-这是一个持续扩展的研究总仓库，用于拆解、运行和评估尚未掌握的开源项目、技术路线与产品形态。当前已有六个独立子项目，后续会继续接入更多彼此独立或可以组合的研究项目。
+这是一个持续扩展的研究总仓库，用于拆解、运行和评估尚未掌握的开源项目、技术路线与产品形态。当前已有七个独立子项目，后续会继续接入更多彼此独立或可以组合的研究项目。
 
 仓库不以收集大量第三方源码为目标。每个子项目独立保存研究过程、实际运行结果、技术结论和复用建议；根 README 只负责总览、关联和入口导航。
 
@@ -16,6 +16,7 @@
 | [yichen-skills-study](yichen-skills-study/) | Yichen Skills 中文内容平台工作流集合 | 阶段性归档；不做整库集成，保留平台技术路线供后续专项验证 | 上层搜索、总结和文案能力较通用；真正有参考价值的是 X、小红书、抖音、公众号、小宇宙、B站和 YouTube 的差异化搜索、读取、下载、授权与回退方法 | [公开专题总结](https://yydshly.github.io/0807_githubcode_study/yichen-skills.html) · [上游原库](https://github.com/mcncarl/yichen-skills) · [平台技术矩阵](yichen-skills-study/docs/platform-acquisition-matrix.md) · [能力地图](yichen-skills-study/docs/skill-capability-map.md) | 静态研究专题页；没有部署登录态抓取器、后端服务或平台凭据 |
 | [davidondrej-skills-study](davidondrej-skills-study/) | David Ondrej 的个人 Agent Skill 工作流库 | 能力储备归档；完整整理 47 个技能，不做整库安装 | 最有价值的是 Skill 设计、Agent 编排、长任务契约、研究提示、安全边界和思考文档方法；具体流程普遍需要按 Windows/Codex 和我们的权限模型改造 | [公开能力雷达](https://yydshly.github.io/0807_githubcode_study/davidondrej-skills.html) · [上游原库](https://github.com/davidondrej/skills) · [完整目录](davidondrej-skills-study/docs/skill-catalog.md) · [调度与实现详解](davidondrej-skills-study/docs/skill-dispatch-implementation-guide.md) · [采用矩阵](davidondrej-skills-study/docs/adoption-matrix.md) | 静态研究专题页；未安装技能，未使用 API Key、账号、生产数据库或作者工具链 |
 | [mattpocock-skills-study](mattpocock-skills-study/) | Matt Pocock 面向真实软件工程的 Agent Skill 库 | 开发流程地图完成；按八阶段整理 25 个技能，并归纳 4 个思想簇、14 项软件工程理念 | 核心价值不是增加模型知识，而是把需求澄清、领域建模、规格、纵向切片、TDD、诊断、双轴审查和交接做成可组合工程纪律 | [公开工程流程地图](https://yydshly.github.io/0807_githubcode_study/mattpocock-skills.html) · [沟通结论摘要](mattpocock-skills-study/README.md#本次沟通结论摘要) · [软件工程思想谱系](mattpocock-skills-study/README.md#背后的软件工程设计思想) · [上游原库](https://github.com/mattpocock/skills) · [与 David 双库对比](mattpocock-skills-study/README.md#与-david-ondrej-skills-对比) | 纯静态专题页；未安装或执行上游技能，未连接 Issue Tracker、账号或生产系统 |
+| [qm-study](qm-study/) | QM 组织级 Agent 运行平台 | 架构与源码接口研究完成；未部署真实组织实例 | 核心是以 Scope 和共同权限为基础，动态装配记忆、文件、Skills、凭据、网络与持久沙箱；它管理每次 Agent 执行的安全边界，不是总管多个子 Agent 的上级 Agent | [公开架构专题](https://yydshly.github.io/0807_githubcode_study/qm.html) · [上游原库](https://github.com/yc-software/qm) · [阶段报告](qm-study/REPORT.md) · [架构与实现](qm-study/docs/architecture-and-implementation.md) · [采用与风险](qm-study/docs/adoption-and-risk.md) | 纯静态研究专题页；未部署 QM 后端、Postgres、云沙箱、Slack 或组织凭据 |
 
 ## 子项目之间的协作关系
 
@@ -31,15 +32,17 @@ flowchart LR
     Y["Yichen Skills 研究<br/>中文内容平台路由、读取与归档参考"]
     S["David Ondrej Skills 研究<br/>Agent 工作流与个人技能库方法储备"]
     M["Matt Pocock Skills 研究<br/>真实软件工程流程与质量门禁"]
+    Q["QM 研究<br/>身份、Scope、权限、沙箱、任务与审计"]
     C["规范化对象、事件和证据"]
     D["AgentScope 研究<br/>工具调用、核验、结构化研判"]
     F["后续独立研究项目<br/>卫星、新闻、空间计算、专题产品等"]
     E["可复用能力与在线演示"]
-    A --> B --> C --> D --> E
+    A --> B --> C --> D
     A --> H --> C
     A --> Y --> C
     S --> D
     M --> D
+    D --> Q --> E
     F --> E
 ```
 
@@ -49,6 +52,7 @@ flowchart LR
 - David Ondrej Skills 研究回答“怎样把重复的 Agent 工作方法写成可路由、可验证、可审计的技能，47 项能力分别由提示、文件、CLI、脚本、API、外部时钟或 Goal 循环怎样调度，以及哪些值得我们按需吸收”。
 - Matt Pocock Skills 研究回答“怎样按项目开发流程，让 Agent 完成需求澄清、领域建模、规格、纵向切片、TDD、诊断、审查和跨会话交接”。
 - AgentScope 研究回答“怎样让 Agent 调用确定性工具、核验来源并输出可审计结论”。
+- QM 研究回答“怎样让多个人、频道和项目在各自权限边界内长期使用 Agent，并让每次执行的资源、凭据、沙箱和副作用可控、可追踪”。
 - 这些研究之间未来应通过稳定的数据模型或 API 连接，而不是直接互相依赖内部代码。
 
 ### David Ondrej 与 Matt Pocock 两个 Skill 库怎么选
@@ -88,6 +92,32 @@ flowchart LR
 ```
 
 地图和 AI 都是下游消费者。来源、时间语义和可靠性没有建立之前，界面中的“实时”和自动分析都不可信。
+
+### 组织级 Agent 基础设施
+
+QM 研究补齐了当前总项目中“组织运行与治理”的一层。它不替代数据源、Skills 或 Agent 开发框架，而是决定某一次 Agent 执行发生在什么安全边界内：
+
+```text
+身份 + 会话参与者 + Scope + ACL + 组织策略
+                    ↓
+            计算本轮有效权限
+                    ↓
+上下文 + Workspace + Memory + Skills + Credentials + Sandbox
+                    ↓
+              Harness / Model 执行
+                    ↓
+             持久化、投递与审计
+```
+
+对我们最有价值的不是完整照搬 QM，而是吸收五个架构原则：
+
+1. 个人、频道、项目和组织资源使用显式 Scope，不把所有记忆和文件放在同一上下文。
+2. 群聊采用参与者共同权限下限，不能因为发起者权限较高就向整个会话暴露资源。
+3. Agent 负责推理，身份、授权、命令审批、凭据发放和投递由模型之外的确定性系统执行。
+4. Codex、Claude Code 等运行时通过 Harness Adapter 替换，组织层不绑定单一模型厂商。
+5. 后台任务继续走同一套 Orchestrator、权限和审计链路，不因无人值守而绕过安全边界。
+
+当前判断：**高价值架构参考，真实多人需求出现后进行非敏感受控 PoC，暂不直接承载敏感生产数据。** QM 当前没有原生 AgentScope Harness，两者若要组合需要新增适配器；QM 也偏 Slack，接入飞书、企业微信或钉钉需要单独实现 Surface 与身份映射。
 
 ### 研究方法
 
@@ -133,6 +163,7 @@ Fish Speech 是生成式文生语音（TTS）模型及推理工具库。它接�
 | Yichen Skills | 中文内容平台获取与处理路线 | 无后端运行入口 | [Yichen Skills 专题总结](https://yydshly.github.io/0807_githubcode_study/yichen-skills.html) | 静态展示平台矩阵、Skill 能力、归档格式与阶段判断；没有部署账号登录态、Cookie、平台抓取器或付费 ASR |
 | David Ondrej Skills | Agent 工作流储备与采用判断 | 无后端运行入口 | [David Ondrej Skills 能力雷达](https://yydshly.github.io/0807_githubcode_study/davidondrej-skills.html) | 静态展示 47 个技能的分类、依赖、风险和采用等级；没有安装或执行上游技能 |
 | Matt Pocock Skills | 软件工程流程与 25 个 Skill 能力地图 | 无后端运行入口 | [Matt Pocock Skills 工程流程地图](https://yydshly.github.io/0807_githubcode_study/mattpocock-skills.html) | 静态展示八阶段开发流程、完整 Skill 目录、能力与实现原理；没有安装或执行上游技能 |
+| QM | 组织级 Agent 权限、隔离与运行机制 | 无后端运行入口 | [QM 架构专题](https://yydshly.github.io/0807_githubcode_study/qm.html) | 静态展示 Scope、ACL、Harness、Sandbox、Memory、Keychain 与后台任务链；没有部署 QM、云资源、数据库、Slack 或组织凭据 |
 
 增加新的在线演示时，应同时补充：代码目录、用途、数据来源、运行状态、公开URL、部署方式和最后验证日期。
 

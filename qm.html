@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="QM 研究归档：以 Scope、权限、Harness 与持久沙箱实现组织级 Agent 运行边界。"
+    />
+    <meta name="theme-color" content="#f1eee5" />
+    <title>QM 研究 · 权限驱动的 Agent 运行边界</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./assets/qm.css" />
+    <script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('study-theme');
+          const preferred = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          document.documentElement.dataset.theme = saved || preferred;
+        } catch (_) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href="./index.html" aria-label="返回研究总索引">
+          <span>08/07</span><strong>QM STUDY</strong>
+        </a>
+        <nav aria-label="专题导航">
+          <a href="#core">核心</a>
+          <a href="#turn">执行链</a>
+          <a href="#implementation">实现</a>
+          <a href="#meaning">意义</a>
+        </nav>
+        <div class="header-actions">
+          <a class="back-link" href="./index.html">返回索引 ↗</a>
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换深色主题" aria-pressed="false">
+            <span aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="shell hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow"><span></span>ARCHITECTURE REVIEW · 2026/08/07</p>
+            <h1>它管理的不是多个 Agent 的思想，<em>而是每一次执行的安全边界。</em></h1>
+            <p class="hero-lead">
+              QM 先计算谁在什么空间工作、参与者共同拥有什么权限，再动态装配记忆、文件、Skills、凭据、网络与持久沙箱，最后交给 Codex、Claude Code、OpenCode 或 Pi 执行。
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#turn">查看一次 Turn ↓</a>
+              <a class="button secondary" href="https://github.com/yc-software/qm" target="_blank" rel="noreferrer">上游仓库 ↗</a>
+            </div>
+          </div>
+
+          <aside class="scope-card" aria-label="QM 核心公式">
+            <div class="scope-card-head"><span>EXECUTION BOUNDARY</span><b>核心公式</b></div>
+            <div class="equation">
+              <div><span>身份</span><i>+</i><span>会话</span><i>+</i><span>Scope</span></div>
+              <strong>↓</strong>
+              <div><span>ACL</span><i>+</i><span>组织策略</span></div>
+              <strong>↓</strong>
+              <div class="equation-result">本轮有效权限</div>
+            </div>
+            <dl>
+              <div><dt>不是</dt><dd>总管 Agent / 角色协作图</dd></div>
+              <div><dt>而是</dt><dd>组织级 Agent Control Plane</dd></div>
+              <div><dt>状态</dt><dd>高价值参考 · 早期实验软件</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section core" id="core">
+        <div class="shell section-heading">
+          <div><span class="index">01 / CORE VERDICT</span><h2>隔离只是基础，完整核心有四层</h2></div>
+          <p>权限决定这一轮“不能看到什么、能装配什么、允许做什么，以及做过什么如何留痕”。</p>
+        </div>
+        <div class="shell core-grid">
+          <article><span>01</span><h3>隔离</h3><strong>Scope Boundary</strong><p>个人、群聊、频道、团队和组织资源默认分离；当前空间是可写层，上层资源按规则只读挂载。</p></article>
+          <article><span>02</span><h3>装配</h3><strong>Permission Projection</strong><p>根据参与者共同权限，将文件、记忆、Skills、凭据和网络边界投影到本轮运行环境。</p></article>
+          <article><span>03</span><h3>执行</h3><strong>Deterministic Gates</strong><p>Agent 提出行动；命令策略、审批、预算和出网控制在模型之外决定是否执行。</p></article>
+          <article><span>04</span><h3>持久</h3><strong>State & Audit</strong><p>会话、工作区、进程、后台任务和审计跨 Turn 保留，让组织工作不依赖一次聊天上下文。</p></article>
+        </div>
+      </section>
+
+      <section class="section turn" id="turn">
+        <div class="shell section-heading inverse">
+          <div><span class="index">02 / TURN LIFECYCLE</span><h2>一次请求怎样变成受控执行</h2></div>
+          <p>同一条链路服务人类消息和后台自动任务；自动化不会绕过 Scope、权限、凭据或命令策略。</p>
+        </div>
+        <ol class="shell turn-flow" aria-label="QM 一次 Turn 的执行流程">
+          <li><span>01</span><b>Surface</b><h3>接收消息</h3><p>Slack 或 Web 转换为 actor、conversation 和输入。</p></li>
+          <li><span>02</span><b>Identity</b><h3>确认主体</h3><p>检查内部身份、参与者、成员版本、速率和预算。</p></li>
+          <li><span>03</span><b>Resolution</b><h3>计算边界</h3><p>解析 Scope、Workspace Layers、ACL、出网和安全策略。</p></li>
+          <li><span>04</span><b>Projection</b><h3>装配资源</h3><p>加载共同可见历史、记忆、文件、Skills 和凭据 Grant。</p></li>
+          <li><span>05</span><b>Harness</b><h3>选择 Agent</h3><p>在组织批准范围内路由 Codex、Claude Code、OpenCode 或 Pi。</p></li>
+          <li><span>06</span><b>Sandbox</b><h3>受控执行</h3><p>命令先经 deny/approval，再进入当前 Scope 的持久计算机。</p></li>
+          <li><span>07</span><b>Persistence</b><h3>保存与投递</h3><p>写入会话、记忆、任务状态、文件和审计，再返回原入口。</p></li>
+        </ol>
+      </section>
+
+      <section class="section implementation" id="implementation">
+        <div class="shell section-heading">
+          <div><span class="index">03 / CAPABILITY × IMPLEMENTATION</span><h2>每项能力，都有确定性的实现落点</h2></div>
+          <p>筛选查看隔离、执行与持久化三类机制。这里描述的是上游代码结构，不代表本研究门户已经部署对应服务。</p>
+        </div>
+        <div class="shell filter-bar" aria-label="实现机制筛选">
+          <div id="mechanismFilters">
+            <button type="button" data-filter="all" aria-pressed="true">全部</button>
+            <button type="button" data-filter="isolation" aria-pressed="false">隔离与授权</button>
+            <button type="button" data-filter="execution" aria-pressed="false">执行与适配</button>
+            <button type="button" data-filter="persistence" aria-pressed="false">持久化</button>
+          </div>
+          <span id="mechanismCount" aria-live="polite">8 项机制</span>
+        </div>
+        <div class="shell mechanism-grid" id="mechanismGrid">
+          <article data-domain="isolation"><header><span>SCOPE</span><b>01</b></header><h3>个人与共享空间</h3><p>ResolutionService 将 DM、群聊与频道映射为不同 Scope；组织层只读，当前 Scope 可写。</p><dl><div><dt>能力</dt><dd>多人隔离</dd></div><div><dt>实现</dt><dd>Resolution · Workspace Layer</dd></div></dl></article>
+          <article data-domain="isolation"><header><span>ACL</span><b>02</b></header><h3>共同可见资源</h3><p>文件句柄、会话历史和出网边界按会话所有参与者的共同权限过滤，而不是按发起者单独权限。</p><dl><div><dt>能力</dt><dd>安全共享</dd></div><div><dt>实现</dt><dd>Audience Filter · Grant</dd></div></dl></article>
+          <article data-domain="execution"><header><span>HARNESS</span><b>03</b></header><h3>可替换 Agent 引擎</h3><p>统一 Adapter 接口描述控制协议、工具传输与能力；Router 检查组织批准列表和模型兼容性。</p><dl><div><dt>能力</dt><dd>多模型/多运行时</dd></div><div><dt>实现</dt><dd>Harness · Router</dd></div></dl></article>
+          <article data-domain="execution"><header><span>SANDBOX</span><b>04</b></header><h3>每个 Scope 的持久计算机</h3><p>统一 provision、run、文件、进程、备份与销毁接口；本地、AWS 等后端可以替换。</p><dl><div><dt>能力</dt><dd>项目环境延续</dd></div><div><dt>实现</dt><dd>Sandbox Interface</dd></div></dl></article>
+          <article data-domain="isolation"><header><span>KEYCHAIN</span><b>05</b></header><h3>凭据按 Scope 发放</h3><p>凭据归个人或组织所有，通过 once/standing Grant 授权给目标 Scope，并在物化时审计。</p><dl><div><dt>能力</dt><dd>最小权限接入</dd></div><div><dt>实现</dt><dd>Credential · Grant · Broker</dd></div></dl></article>
+          <article data-domain="persistence"><header><span>MEMORY</span><b>06</b></header><h3>记忆不共用一锅</h3><p>MemoryService 按 Scope 召回、写入和查询；逐轮策略提取长期事实并排除密钥和无证据偏好。</p><dl><div><dt>能力</dt><dd>长期个性与项目上下文</dd></div><div><dt>实现</dt><dd>Memory Policy · Strategy</dd></div></dl></article>
+          <article data-domain="persistence"><header><span>SKILLS</span><b>07</b></header><h3>能力有所有权和生命周期</h3><p>Skill 经 draft、reviewed、published、archived 流转，按 Scope 优先级解析后再物化到沙箱。</p><dl><div><dt>能力</dt><dd>团队能力治理</dd></div><div><dt>实现</dt><dd>Skill Store · Materializer</dd></div></dl></article>
+          <article data-domain="persistence execution"><header><span>QUEUE</span><b>08</b></header><h3>后台任务仍受同一套治理</h3><p>Cron 产生 Run；Worker 通过租约、心跳、重试和幂等记录执行，再调用同一个 Orchestrator。</p><dl><div><dt>能力</dt><dd>无人值守工作</dd></div><div><dt>实现</dt><dd>RunStore · Worker · Ledger</dd></div></dl></article>
+        </div>
+        <div class="shell empty-state" id="mechanismEmpty" hidden><strong>没有匹配的实现机制</strong><p>切换到“全部”查看完整能力映射。</p></div>
+      </section>
+
+      <section class="section boundary" id="boundary">
+        <div class="shell section-heading">
+          <div><span class="index">04 / SECURITY BOUNDARY</span><h2>Scope 降低风险，但不等于已经安全</h2></div>
+          <p>上游明确把 QM 定义为早期实验软件。命令规则、内容筛查和审计都是纵深防御，不是安全认证。</p>
+        </div>
+        <div class="shell boundary-layout">
+          <div class="risk-list">
+            <article><b>命令策略可绕过</b><p>文本分类能挡常见错误，但编码、混淆或先落盘再执行脚本仍可能规避规则。</p></article>
+            <article><b>凭据使用时为明文</b><p>环境变量和文件进入沙箱后可被进程读取；purpose 目前不是强制授权约束。</p></article>
+            <article><b>安全筛查覆盖不完整</b><p>命令输出、多模态、部分 webhook 和混合权限上下文仍存在已知缺口。</p></article>
+            <article><b>管理员是特权读取者</b><p>管理员可以审计地读取大量敏感内容；持久数据也可能超过用户预期长期保留。</p></article>
+          </div>
+          <aside class="boundary-card">
+            <span>ADOPTION POSTURE</span>
+            <h3>研究优先，PoC 受控，生产暂缓。</h3>
+            <dl>
+              <div><dt>架构参考</dt><dd>立即保留</dd></div>
+              <div><dt>测试数据 PoC</dt><dd>真实多人需求触发</dd></div>
+              <div><dt>敏感生产</dt><dd>专项安全评审后再定</dd></div>
+            </dl>
+            <a href="https://github.com/yc-software/qm/blob/main/SECURITY.md" target="_blank" rel="noreferrer">查看上游安全说明 ↗</a>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section meaning" id="meaning">
+        <div class="shell section-heading inverse">
+          <div><span class="index">05 / MEANING FOR US</span><h2>它补齐的是组织运行层</h2></div>
+          <p>现有研究已经覆盖数据、工具调用和工作方法；QM 回答这些能力如何被多个人长期、安全地共同使用。</p>
+        </div>
+        <div class="shell stack-map" aria-label="QM 与当前研究项目的关系">
+          <div><span>数据与外部能力</span><strong>ShadowBroker · Horizon · Yichen Skills</strong><p>提供信息、工具和业务系统入口</p></div>
+          <i>↓</i>
+          <div><span>工作方法</span><strong>David · Matt Skills</strong><p>提供可复用流程和工程纪律</p></div>
+          <i>↓</i>
+          <div><span>Agent 开发</span><strong>AgentScope</strong><p>提供模型、工具调用和应用框架</p></div>
+          <i>↓</i>
+          <div class="stack-focus"><span>组织运行与治理</span><strong>QM</strong><p>身份 · Scope · 权限 · 沙箱 · 任务 · 审计</p></div>
+        </div>
+        <div class="shell decision-grid">
+          <article><span>值得吸收</span><h3>架构原则</h3><p>Scope、共同权限下限、确定性门禁、Harness Adapter、持久沙箱和 Worker Lease。</p></article>
+          <article><span>需要改造</span><h3>平台入口</h3><p>QM 当前偏 Slack；飞书、企业微信和钉钉需要新的 Surface 与身份适配。</p></article>
+          <article><span>不能直接合并</span><h3>AgentScope</h3><p>QM 没有原生 AgentScope Harness。两者组合需要明确的 Adapter，而不是简单安装依赖。</p></article>
+        </div>
+      </section>
+
+      <section class="section docs">
+        <div class="shell docs-card">
+          <div><span>RESEARCH ARTIFACTS</span><h2>从页面判断进入完整证据</h2><p>专题页用于快速建立架构认知；详细实现、风险和采用条件保存在独立研究文档中。</p></div>
+          <div class="doc-links">
+            <a href="https://github.com/yydshly/0807_githubcode_study/tree/main/qm-study">研究归档 <span>↗</span></a>
+            <a href="https://github.com/yydshly/0807_githubcode_study/blob/main/qm-study/docs/architecture-and-implementation.md">架构与实现 <span>↗</span></a>
+            <a href="https://github.com/yydshly/0807_githubcode_study/blob/main/qm-study/docs/adoption-and-risk.md">采用与风险 <span>↗</span></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="shell"><span>0807 CODE STUDY / QM</span><span>静态架构研究，不包含 QM 后端、云资源或组织凭据</span></div>
+    </footer>
+    <script src="./assets/qm.js" defer></script>
+  </body>
+</html>
