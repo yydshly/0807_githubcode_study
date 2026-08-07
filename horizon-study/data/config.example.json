@@ -1,0 +1,130 @@
+{
+  "ai": {
+    "provider": "ollama",
+    "model": "demo-not-used-during-fetch",
+    "base_url": "http://127.0.0.1:11434/v1",
+    "api_key_env": "",
+    "languages": ["zh", "en"]
+  },
+  "processing": {
+    "profiles_dir": "profiles",
+    "default_profile": "tech-news",
+    "profile_settings": {
+      "tech-news": {
+        "threshold": 7.0,
+        "topic_dedup": true
+      },
+      "tech-blog": {
+        "threshold": 4.0,
+        "topic_dedup": false
+      },
+      "finance-news": {
+        "threshold": 7.0,
+        "topic_dedup": true
+      }
+    }
+  },
+  "sources": {
+    "github": [
+      {
+        "type": "repo_releases",
+        "owner": "astral-sh",
+        "repo": "uv",
+        "enabled": true,
+        "category": "open-source",
+        "profile": "tech-news"
+      }
+    ],
+    "hackernews": {
+      "enabled": true,
+      "fetch_top_stories": 12,
+      "min_score": 0,
+      "category": "community",
+      "profile": "tech-news"
+    },
+    "rss": [
+      {
+        "name": "Simon Willison",
+        "url": "https://simonwillison.net/atom/everything/",
+        "enabled": true,
+        "category": "ai-tools",
+        "profile": "tech-news"
+      }
+    ],
+    "reddit": {
+      "enabled": true,
+      "subreddits": [
+        {
+          "subreddit": "MachineLearning",
+          "enabled": true,
+          "sort": "hot",
+          "time_filter": "day",
+          "fetch_limit": 5,
+          "min_score": 0,
+          "category": "ai-ml",
+          "profile": "tech-news"
+        }
+      ],
+      "users": [],
+      "fetch_comments": 2
+    },
+    "telegram": {
+      "enabled": true,
+      "channels": [
+        {
+          "channel": "zaihuapd",
+          "enabled": true,
+          "fetch_limit": 5,
+          "category": "community",
+          "profile": ["tech-news", "finance-news"]
+        }
+      ]
+    },
+    "twitter": null,
+    "openbb": null,
+    "ossinsight": {
+      "enabled": true,
+      "period": "past_24_hours",
+      "languages": ["All", "Python", "TypeScript"],
+      "keywords": [],
+      "min_stars": 5,
+      "max_items": 8,
+      "category": "open-source",
+      "profile": "tech-news"
+    },
+    "gdelt": {
+      "enabled": true,
+      "query": "artificial intelligence open source",
+      "mode": "ArtList",
+      "max_records": 8,
+      "timespan": "24h",
+      "language": "english",
+      "country": null,
+      "category": "global-news",
+      "profile": "tech-news"
+    },
+    "google_news": {
+      "enabled": true,
+      "query": "artificial intelligence open source",
+      "language": "en",
+      "country": "US",
+      "ceid": null,
+      "max_results": 8,
+      "category": "news-search",
+      "profile": "tech-news"
+    }
+  },
+  "collection": {
+    "time_window_hours": 168
+  },
+  "digest": {
+    "max_items": 20,
+    "profile_order": ["tech-news", "tech-blog", "finance-news"],
+    "category_groups": {},
+    "default_group": "other",
+    "default_group_limit": null
+  },
+  "display": {
+    "icon_style": "ascii"
+  }
+}

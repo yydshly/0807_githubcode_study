@@ -9,6 +9,15 @@ agentscope-study/.venv/
 agentscope-study/config.local.json
 .uv-cache-agentscope/
 
+# Horizon isolated study environment and upstream audit checkout.
+horizon-study/upstream/
+horizon-study/.venv/
+horizon-study/data/config.json
+horizon-study/data/mcp-runs/
+horizon-study/data/summaries/
+horizon-study/demo-output/raw-items.json
+.uv-cache-horizon/
+
 # Python runtime caches.
 __pycache__/
 *.py[cod]

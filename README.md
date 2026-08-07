@@ -1,6 +1,6 @@
 # 0807 GitHub Code Study
 
-这是一个持续扩展的研究总仓库，用于拆解、运行和评估尚未掌握的开源项目、技术路线与产品形态。当前只有两个首批子项目，后续会继续接入更多彼此独立或可以组合的研究项目。
+这是一个持续扩展的研究总仓库，用于拆解、运行和评估尚未掌握的开源项目、技术路线与产品形态。当前已有三个独立子项目，后续会继续接入更多彼此独立或可以组合的研究项目。
 
 仓库不以收集大量第三方源码为目标。每个子项目独立保存研究过程、实际运行结果、技术结论和复用建议；根 README 只负责总览、关联和入口导航。
 
@@ -12,26 +12,30 @@
 |---|---|---|---|---|---|
 | [shadowbroker-study](shadowbroker-study/) | ShadowBroker 多源公开信息获取与地图展示平台 | 阶段性完成，作为参考案例归档 | 值得参考来源治理、多协议接入、时空模型、可靠性和展示路线；不值得当前继续追求完整全球实时数据 | [上游原库](https://github.com/BigBodyCobain/Shadowbroker) · [阶段总结](shadowbroker-study/docs/stage-summary.md) · [技术路线](shadowbroker-study/docs/technical-routes-and-research-value.md) · [来源手册](shadowbroker-study/docs/source-entry-guide.md) | 本地界面：`127.0.0.1:3000`；公开演示待接入 |
 | [agentscope-study](agentscope-study/) | AgentScope Agent 开发框架与 MiniMax M3 接入验证 | 离线机制和真实模型链路已通过，等待固定案例对照评估 | 模型接入、工具调度、记忆接口和结构化输出基础设施有效；业务工具仍需自建，模型研判质量尚未证明 | [上游原库](https://github.com/agentscope-ai/agentscope) · [项目说明](agentscope-study/README.md) · [实测报告](agentscope-study/REPORT.md) | [公开 Web 演示](https://yydshly.github.io/0807_githubcode_study/agentscope.html) · `agentscope-study/run-minimax.cmd` |
+| [horizon-study](horizon-study/) | Horizon AI 新闻雷达与编辑流水线 | 安装、源码审计和真实抓取演示完成；完整本地 AI 链路等待模型 Key | 与 AI 探测雷达属于同一能力类型；公开自动化配置实际只有 14 个入口，核心价值在 Profile、评分去重和日报编排，而不是独有信息源 | [公开专题总结](https://yydshly.github.io/0807_githubcode_study/horizon.html) · [上游原库](https://github.com/Thysrael/Horizon) · [真实地址清单](horizon-study/docs/real-source-inventory.md) · [处理链路](horizon-study/docs/source-processing-pipeline.md) | 本地抓取页面：`127.0.0.1:8879`；[上游完整日报](https://thysrael.github.io/Horizon/) |
 
 ## 子项目之间的协作关系
 
-总仓库不是只服务于当前两个项目，也不预设项目数量上限。每个子项目先独立研究、独立归档；发现可复用能力后，再通过数据模型、API 或演示层组合，而不是让项目内部代码互相耦合。
+总仓库不预设项目数量上限。每个子项目先独立研究、独立归档；发现可复用能力后，再通过数据模型、API 或演示层组合，而不是让项目内部代码互相耦合。
 
-当前两个项目可以组成一条参考链路，未来的卫星、新闻、地理空间、数据接入、可视化和其他专题研究都可以继续并列接入：
+当前项目可以组成一条参考链路，未来的卫星、地理空间、数据接入、可视化和其他专题研究都可以继续并列接入：
 
 ```mermaid
 flowchart LR
     A["公开 API、Feed、消息流和设备"]
     B["ShadowBroker 研究<br/>采集、统一、可靠性、时空展示"]
+    H["Horizon 研究<br/>新闻采集、去重、AI 编辑与日报"]
     C["规范化对象、事件和证据"]
     D["AgentScope 研究<br/>工具调用、核验、结构化研判"]
     F["后续独立研究项目<br/>卫星、新闻、空间计算、专题产品等"]
     E["可复用能力与在线演示"]
     A --> B --> C --> D --> E
+    A --> H --> C
     F --> E
 ```
 
 - ShadowBroker 研究回答“信息从哪里来、怎样接入、怎样表示和展示”。
+- Horizon 研究回答“怎样把多源新闻组织成可配置、可重复的 AI 编辑流水线”。
 - AgentScope 研究回答“怎样让 Agent 调用确定性工具、核验来源并输出可审计结论”。
 - 两者之间未来应通过稳定的数据模型或 API 连接，而不是直接互相依赖内部代码。
 
@@ -92,6 +96,7 @@ Fish Speech 是生成式文生语音（TTS）模型及推理工具库。它接�
 |---|---|---|---|---|
 | ShadowBroker | 多源地图界面 | `http://127.0.0.1:3000` | [研究门户入口](https://yydshly.github.io/0807_githubcode_study/#projects) | 研究资料已公开；完整界面仅在本机运行。原项目依赖 Next.js 服务端代理和 Python 后端，不能原样完整运行在 GitHub Pages |
 | AgentScope | 框架能力、运行原理、MiniMax M3 接入和验证结果 | `agentscope-study/run-minimax.cmd` | [AgentScope 专题演示](https://yydshly.github.io/0807_githubcode_study/agentscope.html) | 静态交互演示已公开；真实模型调用只在本地运行，API Key 不进入 GitHub Pages |
+| Horizon | 多源新闻抓取与 AI 日报 | `http://127.0.0.1:8879` | [Horizon 专题总结](https://yydshly.github.io/0807_githubcode_study/horizon.html) · [上游完整日报](https://thysrael.github.io/Horizon/) | 专题总结与静态证据已公开；本地已验证 61 条真实抓取和 URL 去重；完整 AI 日报需模型 Key，本仓库不保存密钥 |
 
 增加新的在线演示时，应同时补充：代码目录、用途、数据来源、运行状态、公开URL、部署方式和最后验证日期。
 
@@ -103,7 +108,7 @@ Fish Speech 是生成式文生语音（TTS）模型及推理工具库。它接�
 https://yydshly.github.io/0807_githubcode_study/
 ```
 
-门户后续可以持续增加项目卡片和静态演示，不受当前两个项目限制。但 GitHub Pages 是静态托管，不运行 Python 后端、数据库、定时采集器或服务端长连接，也不应存放 API Key。因此建议采用两层结构：
+门户后续可以持续增加项目卡片和静态演示，不受当前三个项目限制。但 GitHub Pages 是静态托管，不运行 Python 后端、数据库、定时采集器或服务端长连接，也不应存放 API Key。因此建议采用两层结构：
 
 ```text
 GitHub Pages：总项目导航、研究结论、静态样例和演示入口

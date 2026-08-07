@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Horizon AI 新闻雷达研究总结：真实来源、抓取方式、时间窗口、处理链路，以及它与 AI 探测雷达的关系。" />
+    <meta name="theme-color" content="#10130f" />
+    <title>Horizon 研究总结 · AI 信息雷达与编辑流水线</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./assets/horizon.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href="./index.html"><span>08/07</span><strong>HORIZON STUDY</strong></a>
+        <nav aria-label="专题导航">
+          <a href="#verdict">结论</a><a href="#sources">真实来源</a><a href="#pipeline">处理链路</a><a href="#comparison">雷达对照</a>
+        </nav>
+        <a class="back-link" href="./index.html">返回研究索引 ↗</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="shell hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow"><span></span>RESEARCH NOTE · 2026/08/07</p>
+            <h1>它不是更大的雷达，<em>而是一条更完整的编辑流水线。</em></h1>
+            <p class="hero-lead">Horizon 与 AI 探测雷达属于同一能力类型：配置来源、定时抓取、统一结构、去重筛选，再生成阅读结果。真正该比较的不是“支持多少抓取器”，而是实际来源资产、时间语义、错误可见性和编辑质量。</p>
+            <div class="hero-actions">
+              <a class="button primary" href="#sources">查看真实来源 ↓</a>
+              <a class="button secondary" href="https://github.com/Thysrael/Horizon" target="_blank" rel="noreferrer">上游仓库 ↗</a>
+            </div>
+          </div>
+          <aside class="hero-panel" aria-label="审计结果摘要">
+            <div class="panel-head"><span>AUDIT SNAPSHOT</span><b>已验证</b></div>
+            <div class="metric-grid">
+              <div><strong>14</strong><span>公开配置入口</span></div>
+              <div><strong>10</strong><span>代码来源类型</span></div>
+              <div><strong>11</strong><span>采集实现路径</span></div>
+              <div><strong>61</strong><span>本地真实抓取</span></div>
+            </div>
+            <p>审计基于上游提交 <code>9dfee92</code>。完整 AI 链路未在无 Key 环境中伪造；本地只验证真实采集、统一建模和 URL 去重。</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section verdict" id="verdict">
+        <div class="shell split-heading">
+          <div><span class="index">01 / VERDICT</span><h2>一句话判断</h2></div>
+          <blockquote>信息源决定输入上限；Profile 与筛选决定信噪比；编辑和发布决定它能否成为日常工具。</blockquote>
+        </div>
+        <div class="shell verdict-grid">
+          <article><span>相同点</span><h3>与 AI 探测雷达同类</h3><p>都是“来源配置 + 滑动时间窗口 + 批量抓取 + 去重筛选 + 结果输出”的信息处理系统。</p></article>
+          <article><span>差异点</span><h3>强在编辑编排</h3><p>Profile 路由、AI 评分、语义去重、类别配额、内容增强和双语日报形成了完整阶段链路。</p></article>
+          <article><span>现实边界</span><h3>来源并不丰富</h3><p>公开运行配置只有 14 个入口，且明显偏向 AI 推理框架、开源模型社区与技术新闻。</p></article>
+          <article><span>复用方向</span><h3>借结构，不照搬源</h3><p>适合吸收分阶段产物和编辑机制；来源治理、证据留存和事实核验仍需雷达自身建设。</p></article>
+        </div>
+      </section>
+
+      <section class="section sources" id="sources">
+        <div class="shell section-heading">
+          <div><span class="index">02 / REAL SOURCES</span><h2>公开配置中的真实入口</h2></div>
+          <p>以下来自 <code>data/config.github.json</code>，是最接近公开自动化任务的证据。示例配置和安装向导预设不计入“实际启用”。</p>
+        </div>
+        <div class="shell source-groups">
+          <section class="source-group">
+            <header><span>01</span><div><h3>GitHub 与榜单</h3><p>5 个入口 · 结构化 API / Top Stories</p></div></header>
+            <div class="source-list">
+              <a href="https://github.com/karpathy" target="_blank" rel="noreferrer"><strong>karpathy</strong><span>用户公开事件</span><i>GitHub ↗</i></a>
+              <a href="https://github.com/vllm-project/vllm/releases" target="_blank" rel="noreferrer"><strong>vLLM</strong><span>Release</span><i>GitHub ↗</i></a>
+              <a href="https://github.com/sgl-project/sglang/releases" target="_blank" rel="noreferrer"><strong>SGLang</strong><span>Release</span><i>GitHub ↗</i></a>
+              <a href="https://github.com/triton-lang/triton/releases" target="_blank" rel="noreferrer"><strong>Triton</strong><span>Release</span><i>GitHub ↗</i></a>
+              <a href="https://news.ycombinator.com/" target="_blank" rel="noreferrer"><strong>Hacker News</strong><span>Top 30 · score ≥ 150</span><i>API ↗</i></a>
+            </div>
+          </section>
+          <section class="source-group">
+            <header><span>02</span><div><h3>RSS / Atom</h3><p>6 个入口 · 其中 2 个二次提取正文</p></div></header>
+            <div class="source-list">
+              <a href="https://simonwillison.net/atom/everything/" target="_blank" rel="noreferrer"><strong>Simon Willison</strong><span>官方 Atom</span><i>Feed ↗</i></a>
+              <a href="https://vllm.ai/blog/rss.xml" target="_blank" rel="noreferrer"><strong>vLLM Blog</strong><span>RSS + 全文提取</span><i>Feed ↗</i></a>
+              <a href="https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000664" target="_blank" rel="noreferrer"><strong>CNBC Finance</strong><span>RSS + 全文提取</span><i>Feed ↗</i></a>
+              <a href="https://mshibanami.github.io/GitHubTrendingRSS/daily/all.xml" target="_blank" rel="noreferrer"><strong>GitHub Trending RSS</strong><span>第三方聚合</span><i>Bridge ↗</i></a>
+              <a href="https://newsletter.semianalysis.com/feed" target="_blank" rel="noreferrer"><strong>SemiAnalysis</strong><span>Newsletter Feed</span><i>Feed ↗</i></a>
+              <div class="source-private"><strong>LWN Full Text</strong><span>订阅密钥注入</span><i>Private RSS</i></div>
+            </div>
+          </section>
+          <section class="source-group compact">
+            <header><span>03</span><div><h3>社区与频道</h3><p>3 个入口 · HTML / JSON / RSS 降级</p></div></header>
+            <div class="source-list">
+              <a href="https://www.reddit.com/r/MachineLearning/" target="_blank" rel="noreferrer"><strong>r/MachineLearning</strong><span>Hot 10 · score ≥ 60</span><i>Reddit ↗</i></a>
+              <a href="https://www.reddit.com/r/LocalLLaMA/" target="_blank" rel="noreferrer"><strong>r/LocalLLaMA</strong><span>Hot 10 · score ≥ 60</span><i>Reddit ↗</i></a>
+              <a href="https://t.me/zaihuapd" target="_blank" rel="noreferrer"><strong>zaihuapd</strong><span>公开频道预览 · 20 条</span><i>Telegram ↗</i></a>
+            </div>
+          </section>
+          <aside class="source-note">
+            <span>NOT ACTIVE</span><p>Twitter/X、OpenBB、OSS Insight、GDELT、Google News 虽然有代码实现或示例，但没有出现在公开自动化配置里，不能算作真实运行覆盖。</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section methods">
+        <div class="shell section-heading">
+          <div><span class="index">03 / ACQUISITION</span><h2>抓取方式是通用能力</h2></div>
+          <p>RSS 不是信息源本身，而是一种统一发布协议。配置中的每个 Feed 地址才是具体来源；“RSS 全文提取”是在拿到 Feed 后，再访问文章页面补正文。</p>
+        </div>
+        <div class="shell method-grid">
+          <article><b>API</b><h3>结构化接口</h3><p>HN、GitHub、GDELT、OSS Insight。字段稳定，但仍受限流、配额和时间窗口影响。</p></article>
+          <article><b>RSS / Atom</b><h3>统一订阅协议</h3><p>低成本获取标题、链接、摘要和发布时间；内容完整度由发布者决定。</p></article>
+          <article><b>HTML</b><h3>公开页面解析</h3><p>Reddit、Telegram 等无 Key 路径。页面结构变化和反爬会影响长期稳定性。</p></article>
+          <article><b>FULL TEXT</b><h3>正文二次提取</h3><p>Feed 只给摘要时访问原文，用 Trafilatura 抽取正文；失败则回退 Feed 内容。</p></article>
+          <article><b>BROWSER</b><h3>浏览器自动化</h3><p>Twitter/X 可用 Cookie 和网络响应拦截，维护成本、账号风险最高。</p></article>
+          <article><b>AGGREGATOR</b><h3>第三方聚合</h3><p>Apify、OpenBB、RSS 桥接降低开发成本，同时引入费用、许可与服务依赖。</p></article>
+        </div>
+      </section>
+
+      <section class="section pipeline" id="pipeline">
+        <div class="shell section-heading inverse">
+          <div><span class="index">04 / PIPELINE</span><h2>时间节点怎样判断</h2></div>
+          <p>调度器生成统一的 <code>since</code> 截止时间，各抓取器按自己的能力过滤。判断通常基于条目发布时间，不是本次抓到的时间。</p>
+        </div>
+        <div class="shell timeline">
+          <div><span>01</span><strong>生成窗口</strong><p>例如运行时间减去 24 小时或 168 小时，形成统一 <code>since</code>。</p></div>
+          <div><span>02</span><strong>来源内获取</strong><p>API 查询、Feed 批量下载或页面解析，各来源先执行数量与热度粗筛。</p></div>
+          <div><span>03</span><strong>解析发布时间</strong><p>优先读取来源的 <code>published_at</code>；能解析时才与窗口截止点比较。</p></div>
+          <div><span>04</span><strong>统一与去重</strong><p>转换为 ContentItem，保留 <code>published_at</code> 与 <code>fetched_at</code>，再做 URL 去重。</p></div>
+        </div>
+        <div class="shell time-caveat"><strong>例外需要警惕</strong><p>OSS Insight 是排名快照，实现把发布时间写成抓取时间；Google News 把窗口转换成查询语法；部分来源缺少可靠发布时间。因而“窗口内抓到”不总等于“事件发生在窗口内”。</p></div>
+        <div class="shell pipeline-flow" aria-label="Horizon 完整处理流程">
+          <span>配置来源</span><i>→</i><span>并发抓取</span><i>→</i><span>统一模型</span><i>→</i><span>URL 去重</span><i>→</i><span>Profile 路由</span><i>→</i><span>AI 评分</span><i>→</i><span>语义去重</span><i>→</i><span>日报发布</span>
+        </div>
+      </section>
+
+      <section class="section comparison" id="comparison">
+        <div class="shell section-heading">
+          <div><span class="index">05 / COMPARISON</span><h2>对 AI 探测雷达的意义</h2></div>
+          <p>不是替换现有雷达，而是把它当作“编辑层参考实现”。真正的竞争力仍然来自你拥有、维护并理解的信息源网络。</p>
+        </div>
+        <div class="shell comparison-table" role="table" aria-label="Horizon 与 AI 探测雷达比较框架">
+          <div class="table-row table-head" role="row"><span>比较维度</span><span>Horizon 现状</span><span>雷达应关注</span></div>
+          <div class="table-row" role="row"><strong>真实来源</strong><span>14 个公开配置入口，范围偏窄</span><span>建立可持续、分层的来源资产表</span></div>
+          <div class="table-row" role="row"><strong>抓取方式</strong><span>通用 API、RSS、HTML、浏览器路径</span><span>优先稳定接口，保留明确降级顺序</span></div>
+          <div class="table-row" role="row"><strong>时间语义</strong><span>统一 since，但来源实现不完全一致</span><span>分开事件、发布、首次发现与抓取时间</span></div>
+          <div class="table-row" role="row"><strong>去重</strong><span>URL 确定性去重 + AI 话题去重</span><span>增加 canonical、正文哈希和事件聚类</span></div>
+          <div class="table-row" role="row"><strong>编辑输出</strong><span>Profile、评分、配额、增强、双语日报</span><span>可直接参考其阶段化编辑设计</span></div>
+          <div class="table-row" role="row"><strong>证据与健康度</strong><span>原始证据、许可与错误语义仍不足</span><span>作为雷达核心能力优先补齐</span></div>
+        </div>
+        <div class="shell recommendation">
+          <div><span>NEXT</span><h3>最值得落到你的系统里的，不是更多抓取器。</h3></div>
+          <ol><li>建立真实来源资产表与健康度监控</li><li>区分发布时间、抓取时间和事件时间</li><li>保留 raw → scored → filtered → enriched 分阶段制品</li><li>把来源可信度与 AI 编辑评分拆开</li></ol>
+        </div>
+      </section>
+
+      <section class="section evidence">
+        <div class="shell evidence-grid">
+          <div><span class="index">06 / EVIDENCE</span><h2>验证证据与边界</h2><p>2026-08-07 本地以 168 小时窗口获得 61 条真实内容：GitHub 2、HN 12、RSS 30、Reddit 4、Telegram 5、Google News 8。GDELT 遭遇 429，OSS Insight 返回空结果。</p></div>
+          <div class="evidence-links">
+            <a href="https://github.com/yydshly/0807_githubcode_study/blob/main/horizon-study/docs/real-source-inventory.md" target="_blank" rel="noreferrer">真实来源清单 <span>↗</span></a>
+            <a href="https://github.com/yydshly/0807_githubcode_study/blob/main/horizon-study/docs/source-processing-pipeline.md" target="_blank" rel="noreferrer">处理链路文档 <span>↗</span></a>
+            <a href="./horizon-study/demo-output/index.html">静态抓取快照 <span>↗</span></a>
+            <a href="https://thysrael.github.io/Horizon/" target="_blank" rel="noreferrer">上游完整日报 <span>↗</span></a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer><div class="shell"><span>0807 CODE STUDY / HORIZON</span><span>研究结论，不是实时情报承诺</span></div></footer>
+  </body>
+</html>

@@ -41,6 +41,26 @@
       upstreamLabel: '原始仓库',
       upstreamUrl: 'https://github.com/agentscope-ai/agentscope',
     },
+    {
+      number: '03',
+      slug: 'horizon-study',
+      title: 'Horizon',
+      kicker: 'AI NEWS EDITORIAL PIPELINE',
+      category: 'editorial',
+      categoryLabel: 'AI 编辑',
+      status: '真实抓取验证',
+      summary:
+        'AI 新闻雷达与编辑流水线研究。已核对 10 类信息源和 11 条采集路径，并完成 61 条真实抓取、统一建模、URL 去重与浏览器验收。',
+      value: '来源适配器、Profile 路由、评分去重、MCP 分阶段接口与静态日报发布',
+      deployment: '本地抓取演示已验证；完整 AI 日报需要模型 Key，上游提供公开成品站',
+      tags: ['RSS / API / HTML', 'AI Scoring', 'Dedup', 'MCP', 'GitHub Pages'],
+      primaryLabel: '查看专题总结',
+      primaryUrl: './horizon.html',
+      secondaryLabel: '查看来源清单',
+      secondaryUrl: `${repository}/blob/main/horizon-study/docs/source-matrix.md`,
+      upstreamLabel: '原始仓库',
+      upstreamUrl: 'https://github.com/Thysrael/Horizon',
+    },
   ];
 
   const root = document.documentElement;
