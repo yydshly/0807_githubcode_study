@@ -171,7 +171,7 @@ Observable completion criteria: 文档结论与代码证据一致；专题页在
 | Web描述 | 响应式阅读 | 1280×720、1024×768、390×844 | 截图、scrollWidth与可见内容检查 | Stage 7 | pass | 无 |
 | 根README合并 | 第七个项目、协作关系、总体理解和在线入口 | Markdown/门户 | README相对链接、首页7张卡片、Agent筛选显示4张卡片 | Stage 3–6 | pass | 无 |
 | 工程交付 | HTML/CSS/JS/Markdown质量 | 静态文件 | JS语法、4个相对资源HTTP 200、diff检查与浏览器空日志 | Stage 9 | pass | 无 |
-| 提交并推送main | 本次文件提交并同步origin/main | Git | commit哈希、分支状态与远端同步状态 | Stage 9 | continue | 显式暂存、提交和推送后回填 |
+| 提交并推送main | 本次文件提交并同步origin/main | Git | `e82ca75` 已推送，`main -> origin/main` 成功 | Stage 9 | pass | 无 |
 
 ### QM 浏览器验收记录
 
