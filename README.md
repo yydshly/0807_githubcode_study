@@ -10,8 +10,8 @@
 
 | 子项目 | 研究对象 | 当前状态 | 核心结论 | 资料入口 | 运行/演示 |
 |---|---|---|---|---|---|
-| [shadowbroker-study](shadowbroker-study/) | ShadowBroker 多源公开信息获取与地图展示平台 | 阶段性完成，作为参考案例归档 | 值得参考来源治理、多协议接入、时空模型、可靠性和展示路线；不值得当前继续追求完整全球实时数据 | [阶段总结](shadowbroker-study/docs/stage-summary.md) · [技术路线](shadowbroker-study/docs/technical-routes-and-research-value.md) · [来源手册](shadowbroker-study/docs/source-entry-guide.md) | 本地界面：`127.0.0.1:3000`；公开演示待接入 |
-| [agentscope-study](agentscope-study/) | AgentScope Agent 框架能力验证 | 初步机制验证完成，等待真实模型对照评估 | 框架循环、工具调用和结构化输出机制有效；尚不能证明真实模型研判质量 | [项目说明](agentscope-study/README.md) · [初步报告](agentscope-study/REPORT.md) | 命令行离线演示；公开演示待接入 |
+| [shadowbroker-study](shadowbroker-study/) | ShadowBroker 多源公开信息获取与地图展示平台 | 阶段性完成，作为参考案例归档 | 值得参考来源治理、多协议接入、时空模型、可靠性和展示路线；不值得当前继续追求完整全球实时数据 | [上游原库](https://github.com/BigBodyCobain/Shadowbroker) · [阶段总结](shadowbroker-study/docs/stage-summary.md) · [技术路线](shadowbroker-study/docs/technical-routes-and-research-value.md) · [来源手册](shadowbroker-study/docs/source-entry-guide.md) | 本地界面：`127.0.0.1:3000`；公开演示待接入 |
+| [agentscope-study](agentscope-study/) | AgentScope Agent 框架能力验证 | 初步机制验证完成，等待真实模型对照评估 | 框架循环、工具调用和结构化输出机制有效；尚不能证明真实模型研判质量 | [上游原库](https://github.com/agentscope-ai/agentscope) · [项目说明](agentscope-study/README.md) · [初步报告](agentscope-study/REPORT.md) | 命令行离线演示；公开演示待接入 |
 
 ## 子项目之间的协作关系
 

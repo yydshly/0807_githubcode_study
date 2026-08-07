@@ -4,7 +4,7 @@
 
 ```text
 Entry mode: brief-led
-Request revision: 1
+Request revision: 2
 Target user and context: 仓库维护者与希望快速了解研究结论、项目状态和演示边界的访问者
 Desired first impression: 清晰、可信、长期可扩展，而不是临时堆放两个项目
 Visual ambition: Editorial
@@ -16,7 +16,7 @@ State constraints: 项目列表包含默认、有筛选结果、无结果；主�
 Environment constraints: GitHub Pages 纯静态托管；无构建步骤；无后端；无 API Key；资源使用仓库相对路径
 Primary journey: 访问门户 → 理解总仓库定位 → 筛选并进入子项目 → 理解其部署状态和资料入口
 User-defined phases: 部署并完善
-Required artifacts: 静态门户、样式、交互脚本、Pages 标记、自动发布工作流、README 说明、浏览器验收与发布验证
+Required artifacts: 静态门户、样式、交互脚本、上游原库直接入口、Pages 标记、自动发布工作流、README 说明、浏览器验收与发布验证
 Autonomy authorization: 用户明确要求“请部署并完善”，并延续直接提交 main、不走 PR 的发布要求
 User-decision boundary: 真实后端、付费服务、域名和凭据接入不在本次范围
 Observable completion criteria: Pages 公网返回 200；入口和项目链接有效；桌面/平板/390px 无横向溢出；主题和筛选可用；本地与远端提交一致
@@ -45,6 +45,26 @@ Observable completion criteria: Pages 公网返回 200；入口和项目链接�
 | 部署并完善 | reduced-motion | 系统偏好 | 样式与浏览器能力检查 | Stage 7–8 | defer | 已实现媒体查询；当前浏览器没有动作偏好模拟能力，在系统开启“减少动态效果”时复测 |
 | 部署并完善 | 工程检查 | 静态文件 | JS 语法、差异和本地 HTTP 资源检查 | Stage 9 | pass | `node --check`、`git diff --check` 通过，页面/CSS/JS/SVG 均返回 HTTP 200 |
 | 部署并完善 | GitHub Pages | 公网 | HTTP 200、静态资源与浏览器内容 | Stage 9 | pass | Actions 部署成功；公网首屏、CSS、JS、图标和 2 个项目卡片已验证 |
+| 关联原库 | 两个项目的上游仓库直接入口 | 桌面与手机项目卡片 | 链接目标、布局与公网浏览器检查 | Stage 3–7 | pass | 桌面三列、390px 手机三行均通过；两个上游地址正确 |
+
+## 局部修正记录：上游仓库入口
+
+```text
+Current stage: Stage 3–7
+User phase: 关联原库
+Coverage item: 项目卡片和根索引的上游仓库入口
+User goal: 从门户第一层直接分辨并进入“我们的研究资料”和“原始项目仓库”
+Browser environment: GitHub Pages 公网，1280×720，浅色
+Observed evidence: ShadowBroker 和 AgentScope 卡片均只有研究档案与报告，共两个入口
+Problem category: 信息架构与控制可发现性
+Root cause: 首版项目数据没有 upstreamUrl，原库地址只存在于 ShadowBroker 深层 README
+Minimal intervention: 为每个项目增加 upstreamUrl，并将卡片操作区从两列扩展为三列
+Adjacent regression surfaces: 桌面卡片宽度、390px 手机堆叠、根 README 和 AgentScope README
+Observed result: 每张卡片包含研究档案、研究报告和原始仓库三个入口；桌面三列等宽，390px 手机纵向排列，无溢出
+Decision: pass
+Next executable action: 无
+New authority required: 无
+```
 
 ## 本地浏览器验收
 

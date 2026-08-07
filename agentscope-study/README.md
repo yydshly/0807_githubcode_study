@@ -1,5 +1,7 @@
 # AgentScope 效果研究
 
+> 上游项目：[agentscope-ai/agentscope](https://github.com/agentscope-ai/agentscope)
+
 这个子项目用于验证 AgentScope 是否适合成为 ShadowBroker 上层的事件分析 Agent 框架，不修改 ShadowBroker 本体。
 
 ## 当前验证范围

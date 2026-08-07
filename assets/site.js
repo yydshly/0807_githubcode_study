@@ -18,6 +18,8 @@
       primaryUrl: `${repository}/tree/main/shadowbroker-study`,
       secondaryLabel: '阅读阶段总结',
       secondaryUrl: `${repository}/blob/main/shadowbroker-study/docs/stage-summary.md`,
+      upstreamLabel: '原始仓库',
+      upstreamUrl: 'https://github.com/BigBodyCobain/Shadowbroker',
     },
     {
       number: '02',
@@ -36,6 +38,8 @@
       primaryUrl: `${repository}/tree/main/agentscope-study`,
       secondaryLabel: '阅读初步报告',
       secondaryUrl: `${repository}/blob/main/agentscope-study/REPORT.md`,
+      upstreamLabel: '原始仓库',
+      upstreamUrl: 'https://github.com/agentscope-ai/agentscope',
     },
   ];
 
@@ -92,6 +96,7 @@
       <div class="project-links">
         <a href="${project.primaryUrl}" target="_blank" rel="noreferrer">${project.primaryLabel}<span aria-hidden="true">↗</span></a>
         <a href="${project.secondaryUrl}" target="_blank" rel="noreferrer">${project.secondaryLabel}<span aria-hidden="true">↗</span></a>
+        <a href="${project.upstreamUrl}" target="_blank" rel="noreferrer">${project.upstreamLabel}<span aria-hidden="true">↗</span></a>
       </div>
     `;
     return article;
