@@ -44,7 +44,7 @@ Observable completion criteria: Pages 公网返回 200；入口和项目链接�
 | 部署并完善 | 键盘和焦点 | 桌面 | 语义控件和可见焦点观察 | Stage 7 | defer | 焦点轮廓已验证；当前内置浏览器连续 Tab 注入未移动焦点，使用物理键盘或支持原生 Tab 的浏览器时复测完整顺序 |
 | 部署并完善 | reduced-motion | 系统偏好 | 样式与浏览器能力检查 | Stage 7–8 | defer | 已实现媒体查询；当前浏览器没有动作偏好模拟能力，在系统开启“减少动态效果”时复测 |
 | 部署并完善 | 工程检查 | 静态文件 | JS 语法、差异和本地 HTTP 资源检查 | Stage 9 | pass | `node --check`、`git diff --check` 通过，页面/CSS/JS/SVG 均返回 HTTP 200 |
-| 部署并完善 | GitHub Pages | 公网 | HTTP 200 与页面内容 | Stage 9 | continue | 推送后检查 |
+| 部署并完善 | GitHub Pages | 公网 | HTTP 200、静态资源与浏览器内容 | Stage 9 | pass | Actions 部署成功；公网首屏、CSS、JS、图标和 2 个项目卡片已验证 |
 
 ## 本地浏览器验收
 
@@ -56,6 +56,14 @@ Observable completion criteria: Pages 公网返回 200；入口和项目链接�
 - 手机：390×844，单栏导航、项目卡片和筛选区无溢出
 - 交互：项目搜索、分类筛选、无结果、重置和主题切换通过
 - 运行状态：浏览器控制台无错误或警告
+
+## 公网发布验收
+
+- 公网地址：`https://yydshly.github.io/0807_githubcode_study/`
+- 验证时间：2026-08-07 16:03:44 +08:00
+- GitHub Actions：`Deploy research portal to GitHub Pages` 运行成功
+- HTTP：主页、CSS、JavaScript 和 SVG 图标均返回 200
+- 浏览器：标题、首屏、样式、脚本和 2 个项目卡片均已加载
 
 ## 后续增加项目
 
