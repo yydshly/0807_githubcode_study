@@ -11,7 +11,7 @@
 | 子项目 | 研究对象 | 当前状态 | 核心结论 | 资料入口 | 运行/演示 |
 |---|---|---|---|---|---|
 | [shadowbroker-study](shadowbroker-study/) | ShadowBroker 多源公开信息获取与地图展示平台 | 阶段性完成，作为参考案例归档 | 值得参考来源治理、多协议接入、时空模型、可靠性和展示路线；不值得当前继续追求完整全球实时数据 | [上游原库](https://github.com/BigBodyCobain/Shadowbroker) · [阶段总结](shadowbroker-study/docs/stage-summary.md) · [技术路线](shadowbroker-study/docs/technical-routes-and-research-value.md) · [来源手册](shadowbroker-study/docs/source-entry-guide.md) | 本地界面：`127.0.0.1:3000`；公开演示待接入 |
-| [agentscope-study](agentscope-study/) | AgentScope Agent 框架能力验证 | 初步机制验证完成，等待真实模型对照评估 | 框架循环、工具调用和结构化输出机制有效；尚不能证明真实模型研判质量 | [上游原库](https://github.com/agentscope-ai/agentscope) · [项目说明](agentscope-study/README.md) · [初步报告](agentscope-study/REPORT.md) | 命令行离线演示；公开演示待接入 |
+| [agentscope-study](agentscope-study/) | AgentScope Agent 开发框架与 MiniMax M3 接入验证 | 离线机制和真实模型链路已通过，等待固定案例对照评估 | 模型接入、工具调度、记忆接口和结构化输出基础设施有效；业务工具仍需自建，模型研判质量尚未证明 | [上游原库](https://github.com/agentscope-ai/agentscope) · [项目说明](agentscope-study/README.md) · [实测报告](agentscope-study/REPORT.md) | [公开 Web 演示](https://yydshly.github.io/0807_githubcode_study/agentscope.html) · `agentscope-study/run-minimax.cmd` |
 
 ## 子项目之间的协作关系
 
@@ -91,7 +91,7 @@ Fish Speech 是生成式文生语音（TTS）模型及推理工具库。它接�
 | 项目 | 演示类型 | 本地入口 | 公开地址 | 状态与说明 |
 |---|---|---|---|---|
 | ShadowBroker | 多源地图界面 | `http://127.0.0.1:3000` | [研究门户入口](https://yydshly.github.io/0807_githubcode_study/#projects) | 研究资料已公开；完整界面仅在本机运行。原项目依赖 Next.js 服务端代理和 Python 后端，不能原样完整运行在 GitHub Pages |
-| AgentScope | Agent工具调用实验 | `agentscope-study/run-offline.cmd` | [研究门户入口](https://yydshly.github.io/0807_githubcode_study/#projects) | 研究资料与固定结论已公开；当前交互能力仍为命令行离线演示 |
+| AgentScope | 框架能力、运行原理、MiniMax M3 接入和验证结果 | `agentscope-study/run-minimax.cmd` | [AgentScope 专题演示](https://yydshly.github.io/0807_githubcode_study/agentscope.html) | 静态交互演示已公开；真实模型调用只在本地运行，API Key 不进入 GitHub Pages |
 
 增加新的在线演示时，应同时补充：代码目录、用途、数据来源、运行状态、公开URL、部署方式和最后验证日期。
 

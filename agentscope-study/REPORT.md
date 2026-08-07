@@ -4,7 +4,7 @@
 
 ## 结论
 
-AgentScope 值得继续作为独立子项目研究，但当前证据只支持“框架机制有效”，还不能支持“真实模型分析效果好”。下一阶段必须接入一个真实模型并建立同题对照评估。
+AgentScope 值得继续作为独立子项目研究。离线机制和 MiniMax M3 真实调用链路均已通过，但当前证据仍不能支持“真实业务分析效果好”。下一阶段应建立固定案例的同题对照评估。
 
 它对 ShadowBroker 最有价值的位置是上层研判服务：读取规范化事件，调用来源核验和时空计算工具，输出可审计的结构化结论。它不应替代数据采集、清洗、数据库或地图渲染。
 
@@ -65,9 +65,9 @@ query_events
 
 只有这些指标明显优于“单次模型调用 + 固定查询代码”，才值得接入 ShadowBroker。
 
-## 计划中的真实模型
+## MiniMax M3 接入设计
 
-首选验证模型改为 `MiniMax-M3`，按照 [MiniMax 官方 Anthropic SDK 手册](https://platform.minimaxi.com/docs/api-reference/text-anthropic-api)通过 AgentScope 的 Anthropic 兼容层接入：
+验证模型为 `MiniMax-M3`，按照 [MiniMax 官方 Anthropic SDK 手册](https://platform.minimaxi.com/docs/api-reference/text-anthropic-api)通过 AgentScope 的 Anthropic 兼容层接入：
 
 ```text
 provider: minimax
