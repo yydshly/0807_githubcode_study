@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Yichen Skills 研究归档：中文内容平台的差异化搜索、读取、下载、归档与处理技术地图。" />
+    <meta name="theme-color" content="#efece3" />
+    <title>Yichen Skills 研究 · 多平台信息获取技术地图</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./assets/yichen-skills.css" />
+    <script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('study-theme');
+          const preferred = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          document.documentElement.dataset.theme = saved || preferred;
+        } catch (_) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href="./index.html"><span>08/07</span><strong>YICHEN SKILLS STUDY</strong></a>
+        <nav aria-label="专题导航">
+          <a href="#verdict">结论</a><a href="#capabilities">能力</a><a href="#sources">平台</a><a href="#outputs">处理</a>
+        </nav>
+        <div class="header-actions">
+          <a class="back-link" href="./index.html">返回索引 ↗</a>
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换深色主题" aria-pressed="false"><span aria-hidden="true"></span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="shell hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow"><span></span>RESEARCH ARCHIVE · 2026/08/07</p>
+            <h1>不必照搬整套 Skill，<em>但要留下平台接入的方法。</em></h1>
+            <p class="hero-lead">它的上层搜索、总结、文案和知识库能力大多通用。真正值得归档的是：X、小红书、抖音、公众号、小宇宙、B站和 YouTube 为什么不能用同一种方式搜索、读取和下载。</p>
+            <div class="hero-actions">
+              <a class="button primary" href="#sources">比较平台路线 ↓</a>
+              <a class="button secondary" href="https://github.com/mcncarl/yichen-skills" target="_blank" rel="noreferrer">上游仓库 ↗</a>
+            </div>
+          </div>
+          <aside class="hero-panel" aria-label="阶段判断摘要">
+            <div class="panel-head"><span>STAGE VERDICT</span><b>参考归档</b></div>
+            <div class="signal"><strong>低</strong><span>整库集成优先级</span></div>
+            <div class="signal"><strong>高</strong><span>平台路线参考价值</span></div>
+            <dl>
+              <div><dt>研究范围</dt><dd>22项能力 · 10类信息源</dd></div>
+              <div><dt>本次验证</dt><dd>公开文档与源码审计</dd></div>
+              <div><dt>没有执行</dt><dd>登录抓取、付费ASR、私有数据</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section verdict" id="verdict">
+        <div class="shell split-heading">
+          <div><span class="index">01 / VERDICT</span><h2>对总项目的意义</h2></div>
+          <blockquote>把它当成平台工程手册，而不是下一套核心系统。</blockquote>
+        </div>
+        <div class="shell verdict-grid">
+          <article><span>保留</span><h3>平台入口地图</h3><p>保存搜索后端、登录门槛、正文入口、媒体路线和失败回退。</p></article>
+          <article><span>借鉴</span><h3>搜索下载分层</h3><p>搜索只产出候选，用户确认后才读取或下载；授权不跨步骤继承。</p></article>
+          <article><span>不投入</span><h3>通用上层能力</h3><p>摘要、文案分析、ASR路由和知识库已有替代路线，无需围绕本仓库重建。</p></article>
+          <article><span>再开启</span><h3>真实需求触发</h3><p>只有产品明确需要某个平台时，才对该适配器做独立运行、合规和稳定性验证。</p></article>
+        </div>
+      </section>
+
+      <section class="section capabilities" id="capabilities">
+        <div class="shell section-heading">
+          <div><span class="index">02 / SKILL MAP</span><h2>Skill负责指挥，工具负责执行</h2></div>
+          <p>实际能力不是单独来自提示词。Skill定义触发、路由、授权和交付；脚本、CLI、浏览器、API和账号状态完成工作。</p>
+        </div>
+        <div class="shell capability-flow" aria-label="Skill能力处理链">
+          <article><span>01</span><b>发现</b><h3>研究路由</h3><p>Web Research判断是搜索、已知链接、收藏导出还是ASR。</p><i>SKILL / SOP</i></article>
+          <article><span>02</span><b>搜索</b><h3>平台适配</h3><p>AnySearch、Grok、OpenCLI、gh、bili和yt-dlp按平台分流。</p><i>CLI / INDEX</i></article>
+          <article><span>03</span><b>取得</b><h3>读取与下载</h3><p>Jina、页面状态解析、网络拦截、exporter和媒体下载器。</p><i>SCRIPT / BROWSER</i></article>
+          <article><span>04</span><b>处理</b><h3>转写与分析</h3><p>ASR、字幕、粗剪、逐句内容拆解和结构模板。</p><i>MODEL / FFMPEG</i></article>
+          <article><span>05</span><b>输出</b><h3>展示与沉淀</h3><p>Markdown、JSON、图像、视频、草稿和Agent Memory。</p><i>ARTIFACT / VAULT</i></article>
+        </div>
+        <div class="shell architecture-note"><strong>实际能力公式</strong><code>模型 + Skill流程 + 执行脚本 + 外部工具 + 账号/授权 + 运行环境</code></div>
+      </section>
+
+      <section class="section sources" id="sources">
+        <div class="shell section-heading">
+          <div><span class="index">03 / SOURCE ROUTES</span><h2>不同信息源，必须使用不同技术</h2></div>
+          <p>筛选查看公开索引、浏览器会话、结构化CLI和页面解析路线。所有卡片描述的是上游设计，不代表本项目已经部署对应抓取器。</p>
+        </div>
+        <div class="shell source-toolbar" aria-label="平台路线筛选">
+          <div class="route-filters" id="routeFilters">
+            <button type="button" data-filter="all" aria-pressed="true">全部</button>
+            <button type="button" data-filter="public" aria-pressed="false">匿名公开</button>
+            <button type="button" data-filter="session" aria-pressed="false">需要登录态</button>
+            <button type="button" data-filter="media" aria-pressed="false">媒体下载</button>
+          </div>
+          <span id="routeCount" aria-live="polite">10 个信息源</span>
+        </div>
+        <div class="shell source-grid" id="sourceGrid">
+          <article class="source-card" data-tags="public media"><header><b>X / Twitter</b><span>Grok → FxTwitter</span></header><dl><div><dt>搜索</dt><dd>Grok原生XSearch；仅明确额度耗尽后匿名回退</dd></div><div><dt>读取</dt><dd>FxTwitter读取Post、Quote、Article，Jina补正文</dd></div><div><dt>媒体</dt><dd>通用归档不下载；X Slicer为切片处理公开媒体</dd></div></dl><p>难点：搜索与已知对象解析分离，Article需定位父Status；非官方链路可能变化。</p></article>
+          <article class="source-card" data-tags="public session media"><header><b>小红书</b><span>INITIAL_STATE</span></header><dl><div><dt>搜索</dt><dd>OpenCLI站内搜索，需要当前任务Chrome授权</dd></div><div><dt>读取</dt><dd>匿名页面优先，解析window.__INITIAL_STATE__，meta回退</dd></div><div><dt>媒体</dt><dd>图片、视频、字幕和口播文本；Cookie仅授权后重试</dd></div></dl><p>难点：搜索依赖登录态，已知链接却优先匿名；页面结构和xsec参数易变。</p></article>
+          <article class="source-card" data-tags="session media"><header><b>抖音</b><span>NETWORK INTERCEPT</span></header><dl><div><dt>搜索</dt><dd>OpenCLI站内搜索，需要Chrome授权，低频串行</dd></div><div><dt>读取</dt><dd>Playwright打开详情页，监听aweme/detail响应</dd></div><div><dt>媒体</dt><dd>选择play_addr/download_addr后流式下载视频</dd></div></dl><p>难点：依赖真实页面网络行为；不应在搜索阶段展开评论或自动下载。</p></article>
+          <article class="source-card" data-tags="public session"><header><b>微信公众号</b><span>PUBLIC INDEX / EXPORTER</span></header><dl><div><dt>搜索</dt><dd>跨号关键词走公开搜狗微信索引</dd></div><div><dt>读取</dt><dd>已知文章通过本地exporter输出多种正文格式</dd></div><div><dt>容器</dt><dd>指定公众号历史需本地会话与用户自行扫码</dd></div></dl><p>难点：公共发现、单篇下载和账号历史是三条路线；绝不操作微信UI。</p></article>
+          <article class="source-card" data-tags="public session media"><header><b>小宇宙</b><span>SITE INDEX / AUDIO CDN</span></header><dl><div><dt>搜索</dt><dd>公共搜索引擎site:xiaoyuzhoufm.com</dd></div><div><dt>读取</dt><dd>解析已知episode页面和音频元数据</dd></div><div><dt>媒体</dt><dd>仅接受xyzcdn.net音频；可选StepFun转写</dd></div></dl><p>难点：没有稳定全站关键词接口；播客列表、音频下载和付费ASR分别授权。</p></article>
+          <article class="source-card" data-tags="public media"><header><b>B站</b><span>BILI CLI / YT-DLP</span></header><dl><div><dt>搜索</dt><dd>bili search匿名获取视频候选</dd></div><div><dt>读取</dt><dd>BV、AV或完整URL规范化后读取结构数据</dd></div><div><dt>媒体</dt><dd>yt-dlp续传、防覆盖；播放列表先平铺</dd></div></dl><p>难点：高画质、会员、地区和年龄限制目标才单独申请Cookie授权。</p></article>
+          <article class="source-card" data-tags="public media"><header><b>YouTube</b><span>FLAT SEARCH / YT-DLP</span></header><dl><div><dt>搜索</dt><dd>flat ytsearch只返回元数据和URL</dd></div><div><dt>读取</dt><dd>已知URL使用dump-json或字幕路径</dd></div><div><dt>媒体</dt><dd>下载音视频、字幕；播放列表先固定清单</dd></div></dl><p>难点：发现、枚举和下载严格分层，不从条目扩展频道与相关推荐。</p></article>
+          <article class="source-card" data-tags="public"><header><b>今日头条</b><span>ANONYMOUS PROFILE</span></header><dl><div><dt>搜索</dt><dd>独立匿名环境，单关键词、低频、不自动重试</dd></div><div><dt>读取</dt><dd>公开文章可尝试普通网页路线</dd></div><div><dt>媒体</dt><dd>上游没有专用视频下载器</dd></div></dl><p>难点：当前路线只保留文章和非视频图文，完整内容支持明显弱于其他平台。</p></article>
+          <article class="source-card" data-tags="public"><header><b>GitHub</b><span>GH SEARCH</span></header><dl><div><dt>搜索</dt><dd>按仓库、代码、Issue和PR选择结构化接口</dd></div><div><dt>读取</dt><dd>搜索结果或网页内容</dd></div><div><dt>媒体</dt><dd>没有专用仓库归档和源码分析流水线</dd></div></dl><p>难点：搜索结构化程度高，但该仓库没有继续覆盖clone、依赖审计和运行验证。</p></article>
+          <article class="source-card" data-tags="public"><header><b>公共网页</b><span>ANYSEARCH / JINA</span></header><dl><div><dt>搜索</dt><dd>普通、批量、垂直领域和site限定</dd></div><div><dt>读取</dt><dd>搜索候选用extract核验；已知URL交给Jina/Web Reader</dd></div><div><dt>媒体</dt><dd>保存指定URL正文或原始响应</dd></div></dl><p>难点：公开索引不等于全量；摘要只能用于发现，不能冒充原文证据。</p></article>
+        </div>
+        <div class="shell empty-state" id="sourceEmpty" hidden><strong>没有匹配的信息源</strong><p>清除当前筛选，查看完整平台路线。</p></div>
+      </section>
+
+      <section class="section pipeline" id="outputs">
+        <div class="shell section-heading inverse">
+          <div><span class="index">04 / PROCESSING</span><h2>抓取之后，统一成可消费的产物</h2></div>
+          <p>上游最值得复用的是交接语义：候选、正文、媒体、字幕、失败和授权各自留痕，下游Web、AI和人工编辑不再直接依赖平台脚本。</p>
+        </div>
+        <div class="shell pipeline-flow" aria-label="内容处理流程">
+          <span>搜索候选</span><i>→</i><span>原文核验</span><i>→</i><span>用户确认</span><i>→</i><span>读取/下载</span><i>→</i><span>归档清单</span><i>→</i><span>ASR/分析</span><i>→</i><span>展示/知识库</span>
+        </div>
+        <div class="shell output-grid">
+          <article class="artifact-tree"><span>ARCHIVE OUTPUT</span><pre><code>archive-root/
+├─ archive-manifest.jsonl
+├─ run-summary.json
+├─ failures.json
+└─ platform/content-id/
+   ├─ metadata.json
+   ├─ content.md
+   ├─ source.html
+   ├─ images/
+   ├─ video.mp4
+   ├─ subtitles.srt
+   └─ transcript.txt</code></pre></article>
+          <div class="output-cards">
+            <article><b>转写与粗剪</b><p>Step适合全文；豆包适合时间戳、SRT和口播粗剪。已提交任务不跨服务商重复计费。</p><span>ASR / FFMPEG</span></article>
+            <article><b>内容拆解</b><p>十三模块分析标题、开头、爆点、逐句作用、结构、表达效率和可模仿模板。</p><span>MODEL-LED</span></article>
+            <article><b>视觉与草稿</b><p>X帖子可生成3:4图片和固定视频；Markdown可进入X Article草稿，但不自动发布。</p><span>PLAYWRIGHT</span></article>
+            <article><b>知识沉淀</b><p>对话进入Obsidian；长期记忆以Markdown为事实源，SQLite FTS和向量索引负责召回。</p><span>VAULT / INDEX</span></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section boundaries">
+        <div class="shell section-heading">
+          <div><span class="index">05 / BOUNDARIES</span><h2>展示的是研究证据，不是在线抓取承诺</h2></div>
+          <p>GitHub Pages只承载静态结论和交互矩阵。真实平台任务需要本地或独立后端、合法凭据、频率控制、故障监控和平台专项测试。</p>
+        </div>
+        <div class="shell boundary-table" role="table" aria-label="能力边界">
+          <div class="table-row table-head" role="row"><span>维度</span><span>本次已经完成</span><span>未来需要补充</span></div>
+          <div class="table-row" role="row"><strong>研究</strong><span>公开文档、脚本机制、能力和许可证审计</span><span>固定样例、成功率、限流和长期健康度测试</span></div>
+          <div class="table-row" role="row"><strong>数据</strong><span>平台字段和统一候选建议</span><span>真实数据库、事件聚类、实体关联和证据图谱</span></div>
+          <div class="table-row" role="row"><strong>运行</strong><span>静态专题页和研究档案</span><span>后端适配器、任务队列、凭据保险箱和监控</span></div>
+          <div class="table-row" role="row"><strong>许可</strong><span>确认上游限个人学习与非商业用途</span><span>商业产品必须独立实现或获得书面授权</span></div>
+        </div>
+        <div class="shell closing-callout"><div><span>FINAL DECISION</span><h3>归档方法，停止整库投入。</h3></div><p>未来若明确需要某个平台，从对应技术卡片重新开始：核对条款、验证入口、建立适配器契约、固定测试样例，再决定是否进入产品。</p></div>
+      </section>
+    </main>
+
+    <footer><div class="shell"><span>0807 CODE STUDY / YICHEN SKILLS</span><span>研究归档，不包含平台账号与在线抓取服务</span></div></footer>
+    <script src="./assets/yichen-skills.js" defer></script>
+  </body>
+</html>

@@ -91,3 +91,50 @@ New authority required: 无
 2. 在根 README 的“当前研究项目”和“在线演示与运行入口”登记。
 3. 如果项目有静态演示，给出公开地址；只有本地入口时使用代码文本，不创建误导性公网链接。
 4. 推送到 `main` 后复查 Pages 页面和项目链接。
+
+## 扩展契约：Yichen Skills 研究归档
+
+```text
+Entry mode: brief-led
+Request revision: 3
+Target user and context: 总项目维护者与未来需要评估中文内容平台接入的研发人员
+Desired first impression: 先看到“按需参考、不整库集成”的判断，再快速比较各平台技术差异
+Visual ambition: Editorial
+Experience architecture: Editorial Flow
+Visual constraints: 延续研究门户的纸张/墨色语义；中文优先；不依赖外部图片或字体；浅色与深色均可读
+Information constraints: 必须区分上游公开设计、本次源码审计和真实运行验证；不得伪装成已部署抓取服务
+Operation constraints: 平台路线可按匿名、登录态和媒体能力筛选；主题切换和链接支持鼠标与键盘
+State constraints: 平台列表包含完整与筛选状态；主题可切换；静态页面无后端加载状态
+Environment constraints: GitHub Pages静态托管；无后端、账号、Cookie、Token、付费ASR或实时抓取
+Primary journey: 进入专题 → 理解阶段判断 → 查看Skill能力链 → 比较平台获取技术 → 查看处理产物与未来边界
+User-defined phases: 总结归档、网页介绍、效果展示、总项目登记、提交
+Required artifacts: 子项目README、阶段报告、平台矩阵、能力地图、静态专题页、样式、交互脚本、根门户入口、README登记、浏览器验收、Git提交
+Autonomy authorization: 用户明确要求归档到总项目并提交
+User-decision boundary: 不安装或执行上游Skill，不使用平台账号和凭据，不推送远端
+Observable completion criteria: 档案完整；专题页在桌面/平板/手机无横向溢出；浅色/深色可读；筛选状态正确；根门户出现第四个项目；静态资源和链接有效；工程检查通过并产生提交
+```
+
+### 扩展覆盖清单
+
+| 用户阶段 | 要求或产物 | 表面/状态 | 证据 | 阶段 | 状态 | 下一步 |
+|---|---|---|---|---|---|---|
+| 总结归档 | README、REPORT、平台矩阵、能力地图 | Markdown文件 | 文件、相对链接、结论和边界一致性检查 | Stage 0–3 | pass | 无 |
+| 网页介绍 | 专题首屏、能力链、平台矩阵、处理链和边界 | 桌面浅色 | 1280×720截图与DOM阅读顺序观察 | Stage 1–3 | pass | 无 |
+| 效果展示 | 平台路线筛选与结果计数 | 桌面浅色 | 全部10、匿名9、登录态4、媒体6 | Stage 4–6 | pass | 无 |
+| 效果展示 | 主题切换 | 桌面浅色/深色 | 按钮状态、根主题属性、计算背景色和截图 | Stage 6–7 | pass | 无 |
+| 效果展示 | 响应式专题页 | 1280×720、1024×768、390×844 | 截图、页面宽度与溢出测量 | Stage 7 | pass | 三个视口均无横向溢出 |
+| 总项目登记 | 根门户第四个项目、无脚本入口和README表格 | 门户默认/筛选 | 4张卡片；“信息获取”筛选显示ShadowBroker与Yichen Skills | Stage 3–6 | pass | 无 |
+| 工程交付 | HTML/CSS/JS/Markdown质量与Git提交 | 静态文件 | JS语法、diff、HTTP资源、git状态与提交 | Stage 9 | pass | 提交后记录哈希 |
+
+### Yichen Skills 本地浏览器验收
+
+- 验证时间：2026-08-07 17:40:01 +08:00
+- 验证地址：`http://127.0.0.1:49319/yichen-skills.html`
+- 桌面：1280×720，浅色和深色专题页可读，10类信息源完整呈现
+- 平板：1024×768，双栏平台卡片无横向溢出
+- 手机：390×844，首屏、按钮和单栏内容无裁切，页面宽度与视口一致
+- 交互：全部、匿名公开、需要登录态、媒体下载四种筛选结果正确；主题状态同步
+- 可访问性：原生链接与按钮具备语义，键盘聚焦后焦点轮廓可见，提供跳过导航入口
+- 总项目：首页渲染4张项目卡片；“信息获取”筛选准确显示2张卡片
+- 运行状态：专题页与根门户的浏览器日志均为空
+- 验收边界：仅验证静态研究页面；未登录任何平台、未执行媒体下载或付费ASR

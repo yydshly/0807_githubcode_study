@@ -61,6 +61,26 @@
       upstreamLabel: '原始仓库',
       upstreamUrl: 'https://github.com/Thysrael/Horizon',
     },
+    {
+      number: '04',
+      slug: 'yichen-skills-study',
+      title: 'Yichen Skills',
+      kicker: 'PLATFORM ACQUISITION PLAYBOOK',
+      category: 'acquisition',
+      categoryLabel: '信息获取',
+      status: '参考归档',
+      summary:
+        '中文内容平台 Skill 集合研究。整体不作为核心系统引入，重点归档 X、小红书、抖音、公众号、小宇宙、B站与 YouTube 的差异化搜索、读取和下载路线。',
+      value: '平台路由、登录边界、已知链接处理、标准候选、归档交接与失败回退设计',
+      deployment: '公开专题页展示研究结论与技术矩阵；未部署任何登录态抓取器、后端服务或平台凭据',
+      tags: ['X / 小红书 / 抖音', '公众号 / 小宇宙', 'Search Routing', 'Archive', 'Skill'],
+      primaryLabel: '查看专题总结',
+      primaryUrl: './yichen-skills.html',
+      secondaryLabel: '进入研究档案',
+      secondaryUrl: `${repository}/tree/main/yichen-skills-study`,
+      upstreamLabel: '原始仓库',
+      upstreamUrl: 'https://github.com/mcncarl/yichen-skills',
+    },
   ];
 
   const root = document.documentElement;
