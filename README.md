@@ -15,7 +15,7 @@
 | [horizon-study](horizon-study/) | Horizon AI 新闻雷达与编辑流水线 | 安装、源码审计和真实抓取演示完成；完整本地 AI 链路等待模型 Key | 与 AI 探测雷达属于同一能力类型；公开自动化配置实际只有 14 个入口，核心价值在 Profile、评分去重和日报编排，而不是独有信息源 | [公开专题总结](https://yydshly.github.io/0807_githubcode_study/horizon.html) · [上游原库](https://github.com/Thysrael/Horizon) · [真实地址清单](horizon-study/docs/real-source-inventory.md) · [处理链路](horizon-study/docs/source-processing-pipeline.md) | [本次真实抓取快照](https://yydshly.github.io/0807_githubcode_study/horizon-study/demo-output/)；[上游完整 AI 日报](https://thysrael.github.io/Horizon/) |
 | [yichen-skills-study](yichen-skills-study/) | Yichen Skills 中文内容平台工作流集合 | 阶段性归档；不做整库集成，保留平台技术路线供后续专项验证 | 上层搜索、总结和文案能力较通用；真正有参考价值的是 X、小红书、抖音、公众号、小宇宙、B站和 YouTube 的差异化搜索、读取、下载、授权与回退方法 | [公开专题总结](https://yydshly.github.io/0807_githubcode_study/yichen-skills.html) · [上游原库](https://github.com/mcncarl/yichen-skills) · [平台技术矩阵](yichen-skills-study/docs/platform-acquisition-matrix.md) · [能力地图](yichen-skills-study/docs/skill-capability-map.md) | 静态研究专题页；没有部署登录态抓取器、后端服务或平台凭据 |
 | [davidondrej-skills-study](davidondrej-skills-study/) | David Ondrej 的个人 Agent Skill 工作流库 | 能力储备归档；完整整理 47 个技能，不做整库安装 | 最有价值的是 Skill 设计、Agent 编排、长任务契约、研究提示、安全边界和思考文档方法；具体流程普遍需要按 Windows/Codex 和我们的权限模型改造 | [公开能力雷达](https://yydshly.github.io/0807_githubcode_study/davidondrej-skills.html) · [上游原库](https://github.com/davidondrej/skills) · [完整目录](davidondrej-skills-study/docs/skill-catalog.md) · [调度与实现详解](davidondrej-skills-study/docs/skill-dispatch-implementation-guide.md) · [采用矩阵](davidondrej-skills-study/docs/adoption-matrix.md) | 静态研究专题页；未安装技能，未使用 API Key、账号、生产数据库或作者工具链 |
-| [mattpocock-skills-study](mattpocock-skills-study/) | Matt Pocock 面向真实软件工程的 Agent Skill 库 | 开发流程地图完成；按八阶段整理 25 个技能的能力、原理和输入输出 | 核心价值不是增加模型知识，而是把需求澄清、领域建模、规格、纵向切片、TDD、诊断、双轴审查和交接做成可组合工程纪律 | [公开工程流程地图](https://yydshly.github.io/0807_githubcode_study/mattpocock-skills.html) · [上游原库](https://github.com/mattpocock/skills) · [完整研究文档](mattpocock-skills-study/README.md) · [与 David 双库对比](mattpocock-skills-study/README.md#与-david-ondrej-skills-对比) | 纯静态专题页；未安装或执行上游技能，未连接 Issue Tracker、账号或生产系统 |
+| [mattpocock-skills-study](mattpocock-skills-study/) | Matt Pocock 面向真实软件工程的 Agent Skill 库 | 开发流程地图完成；按八阶段整理 25 个技能，并归纳 4 个思想簇、14 项软件工程理念 | 核心价值不是增加模型知识，而是把需求澄清、领域建模、规格、纵向切片、TDD、诊断、双轴审查和交接做成可组合工程纪律 | [公开工程流程地图](https://yydshly.github.io/0807_githubcode_study/mattpocock-skills.html) · [沟通结论摘要](mattpocock-skills-study/README.md#本次沟通结论摘要) · [软件工程思想谱系](mattpocock-skills-study/README.md#背后的软件工程设计思想) · [上游原库](https://github.com/mattpocock/skills) · [与 David 双库对比](mattpocock-skills-study/README.md#与-david-ondrej-skills-对比) | 纯静态专题页；未安装或执行上游技能，未连接 Issue Tracker、账号或生产系统 |
 
 ## 子项目之间的协作关系
 
@@ -61,6 +61,16 @@ flowchart LR
 | 推荐关系 | 作为能力补充层 | 作为软件工程骨架 |
 
 两库存在 `handoff`、`teach` 同名冲突，以及评审、研究和 Agent 文档能力重叠，不应整库双装。完整判断见 [Matt 与 David 双库对比](mattpocock-skills-study/README.md#与-david-ondrej-skills-对比)。
+
+### 本次 Matt Pocock Skills 沟通形成的结论
+
+- 定位：它是位于模型与代码库之间的软件工程工作流层，不是提示词合集或新的开发框架。
+- 原理：把工程原则转换成触发条件、分步流程、外部状态、验证证据和停止条件，再封装成可组合 Skill。
+- 思想：覆盖需求工程、DDD、行为规格、深模块、演进式架构、重构、TDD、快速反馈、根因诊断、知识管理和社会技术协作等理念。
+- 采用：先建立“澄清 → Spec → TDD → Review”最小闭环，再根据项目规模加入 Ticket、Wayfinder、Triage 与 Handoff。
+- 意义：把依赖个人经验和临场提醒的工程纪律，变成 Agent 能够重复执行、团队能够检查和跨会话延续的项目机制。
+
+完整说明见 [沟通结论摘要](mattpocock-skills-study/README.md#本次沟通结论摘要)、[八阶段开发流程](mattpocock-skills-study/README.md#按软件开发流程映射)和[软件工程设计思想](mattpocock-skills-study/README.md#背后的软件工程设计思想)。
 
 ## 当前总体理解
 

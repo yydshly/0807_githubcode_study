@@ -25,6 +25,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
+      - name: Validate research portal
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f index.html
+          test -f mattpocock-skills.html
+          test -f davidondrej-skills.html
+          test -f assets/mattpocock-skills.css
+          test -f assets/mattpocock-skills.js
+          test -f mattpocock-skills-study/README.md
+          node --check assets/mattpocock-skills.js
+          grep -q 'ENGINEERING LINEAGE' mattpocock-skills.html
+          grep -q 'mattpocock-skills.html' README.md
+          grep -q 'mattpocock-skills-study/README.md' mattpocock-skills.html
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
