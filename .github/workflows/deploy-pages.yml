@@ -31,7 +31,7 @@ jobs:
       - name: Prepare static portal
         run: |
           mkdir -p _site
-          cp index.html .nojekyll _site/
+          cp ./*.html .nojekyll _site/
           cp -R assets _site/assets
 
       - name: Upload GitHub Pages artifact
