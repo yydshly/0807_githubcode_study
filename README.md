@@ -14,7 +14,7 @@
 | [agentscope-study](agentscope-study/) | AgentScope Agent 开发框架与 MiniMax M3 接入验证 | 离线机制和真实模型链路已通过，等待固定案例对照评估 | 模型接入、工具调度、记忆接口和结构化输出基础设施有效；业务工具仍需自建，模型研判质量尚未证明 | [上游原库](https://github.com/agentscope-ai/agentscope) · [项目说明](agentscope-study/README.md) · [实测报告](agentscope-study/REPORT.md) | [公开 Web 演示](https://yydshly.github.io/0807_githubcode_study/agentscope.html) · `agentscope-study/run-minimax.cmd` |
 | [horizon-study](horizon-study/) | Horizon AI 新闻雷达与编辑流水线 | 安装、源码审计和真实抓取演示完成；完整本地 AI 链路等待模型 Key | 与 AI 探测雷达属于同一能力类型；公开自动化配置实际只有 14 个入口，核心价值在 Profile、评分去重和日报编排，而不是独有信息源 | [公开专题总结](https://yydshly.github.io/0807_githubcode_study/horizon.html) · [上游原库](https://github.com/Thysrael/Horizon) · [真实地址清单](horizon-study/docs/real-source-inventory.md) · [处理链路](horizon-study/docs/source-processing-pipeline.md) | [本次真实抓取快照](https://yydshly.github.io/0807_githubcode_study/horizon-study/demo-output/)；[上游完整 AI 日报](https://thysrael.github.io/Horizon/) |
 | [yichen-skills-study](yichen-skills-study/) | Yichen Skills 中文内容平台工作流集合 | 阶段性归档；不做整库集成，保留平台技术路线供后续专项验证 | 上层搜索、总结和文案能力较通用；真正有参考价值的是 X、小红书、抖音、公众号、小宇宙、B站和 YouTube 的差异化搜索、读取、下载、授权与回退方法 | [公开专题总结](https://yydshly.github.io/0807_githubcode_study/yichen-skills.html) · [上游原库](https://github.com/mcncarl/yichen-skills) · [平台技术矩阵](yichen-skills-study/docs/platform-acquisition-matrix.md) · [能力地图](yichen-skills-study/docs/skill-capability-map.md) | 静态研究专题页；没有部署登录态抓取器、后端服务或平台凭据 |
-| [davidondrej-skills-study](davidondrej-skills-study/) | David Ondrej 的个人 Agent Skill 工作流库 | 能力储备归档；完整整理 47 个技能，不做整库安装 | 最有价值的是 Skill 设计、Agent 编排、长任务契约、研究提示、安全边界和思考文档方法；具体流程普遍需要按 Windows/Codex 和我们的权限模型改造 | [公开能力雷达](https://yydshly.github.io/0807_githubcode_study/davidondrej-skills.html) · [上游原库](https://github.com/davidondrej/skills) · [完整目录](davidondrej-skills-study/docs/skill-catalog.md) · [采用矩阵](davidondrej-skills-study/docs/adoption-matrix.md) | 静态研究专题页；未安装技能，未使用 API Key、账号、生产数据库或作者工具链 |
+| [davidondrej-skills-study](davidondrej-skills-study/) | David Ondrej 的个人 Agent Skill 工作流库 | 能力储备归档；完整整理 47 个技能，不做整库安装 | 最有价值的是 Skill 设计、Agent 编排、长任务契约、研究提示、安全边界和思考文档方法；具体流程普遍需要按 Windows/Codex 和我们的权限模型改造 | [公开能力雷达](https://yydshly.github.io/0807_githubcode_study/davidondrej-skills.html) · [上游原库](https://github.com/davidondrej/skills) · [完整目录](davidondrej-skills-study/docs/skill-catalog.md) · [调度与实现详解](davidondrej-skills-study/docs/skill-dispatch-implementation-guide.md) · [采用矩阵](davidondrej-skills-study/docs/adoption-matrix.md) | 静态研究专题页；未安装技能，未使用 API Key、账号、生产数据库或作者工具链 |
 
 ## 子项目之间的协作关系
 
@@ -43,7 +43,7 @@ flowchart LR
 - ShadowBroker 研究回答“信息从哪里来、怎样接入、怎样表示和展示”。
 - Horizon 研究回答“怎样把多源新闻组织成可配置、可重复的 AI 编辑流水线”。
 - Yichen Skills 研究回答“不同中文内容平台应该怎样搜索、读取、下载，并保持授权与来源边界”。
-- David Ondrej Skills 研究回答“怎样把重复的 Agent 工作方法写成可路由、可验证、可审计的技能，以及哪些能力值得我们按需吸收”。
+- David Ondrej Skills 研究回答“怎样把重复的 Agent 工作方法写成可路由、可验证、可审计的技能，47 项能力分别由提示、文件、CLI、脚本、API、外部时钟或 Goal 循环怎样调度，以及哪些值得我们按需吸收”。
 - AgentScope 研究回答“怎样让 Agent 调用确定性工具、核验来源并输出可审计结论”。
 - 这些研究之间未来应通过稳定的数据模型或 API 连接，而不是直接互相依赖内部代码。
 

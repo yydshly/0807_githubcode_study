@@ -99,6 +99,7 @@
 ## 资料索引
 
 - [完整技能分类目录](docs/skill-catalog.md)
+- [47 个 Skill 的调度与实现详解](docs/skill-dispatch-implementation-guide.md)
 - [采用与风险矩阵](docs/adoption-matrix.md)
 - [设计与浏览器验收记录](DELIVERY.md)
 - [上游 README](https://github.com/davidondrej/skills/blob/main/README.md)
