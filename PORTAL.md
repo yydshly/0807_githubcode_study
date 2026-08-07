@@ -16,7 +16,7 @@ State constraints: 项目列表包含默认、有筛选结果、无结果；主�
 Environment constraints: GitHub Pages 纯静态托管；无构建步骤；无后端；无 API Key；资源使用仓库相对路径
 Primary journey: 访问门户 → 理解总仓库定位 → 筛选并进入子项目 → 理解其部署状态和资料入口
 User-defined phases: 部署并完善
-Required artifacts: 静态门户、样式、交互脚本、Pages 标记、README 说明、浏览器验收与发布验证
+Required artifacts: 静态门户、样式、交互脚本、Pages 标记、自动发布工作流、README 说明、浏览器验收与发布验证
 Autonomy authorization: 用户明确要求“请部署并完善”，并延续直接提交 main、不走 PR 的发布要求
 User-decision boundary: 真实后端、付费服务、域名和凭据接入不在本次范围
 Observable completion criteria: Pages 公网返回 200；入口和项目链接有效；桌面/平板/390px 无横向溢出；主题和筛选可用；本地与远端提交一致
