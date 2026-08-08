@@ -41,10 +41,19 @@ jobs:
           test -f AIComicBuilder/REPORT.md
           test -f AIComicBuilder/docs/samples/sample-01-aicomicbuilder-pipeline.mp4
           test -f AIComicBuilder/docs/samples/sample-02-chatgpt-directed.mp4
+          test -f livekit-agents.html
+          test -f assets/livekit-agents.css
+          test -f assets/livekit-agents.js
+          test -f livekit-agents-study/local-app/product.html
+          test -f livekit-agents-study/local-app/index.html
           node --check assets/mattpocock-skills.js
           node --check assets/aicomicbuilder.js
+          node --check assets/livekit-agents.js
+          node --check livekit-agents-study/local-app/product.js
+          node --check livekit-agents-study/local-app/app.js
           grep -q 'ENGINEERING LINEAGE' mattpocock-skills.html
           grep -q '它不是导演' aicomicbuilder.html
+          grep -q '运行与编排核心' livekit-agents.html
           grep -q 'mattpocock-skills.html' README.md
           grep -q 'mattpocock-skills-study/README.md' mattpocock-skills.html
 
@@ -61,6 +70,13 @@ jobs:
           cp AIComicBuilder/docs/samples/*.jpg _site/AIComicBuilder/docs/samples/
           mkdir -p _site/horizon-study/demo-output
           cp horizon-study/demo-output/index.html _site/horizon-study/demo-output/index.html
+          mkdir -p _site/livekit-agents-study/local-app
+          cp livekit-agents-study/local-app/index.html _site/livekit-agents-study/local-app/
+          cp livekit-agents-study/local-app/styles.css _site/livekit-agents-study/local-app/
+          cp livekit-agents-study/local-app/app.js _site/livekit-agents-study/local-app/
+          cp livekit-agents-study/local-app/product.html _site/livekit-agents-study/local-app/
+          cp livekit-agents-study/local-app/product.css _site/livekit-agents-study/local-app/
+          cp livekit-agents-study/local-app/product.js _site/livekit-agents-study/local-app/
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v4
