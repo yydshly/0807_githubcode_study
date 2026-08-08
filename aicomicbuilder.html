@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="AIComicBuilder 研究：AI短剧生产执行层、MiniMax接入、Codex控制架构与两个完整视频样例。" />
+    <meta name="theme-color" content="#101113" />
+    <title>AIComicBuilder 研究 · AI短剧生产执行系统</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./assets/aicomicbuilder.css" />
+    <script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('study-theme');
+          const preferred = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          document.documentElement.dataset.theme = saved || preferred;
+        } catch (_) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href="./index.html" aria-label="返回研究总索引">
+          <span>08/07</span><strong>AICOMICBUILDER</strong>
+        </a>
+        <nav aria-label="专题导航">
+          <a href="#verdict">结论</a>
+          <a href="#capability">能力</a>
+          <a href="#control">控制</a>
+          <a href="#samples">样例</a>
+          <a href="#limits">限制</a>
+        </nav>
+        <div class="header-actions">
+          <a class="repo-link" href="https://github.com/yydshly/0807_githubcode_study/tree/main/AIComicBuilder" target="_blank" rel="noreferrer">源码 ↗</a>
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换主题" aria-pressed="true"><span aria-hidden="true"></span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="verdict">
+        <div class="shell hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow"><span></span>PRODUCTION SYSTEM REVIEW · 2026/08/09</p>
+            <h1>它不是导演。<em>它是把AI短剧生产流程固定下来的执行系统。</em></h1>
+            <p class="hero-lead">AIComicBuilder 管理项目、分集、角色、分镜、关键帧和视频资产，并自动调用模型；ChatGPT/Codex 负责故事、导演、审批、审片与返工。</p>
+            <div class="hero-actions">
+              <a class="button primary" href="#samples">播放两个样例 ↓</a>
+              <a class="button secondary" href="https://github.com/yydshly/0807_githubcode_study/blob/main/AIComicBuilder/REPORT.md" target="_blank" rel="noreferrer">阅读完整报告 ↗</a>
+            </div>
+          </div>
+          <aside class="verdict-card" aria-label="研究结论">
+            <span class="card-kicker">CORE VERDICT</span>
+            <strong>解决“怎样生产”</strong>
+            <i>不解决</i>
+            <strong>“什么值得拍”</strong>
+            <dl>
+              <div><dt>定位</dt><dd>生产执行与资产管理</dd></div>
+              <div><dt>主创</dt><dd>ChatGPT / Codex</dd></div>
+              <div><dt>状态</dt><dd>Windows与两条样片已验证</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section capability" id="capability">
+        <div class="shell section-heading">
+          <div><span>01 / CAPABILITY MAP</span><h2>从剧本文件到可管理的镜头资产</h2></div>
+          <p>它的价值不是某一条提示词，而是让每个生成阶段拥有结构、状态、版本和下一步动作。</p>
+        </div>
+        <div class="shell capability-grid">
+          <article><b>01</b><h3>文本生产</h3><p>大纲、剧本、自动分集、角色提取和分镜拆解。</p><small>能生成初稿，不评价戏剧质量</small></article>
+          <article><b>02</b><h3>视觉资产</h3><p>角色参考、场景参考、首尾帧和镜头提示词。</p><small>一致性取决于Provider</small></article>
+          <article><b>03</b><h3>短视频</h3><p>首尾帧或参考图驱动4–15秒镜头，支持外部网页接力。</p><small>表演与微动作需要审片</small></article>
+          <article><b>04</b><h3>项目管理</h3><p>项目、分集、分镜版本、镜头资产和活动版本。</p><small>适合单机研究与小型制作</small></article>
+          <article><b>05</b><h3>自动控制</h3><p>计划、审批、执行、幂等、重试、取消和并发控制。</p><small>本地Codex控制分支已实现</small></article>
+          <article><b>06</b><h3>合成输出</h3><p>FFmpeg拼接、字幕、下载和素材打包。</p><small>不是专业剪辑与混音系统</small></article>
+        </div>
+      </section>
+
+      <section class="section architecture" id="control">
+        <div class="shell section-heading inverse">
+          <div><span>02 / CONTROL PLANE</span><h2>把创作判断放在流水线之外</h2></div>
+          <p>模型负责产出候选结果；控制层决定是否调用、是否接受以及失败后改提示词还是改导演方案。</p>
+        </div>
+        <div class="shell control-flow" aria-label="AIComicBuilder控制架构">
+          <article class="focus"><span>主创控制</span><h3>ChatGPT / Codex</h3><p>故事、人物圣经、分集、导演、审批、审片、返工</p></article>
+          <i>↓</i>
+          <article><span>安全入口</span><h3>comicctl + Orchestrator</h3><p>dry-run、审批、幂等、并发2–3、状态与重试</p></article>
+          <i>↓</i>
+          <article><span>生产事实源</span><h3>AIComicBuilder</h3><p>项目、分集、分镜版本、镜头和活动资产</p></article>
+          <i>↓</i>
+          <div class="provider-row">
+            <article><span>文本/理解</span><h3>MiniMax M3</h3><p>文本、图像和视频理解</p></article>
+            <article><span>视觉</span><h3>图片模型</h3><p>角色、场景和关键帧</p></article>
+            <article><span>运动</span><h3>视频模型/网页</h3><p>短镜头生成与下载导入</p></article>
+          </div>
+        </div>
+        <div class="shell gates">
+          <span>剧本审批</span><b>→</b><span>角色锁定</span><b>→</b><span>单镜验证</span><b>→</b><span>小批生产</span><b>→</b><span>N/N合成</span>
+        </div>
+      </section>
+
+      <section class="section samples" id="samples">
+        <div class="shell section-heading">
+          <div><span>03 / VERIFIED SAMPLES</span><h2>两条完整样片证明流程可运行</h2></div>
+          <p>样片用于验证能力边界，不宣称每个镜头都达到商业发布质量。</p>
+        </div>
+        <div class="shell sample-grid">
+          <article class="sample-card">
+            <video controls preload="metadata" poster="./AIComicBuilder/docs/samples/sample-01-poster.jpg">
+              <source src="./AIComicBuilder/docs/samples/sample-01-aicomicbuilder-pipeline.mp4" type="video/mp4" />
+              浏览器不支持视频播放。
+            </video>
+            <div class="sample-copy">
+              <span>SAMPLE 01 · 31.07s · 6 SHOTS</span>
+              <h3>AIComicBuilder流水线样例</h3>
+              <p>动画人物在雨夜室内绘制发光星星。验证分镜、首尾帧、外部视频接力、逐镜导入、声音和最终拼接。</p>
+              <a href="./AIComicBuilder/docs/samples/sample-01-aicomicbuilder-pipeline.mp4" download>下载MP4 ↓</a>
+            </div>
+          </article>
+          <article class="sample-card">
+            <video controls preload="metadata" poster="./AIComicBuilder/docs/samples/sample-02-poster.jpg">
+              <source src="./AIComicBuilder/docs/samples/sample-02-chatgpt-directed.mp4" type="video/mp4" />
+              浏览器不支持视频播放。
+            </video>
+            <div class="sample-copy">
+              <span>SAMPLE 02 · 20.77s · 4 SHOTS</span>
+              <h3>ChatGPT主创样例</h3>
+              <p>铜质幼苗机器人让空花盆长出新芽。ChatGPT负责故事、导演、美术和关键帧，外部模型负责运动。</p>
+              <a href="./AIComicBuilder/docs/samples/sample-02-chatgpt-directed.mp4" download>下载MP4 ↓</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section model-layer">
+        <div class="shell section-heading">
+          <div><span>04 / MODEL INTEGRATION</span><h2>统一接口不代表模型能力相同</h2></div>
+          <p>人物一致性最容易被“界面看似有参考图”误导；必须确认具体Provider是否真的发送了参考图片。</p>
+        </div>
+        <div class="shell model-table" role="table" aria-label="模型能力矩阵">
+          <div class="table-row head" role="row"><span>模型/入口</span><span>合理职责</span><span>关键边界</span></div>
+          <div class="table-row" role="row"><strong>MiniMax M3</strong><span>剧本辅助、提取、分镜、图片/视频理解</span><span>不是视频生成模型</span></div>
+          <div class="table-row" role="row"><strong>MiniMax image-01</strong><span>角色与关键帧候选</span><span>当前只保留第一张主体参考</span></div>
+          <div class="table-row" role="row"><strong>Gemini图片</strong><span>多参考图一致性</span><span>当前内置路线最完整</span></div>
+          <div class="table-row" role="row"><strong>外部视频网页</strong><span>人工替代Video Provider</span><span>不能规模化自动运行</span></div>
+        </div>
+      </section>
+
+      <section class="section limits" id="limits">
+        <div class="shell section-heading inverse">
+          <div><span>05 / LIMITS</span><h2>技术成功不等于镜头合格</h2></div>
+          <p>真人花店实验的眼神插值失败，证明自动审片比继续增加模型调用更重要。</p>
+        </div>
+        <div class="shell limit-grid">
+          <article><span>剧本</span><h3>能生成，不能负责</h3><p>没有完整解决冲突升级、人物弧线、分集钩子和可拍摄性。</p></article>
+          <article><span>一致性</span><h3>依赖具体Provider</h3><p>部分图片适配器没有实际发送角色参考图。</p></article>
+          <article><span>表演</span><h3>眼、手、口型高风险</h3><p>优先用剪辑表达，避免独立人脸首尾帧做微表情插值。</p></article>
+          <article><span>可靠性</span><h3>仍是本进程任务</h3><p>重启不能续跑；长故事需要持久队列和Provider任务查询。</p></article>
+          <article><span>合成</span><h3>预览级而非后期级</h3><p>缺镜头仍可能部分合成，非硬切路径会移除镜头原声。</p></article>
+          <article><span>规模</span><h3>SQLite + 本地文件</h3><p>适合单机研究；多人生产需要认证、对象存储和审计。</p></article>
+        </div>
+      </section>
+
+      <section class="section next-step">
+        <div class="shell next-card">
+          <span>NEXT ARCHITECTURE</span>
+          <h2>AI编剧室 → AIComicBuilder生产执行 → 自动审片与返工</h2>
+          <p>下一阶段不应只是生成更多样片，而应增加系列圣经、连续性账本、镜头风险分类、视觉/音频QA和可恢复任务队列。</p>
+          <div>
+            <a class="button primary" href="https://github.com/yydshly/0807_githubcode_study/blob/main/AIComicBuilder/docs/CAPABILITY_CONTROL_ARCHITECTURE.md" target="_blank" rel="noreferrer">查看控制架构 ↗</a>
+            <a class="button secondary" href="https://github.com/yydshly/0807_githubcode_study/blob/main/AIComicBuilder/docs/SAMPLE_PRODUCTION_GUIDE.md" target="_blank" rel="noreferrer">查看生产指南 ↗</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="shell"><span>AIComicBuilder Study · 2026/08/09</span><a href="https://github.com/LingyiChen-AI/AIComicBuilder" target="_blank" rel="noreferrer">上游项目 ↗</a></div>
+    </footer>
+    <script src="./assets/aicomicbuilder.js"></script>
+  </body>
+</html>

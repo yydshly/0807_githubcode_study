@@ -35,8 +35,16 @@ jobs:
           test -f assets/mattpocock-skills.css
           test -f assets/mattpocock-skills.js
           test -f mattpocock-skills-study/README.md
+          test -f aicomicbuilder.html
+          test -f assets/aicomicbuilder.css
+          test -f assets/aicomicbuilder.js
+          test -f AIComicBuilder/REPORT.md
+          test -f AIComicBuilder/docs/samples/sample-01-aicomicbuilder-pipeline.mp4
+          test -f AIComicBuilder/docs/samples/sample-02-chatgpt-directed.mp4
           node --check assets/mattpocock-skills.js
+          node --check assets/aicomicbuilder.js
           grep -q 'ENGINEERING LINEAGE' mattpocock-skills.html
+          grep -q '它不是导演' aicomicbuilder.html
           grep -q 'mattpocock-skills.html' README.md
           grep -q 'mattpocock-skills-study/README.md' mattpocock-skills.html
 
@@ -48,6 +56,9 @@ jobs:
           mkdir -p _site
           cp ./*.html .nojekyll _site/
           cp -R assets _site/assets
+          mkdir -p _site/AIComicBuilder/docs/samples
+          cp AIComicBuilder/docs/samples/*.mp4 _site/AIComicBuilder/docs/samples/
+          cp AIComicBuilder/docs/samples/*.jpg _site/AIComicBuilder/docs/samples/
           mkdir -p _site/horizon-study/demo-output
           cp horizon-study/demo-output/index.html _site/horizon-study/demo-output/index.html
 
