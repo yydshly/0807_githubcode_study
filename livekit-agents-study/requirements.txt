@@ -1,0 +1,7 @@
+-e ./upstream/livekit-agents
+-e ./upstream/livekit-plugins/livekit-plugins-openai
+-e ./upstream/livekit-plugins/livekit-plugins-anthropic
+-e ./upstream/livekit-plugins/livekit-plugins-minimax
+-e ./upstream/livekit-plugins/livekit-plugins-silero
+pytest>=9.0.3,<9.1
+pytest-asyncio>=0.25.3

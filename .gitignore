@@ -18,6 +18,18 @@ horizon-study/data/summaries/
 horizon-study/demo-output/raw-items.json
 .uv-cache-horizon/
 
+# LiveKit Agents isolated environment, installer cache, generated evidence, and upstream checkout.
+livekit-agents-study/upstream/
+livekit-agents-study/.venv/
+livekit-agents-study/demo-output/
+livekit-agents-study/.runtime/
+livekit-agents-study/.local-state/
+livekit-agents-study/.tmp/
+livekit-agents-study/.pytest_cache/
+livekit-agents-study/node_modules/
+livekit-agents-study/.env.local
+.uv-cache-livekit/
+
 # Temporary upstream checkout used for the David Ondrej skills audit.
 .tmp/davidondrej-skills-inspect/
 

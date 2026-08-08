@@ -141,6 +141,26 @@
       upstreamLabel: '原始仓库',
       upstreamUrl: 'https://github.com/yc-software/qm',
     },
+    {
+      number: '08',
+      slug: 'livekit-agents-study',
+      title: 'LiveKit Agents',
+      kicker: 'REALTIME VOICE AGENT RUNTIME',
+      category: 'agent',
+      categoryLabel: 'Agent 框架',
+      status: '本地真实链路已验证',
+      summary:
+        'LiveKit 实时应用中的 AI Agent 运行与编排核心。浏览器与 Agent 真实入房，稳定单轮语音、工具、handoff、应用工作流、Worker 池和按需单帧视觉均已验证。',
+      value: '管理 AI Participant、AgentSession、回合、模型与工具调用、Agent handoff、Job 和 Worker',
+      deployment: '46 项自动化通过；物理麦克风真实回合已人工验证。当前 MiMo 为整句上传，未启用自然打断，也未验证多人会议总结和生产部署',
+      tags: ['WebRTC', 'Voice Agent', 'Tool Use', 'Handoff', 'Workflow', 'Video'],
+      primaryLabel: '查看能力演示',
+      primaryUrl: './livekit-agents.html',
+      secondaryLabel: '查看产品能力',
+      secondaryUrl: './livekit-agents-study/local-app/product.html',
+      upstreamLabel: '原始仓库',
+      upstreamUrl: 'https://github.com/livekit/agents',
+    },
   ];
 
   const root = document.documentElement;

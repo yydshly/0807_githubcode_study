@@ -1,0 +1,14 @@
+# Local configuration and generated runtime state.
+.env.local
+.venv/
+.runtime/
+.local-state/
+.tmp/
+.pytest_cache/
+node_modules/
+upstream/
+demo-output/
+
+# Python runtime caches.
+__pycache__/
+*.py[cod]

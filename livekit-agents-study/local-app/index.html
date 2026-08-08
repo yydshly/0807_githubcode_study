@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="本地 LiveKit 房间、麦克风与 Agent 真实连接控制台">
+  <title>Local LiveKit Room</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Local LiveKit Room 首页">
+      <span class="brand-mark" aria-hidden="true">L</span>
+      <span><b>LOCAL LIVEKIT</b><small>ROOM CONSOLE</small></span>
+    </a>
+    <nav aria-label="页面操作">
+      <a class="product-link" href="./product.html">产品能力</a>
+      <a href="https://yydshly.github.io/0807_githubcode_study/livekit-agents.html#demo">能力说明</a>
+      <button id="themeToggle" class="icon-button" type="button" aria-label="切换到深色主题" aria-pressed="false">◐</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="pageTitle">
+      <div>
+        <p class="eyebrow">SELF-HOSTED · WINDOWS · REAL WEBRTC</p>
+        <h1 id="pageTitle">本机的房间，<span>真实连接。</span></h1>
+        <p class="hero-copy">这里不再回放事件。浏览器会连接你电脑上的 LiveKit Server、加入真实房间，并按当前 Agent 模式发送文字或发布麦克风轨道。</p>
+      </div>
+      <div class="hero-fact" aria-label="本地部署边界">
+        <span>数据路径</span>
+        <strong>浏览器 → 127.0.0.1</strong>
+        <small>开发模式，不开放到局域网或公网</small>
+      </div>
+    </section>
+
+    <section class="status-strip" aria-label="服务状态">
+      <article id="serverStatus" class="status-card" data-state="checking">
+        <span class="status-dot" aria-hidden="true"></span>
+        <div><small>01 · MEDIA SERVER</small><strong>正在检查 LiveKit</strong><p>127.0.0.1:7880</p></div>
+      </article>
+      <article id="appStatus" class="status-card" data-state="ready">
+        <span class="status-dot" aria-hidden="true"></span>
+        <div><small>02 · TOKEN SERVICE</small><strong>本地令牌服务就绪</strong><p>Secret 不发送到浏览器</p></div>
+      </article>
+      <article id="agentStatus" class="status-card" data-state="waiting">
+        <span class="status-dot" aria-hidden="true"></span>
+        <div><small>03 · AGENT</small><strong>等待 Agent 入房</strong><p>正在读取当前模式</p></div>
+      </article>
+      <article id="latencyStatus" class="status-card" data-state="checking" aria-live="polite">
+        <span class="status-dot" aria-hidden="true"></span>
+        <div><small>04 · STABLE TURN</small><strong>等待一轮语音</strong><p>单轮互斥 · 回合 — · 响应首声 — · ASR — · M3 — · TTS —</p></div>
+      </article>
+    </section>
+
+    <section id="capability-lab" class="capability-lab panel" aria-labelledby="capabilityLabTitle">
+      <div class="capability-intro">
+        <div>
+          <p class="eyebrow">PHASE 2 · CAPABILITY LAB</p>
+          <h2 id="capabilityLabTitle">验证框架，而不只是聊天</h2>
+          <p>下面的按钮会向房间里的 Agent 发送明确任务。只有收到 SDK 发出的工具执行或角色交接事件，实验才会标记为“已验证”。</p>
+        </div>
+        <div class="active-role">
+          <small>当前 Agent 角色</small>
+          <strong id="activeAgentRole">研究向导</strong>
+          <span id="activeAgentId">research-guide</span>
+        </div>
+      </div>
+
+      <div class="experiment-grid" aria-label="LiveKit Agents 能力实验">
+        <button id="toolExperimentButton" class="experiment-card" type="button" disabled>
+          <span>实验 01 · FUNCTION TOOL</span>
+          <strong>读取真实房间</strong>
+          <small>验证模型调用 Python 工具，而不是从提示词猜房间信息。</small>
+        </button>
+        <button id="handoffExperimentButton" class="experiment-card" type="button" disabled>
+          <span>实验 02 · AGENT HANDOFF</span>
+          <strong>交给工作流专家</strong>
+          <small>验证同一 AgentSession 内的角色、工具集和指令真正切换。</small>
+        </button>
+        <button id="returnExperimentButton" class="experiment-card" type="button" disabled hidden>
+          <span>实验 03 · RETURN HANDOFF</span>
+          <strong>返回研究向导</strong>
+          <small>验证专家可以把保留上下文的会话交还给原角色。</small>
+        </button>
+      </div>
+
+      <div id="capabilityEvidence" class="capability-evidence" data-state="idle" role="status" aria-live="polite">
+        <span aria-hidden="true">○</span>
+        <div><strong>等待实验</strong><p>先加入房间；执行记录会同时出现在这里和“实时事件”中。</p></div>
+      </div>
+
+      <div id="visual-lab" class="visual-lab" aria-labelledby="visualLabTitle">
+        <div class="visual-lab-heading">
+          <div>
+            <p class="eyebrow">PHASE 11 · VISUAL INPUT</p>
+            <h3 id="visualLabTitle">画面进了房间，不等于模型看懂了</h3>
+            <p>“测试画面”验证固定内容，“打开摄像头”才会请求物理摄像头权限。两者都会作为真实 LiveKit 视频轨道发送给 Agent，但一次只发布一个来源。</p>
+          </div>
+          <span id="visualLabBadge" class="badge" data-state="idle">等待视频轨道</span>
+        </div>
+        <div class="visual-lab-body">
+          <div class="visual-preview">
+            <div class="visual-preview-stage">
+              <canvas id="visualTestCanvas" width="640" height="360" aria-label="橙色三角形、LIVEKIT 和数字 742 的合成测试画面"></canvas>
+              <video id="visualCameraPreview" autoplay muted playsinline hidden aria-label="本地摄像头实时预览"></video>
+              <span id="visualPreviewBadge" data-state="synthetic">合成测试画面</span>
+            </div>
+            <small id="visualPreviewHint">当前预览是浏览器合成画面，不是物理摄像头。</small>
+            <small class="visual-privacy-note"><strong>隐私提示：</strong>点击分析会把当前一帧发送到 MiniMax 云端；真实摄像头在描述返回后自动停止发布。</small>
+          </div>
+          <div class="visual-observation">
+            <dl class="visual-metrics">
+              <div><dt>浏览器轨道</dt><dd id="visualLocalTrack">未发布</dd></div>
+              <div><dt>Agent 收帧</dt><dd id="visualAgentFrame">尚未收到</dd></div>
+              <div><dt>帧证据</dt><dd id="visualFrameEvidence">—</dd></div>
+              <div><dt>模型语义</dt><dd id="visualModelResult">尚未请求</dd></div>
+            </dl>
+            <div class="visual-layer-status" aria-label="视觉能力分层结果">
+              <article id="visualTransportLayer" data-state="idle">
+                <span>01 · TRANSPORT</span><strong>等待真实视频</strong><p>必须由 Agent 回报帧尺寸和哈希才算传输通过。</p>
+              </article>
+              <article id="visualSemanticLayer" data-state="idle">
+                <span>02 · UNDERSTANDING</span><strong>尚未验证模型</strong><p>模型必须识别橙色、三角形和 742，才标记为看懂。</p>
+              </article>
+            </div>
+          </div>
+        </div>
+        <div class="visual-actions">
+          <button id="publishVisualButton" class="primary-button" type="button" disabled>发布合成测试视频</button>
+          <button id="openCameraButton" class="secondary-button" type="button" disabled>打开真实摄像头</button>
+          <button id="analyzeVisualButton" class="secondary-button" type="button" disabled title="当前帧会发送到 MiniMax 云端">让 MiniMax 看这一帧</button>
+          <button id="stopVisualButton" class="text-button" type="button" disabled>停止视频</button>
+          <p id="visualEvidence" data-state="idle" role="status" aria-live="polite">加入房间并调度 Agent 后，选择合成视频或真实摄像头。</p>
+        </div>
+      </div>
+
+      <div class="dispatch-lab" aria-labelledby="dispatchLabTitle">
+        <div class="dispatch-heading">
+          <div>
+            <p class="eyebrow">PHASE 7 · EXPLICIT DISPATCH</p>
+            <h3 id="dispatchLabTitle">把指定 Agent 派进当前房间</h3>
+            <p>命名 Worker 不会自动加入新房间。先加入房间，再由本地后端创建 dispatch；重复点击会复用同一个任务。</p>
+          </div>
+          <span id="dispatchModeBadge" class="badge" data-state="idle">读取调度模式</span>
+        </div>
+        <dl class="dispatch-metrics">
+          <div><dt>命名 Agent</dt><dd id="dispatchAgentName">—</dd></div>
+          <div><dt>当前房间</dt><dd id="dispatchRoomName">尚未加入</dd></div>
+          <div><dt>Dispatch ID</dt><dd id="dispatchId">—</dd></div>
+          <div><dt>Job / 状态</dt><dd id="dispatchJobId">—</dd></div>
+          <div><dt>Worker ID</dt><dd id="dispatchWorkerId">—</dd></div>
+        </dl>
+        <div class="dispatch-actions">
+          <button id="dispatchButton" class="primary-button" type="button" disabled>调度命名 Agent</button>
+          <button id="refreshDispatchButton" class="secondary-button" type="button" disabled>刷新调度状态</button>
+          <button id="retryDispatchButton" class="secondary-button" type="button" disabled hidden>重新提交等待任务</button>
+          <div id="dispatchEvidence" data-state="idle" role="status" aria-live="polite">
+            先加入房间；显式模式下初始应只有你一名参与者。
+          </div>
+        </div>
+        <div class="capacity-lab" aria-labelledby="capacityLabTitle">
+          <div class="capacity-heading">
+            <div>
+              <p class="eyebrow">PHASE 8 · CAPACITY GUARD</p>
+              <h4 id="capacityLabTitle">Worker 还能接几个房间？</h4>
+              <p>本地研究策略按活动房间 Job 计数；达到上限后 Worker 标记为 full，新的 dispatch 等待空位。</p>
+            </div>
+            <span id="workerAvailabilityBadge" class="badge" data-state="idle">读取容量</span>
+          </div>
+          <dl class="capacity-metrics">
+            <div><dt>活动 Job</dt><dd id="workerActiveJobs">—</dd></div>
+            <div><dt>并发上限</dt><dd id="workerMaxJobs">—</dd></div>
+            <div><dt>Worker Load</dt><dd id="workerLoad">—</dd></div>
+            <div><dt>负载策略</dt><dd id="workerLoadPolicy">—</dd></div>
+          </dl>
+          <div class="capacity-track" aria-hidden="true"><span id="workerCapacityFill"></span></div>
+          <p id="capacityEvidence" class="capacity-evidence" data-state="idle" role="status" aria-live="polite">
+            Worker 就绪后显示真实活动 Job 与容量状态。
+          </p>
+        </div>
+        <div class="resilience-lab" aria-labelledby="resilienceLabTitle">
+          <div class="resilience-heading">
+            <div>
+              <p class="eyebrow">PHASE 9 · JOB RESILIENCE</p>
+              <h4 id="resilienceLabTitle">只让当前房间的 Job 崩溃，会怎样？</h4>
+              <p>Windows 默认是线程执行；本实验显式使用独立 Job 进程，并保留 LiveKit Server、网页服务与 Worker 主进程。</p>
+            </div>
+            <span id="resilienceBadge" class="badge" data-state="idle">等待运行中 Job</span>
+          </div>
+          <dl class="resilience-metrics">
+            <div><dt>Restart policy</dt><dd id="restartPolicy">—</dd></div>
+            <div><dt>Job 执行器</dt><dd id="jobExecutor">—</dd></div>
+            <div><dt>尝试次数</dt><dd id="jobAttemptCount">0</dd></div>
+            <div><dt>恢复结果</dt><dd id="recoveryResult">尚未实验</dd></div>
+          </dl>
+          <ol id="jobAttemptList" class="job-attempt-list" aria-label="Job 尝试历史">
+            <li>调度 Agent 后显示 Job 尝试。</li>
+          </ol>
+          <div class="resilience-actions">
+            <button id="crashJobButton" class="secondary-button danger-button" type="button" disabled>触发 Job 子进程崩溃</button>
+            <button id="recoverJobButton" class="primary-button" type="button" disabled hidden>替换失联 Dispatch</button>
+            <p id="resilienceEvidence" data-state="idle" role="status" aria-live="polite">研究开关启用后，可验证 failed → replacement 的真实行为。</p>
+          </div>
+        </div>
+        <div class="worker-pool-lab" aria-labelledby="workerPoolTitle">
+          <div class="worker-pool-heading">
+            <div>
+              <p class="eyebrow">PHASE 10 · WORKER POOL</p>
+              <h4 id="workerPoolTitle">同名 Worker 如何分单、故障后由谁接手？</h4>
+              <p>两个独立 Worker 以同一个 Agent 名称注册。这里显示每个实例的真实 Worker ID、活动 Job 和在线状态，并验证整名 Worker 离线后的跨 Worker 恢复。</p>
+            </div>
+            <span id="workerPoolBadge" class="badge" data-state="idle">读取 Worker 池</span>
+          </div>
+          <dl class="worker-pool-metrics">
+            <div><dt>在线实例</dt><dd id="workerOnlineCount">—</dd></div>
+            <div><dt>池容量</dt><dd id="workerPoolCapacity">—</dd></div>
+            <div><dt>当前归属</dt><dd id="workerAssignment">尚未调度</dd></div>
+            <div><dt>切换结果</dt><dd id="workerFailoverResult">尚未实验</dd></div>
+          </dl>
+          <div id="workerPoolList" class="worker-pool-list" aria-live="polite">
+            <article class="worker-card" data-state="offline"><strong>等待 Worker 状态</strong><small>启动本地研究栈后显示实例。</small></article>
+          </div>
+          <div class="worker-pool-actions">
+            <button id="failAssignedWorkerButton" class="secondary-button danger-button" type="button" disabled>停止当前 Job 所属 Worker</button>
+            <button id="recoverAcrossWorkerButton" class="primary-button" type="button" disabled hidden>让存活 Worker 接手</button>
+            <p id="workerPoolEvidence" data-state="idle" role="status" aria-live="polite">需要两名在线 Worker，且当前 Job 所属 Worker 只承载这一项任务。</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="workflow-lab" class="workflow-lab" aria-labelledby="workflowLabTitle">
+        <div class="workflow-heading">
+          <div>
+            <p class="eyebrow">PHASE 6 · HUMAN APPROVAL</p>
+            <h3 id="workflowLabTitle">预约任务：人工审批门与审计轨迹</h3>
+          </div>
+          <span id="workflowPhaseBadge" class="badge" data-state="idle">尚未开始</span>
+        </div>
+
+        <ol id="workflowSteps" class="workflow-steps" aria-label="预约工作流阶段">
+          <li data-step="collecting" data-state="idle"><span>01</span><strong>收集</strong><small>Intake Agent</small></li>
+          <li data-step="review" data-state="idle"><span>02</span><strong>审核</strong><small>Review Agent</small></li>
+          <li data-step="pending_approval" data-state="idle"><span>03</span><strong>审批门</strong><small>Approval Agent</small></li>
+          <li data-step="confirmed" data-state="idle"><span>04</span><strong>人工决策</strong><small>Approve / Reject</small></li>
+          <li data-step="completed" data-state="idle"><span>05</span><strong>返回</strong><small>Research Guide</small></li>
+        </ol>
+
+        <div class="workflow-detail">
+          <div class="workflow-copy">
+            <div id="workflowDraftSummary">
+              <strong>当前草稿为空</strong>
+              <p>记录按本页参与者 identity 隔离；关闭标签页后需保留同一身份才能恢复。</p>
+            </div>
+            <div id="workflowSafety" class="workflow-safety" data-state="idle" role="status" aria-live="polite">
+              <strong>等待安全实验</strong>
+              <p>创建任务后会显示所有者、有效期与乐观并发版本。</p>
+            </div>
+          </div>
+          <div class="workflow-actions">
+            <button id="startWorkflowButton" class="primary-button" type="button" disabled>开始预约工作流</button>
+            <button id="resumeWorkflowButton" class="secondary-button" type="button" disabled>恢复我的最近任务</button>
+            <button id="submitDraftButton" class="primary-button" type="button" disabled hidden>提交示例信息</button>
+            <button id="requestApprovalButton" class="primary-button" type="button" disabled hidden>提交人工审批</button>
+            <button id="approveWorkflowButton" class="primary-button" type="button" disabled hidden>人工批准</button>
+            <button id="rejectWorkflowButton" class="secondary-button" type="button" disabled hidden>人工拒绝</button>
+            <button id="pauseWorkflowButton" class="secondary-button" type="button" disabled hidden>暂停并保存</button>
+            <button id="staleWriteButton" class="secondary-button" type="button" disabled hidden>测试陈旧写入</button>
+            <button id="expireWorkflowButton" class="text-button" type="button" disabled hidden>模拟任务过期</button>
+            <button id="cancelWorkflowButton" class="text-button" type="button" disabled hidden>取消任务</button>
+          </div>
+        </div>
+        <div class="workflow-audit" aria-labelledby="workflowAuditTitle">
+          <div><strong id="workflowAuditTitle">本地审计时间线</strong><p>按 SQLite event_id 追加；显示操作者、动作、版本与时间。</p></div>
+          <ol id="workflowAuditList" aria-live="polite"><li class="audit-empty">创建任务后显示审计事件。</li></ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="room-console" class="workspace" aria-label="房间控制台">
+      <div class="control-panel panel">
+        <div class="section-heading">
+          <div><p class="eyebrow">JOIN A ROOM</p><h2>连接控制</h2></div>
+          <span id="connectionBadge" class="badge" data-state="idle">未连接</span>
+        </div>
+
+        <form id="joinForm" class="join-form">
+          <label>房间名称<input id="roomName" name="roomName" value="local-demo" maxlength="64" autocomplete="off" required></label>
+          <label>显示名称<input id="displayName" name="displayName" value="本地访客" maxlength="64" autocomplete="name" required></label>
+          <p id="identityHint" class="field-hint">身份标识将在本页自动生成。</p>
+          <div class="button-row">
+            <button id="connectButton" class="primary-button" type="submit">加入真实房间</button>
+            <button id="micButton" class="secondary-button" type="button" disabled aria-pressed="false">开始说一句</button>
+            <button id="leaveButton" class="text-button" type="button" disabled>离开</button>
+          </div>
+        </form>
+
+        <div id="notice" class="notice" data-state="info" role="status" aria-live="polite">
+          启动本地栈后先加入房间；页面会根据当前 Agent 模式提示文字或麦克风操作。
+        </div>
+
+        <form id="chatForm" class="chat-form">
+          <label for="chatInput">给本地 Agent 发文字</label>
+          <div>
+            <input id="chatInput" maxlength="240" placeholder="例如：检查房间状态" disabled>
+            <button id="sendButton" type="submit" disabled>发送</button>
+          </div>
+          <p>稳定单轮模式一次只处理一句；识别、思考或播放期间会暂时锁定新的文字和语音输入。</p>
+        </form>
+      </div>
+
+      <div class="room-panel panel">
+        <div class="section-heading">
+          <div><p class="eyebrow">LIVE ROOM</p><h2>参与者与媒体</h2></div>
+          <span id="participantCount" class="count">0 人</span>
+        </div>
+        <div id="participants" class="participants" aria-live="polite">
+          <div class="empty-state"><span aria-hidden="true">◎</span><strong>尚未加入房间</strong><p>连接后，这里会显示浏览器和 Agent。</p></div>
+        </div>
+        <div id="remoteAudio" class="remote-audio" aria-label="远端音频输出"></div>
+      </div>
+    </section>
+
+    <section class="lower-grid">
+      <article class="panel transcript-panel">
+        <div class="section-heading">
+          <div><p class="eyebrow">ROOM TEXT</p><h2>Agent 对话</h2></div>
+          <button id="clearChatButton" class="text-button" type="button">清空</button>
+        </div>
+        <ol id="chatLog" class="chat-log">
+          <li class="chat-empty">Agent 加入后，发送“检查房间状态”。</li>
+        </ol>
+      </article>
+
+      <article class="panel event-panel">
+        <div class="section-heading">
+          <div><p class="eyebrow">DIAGNOSTICS</p><h2>实时事件</h2></div>
+          <button id="copyDiagnosticsButton" class="text-button" type="button">复制诊断</button>
+        </div>
+        <ol id="eventLog" class="event-log" aria-live="polite">
+          <li><time>—</time><span>页面已加载，等待连接。</span></li>
+        </ol>
+      </article>
+    </section>
+
+    <section class="truth-table" aria-labelledby="boundaryTitle">
+      <div class="section-heading"><div><p class="eyebrow">WHAT IS REAL NOW</p><h2 id="boundaryTitle">当前能力边界</h2></div></div>
+      <div class="truth-grid">
+        <article data-state="ready"><span>已实现</span><strong>本地 LiveKit Server</strong><p>信令和 WebRTC 媒体都在本机运行。</p></article>
+        <article data-state="ready"><span>已实现</span><strong>浏览器入房与麦克风</strong><p>浏览器真实发布音频轨道，可观察静音和参与者状态。</p></article>
+        <article data-state="ready"><span>已实现</span><strong>工具、交接与人工审批</strong><p>高风险确认会暂停在审批门，由人工批准或拒绝，并把决策追加到本地审计时间线。</p></article>
+        <article data-state="waiting"><span>按模式启用</span><strong>AI 语音理解与回答</strong><p>当前 MiniMax 模式由小米 MiMo ASR、MiniMax M3 与 TTS 组成稳定单轮链路。</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer><span>LiveKit Server 1.13.5</span><span>LiveKit Client 2.21.0</span><span>仅用于本地开发</span></footer>
+
+  <noscript><div class="noscript">此控制台需要 JavaScript 才能连接 LiveKit 房间。</div></noscript>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="LiveKit Agents 技术能力、组合效果与产品场景演示">
+  <title>LiveKit Agents 产品能力</title>
+  <link rel="stylesheet" href="./product.css">
+  <script type="module" src="./product.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./product.html" aria-label="LiveKit Agents 产品能力首页">
+      <span class="brand-mark" aria-hidden="true">L</span>
+      <span><b>LIVEKIT AGENTS</b><small>PRODUCT CAPABILITY</small></span>
+    </a>
+    <nav aria-label="页面导航">
+      <a href="#architecture">技术架构</a>
+      <a href="#demo">产品演示</a>
+      <a href="#boundary">能力边界</a>
+      <a class="lab-link" href="./">研究控制台</a>
+      <button id="themeToggle" class="icon-button" type="button" aria-label="切换到深色主题" aria-pressed="false">◐</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="pageTitle">
+      <div class="hero-copy">
+        <p class="eyebrow">REALTIME AI ORCHESTRATION · VERIFIED LOCALLY</p>
+        <h1 id="pageTitle">把 AI 从一次回答，变成房间里的<span>业务参与者。</span></h1>
+        <p class="hero-lead">LiveKit Agents 是 LiveKit 实时应用中 AI Agent 的运行与编排核心：它连接房间、模型和工具；应用业务层再负责状态、权限、审批与真实操作。</p>
+        <div class="hero-actions">
+          <a class="primary-button" href="#demo">查看产品流程</a>
+          <a class="secondary-button" href="./index.html">查看研究控制台</a>
+        </div>
+        <p class="hero-note">本页可直接部署在 GitHub Pages，属于静态产品说明与流程预览，不会申请麦克风、摄像头或调用云模型；真实实验需在本地启动完整栈。</p>
+      </div>
+      <aside class="hero-proof" aria-label="当前研究原型状态">
+        <div class="proof-heading">
+          <span id="serviceBadge" class="status-badge" data-state="checking">正在读取本地栈</span>
+          <small>RESEARCH PROTOTYPE</small>
+        </div>
+        <strong>已经从“能聊天”走到“能执行任务”。</strong>
+        <p id="serviceDetail">正在核对 LiveKit Server、Agent Worker 与本地页面服务。</p>
+        <dl>
+          <div><dt>自动化契约</dt><dd>46 passed</dd></div>
+          <div><dt>运行实例</dt><dd id="workerProof">读取中</dd></div>
+          <div><dt>真实链路</dt><dd>语音 · 工具 · 视觉</dd></div>
+        </dl>
+      </aside>
+    </section>
+
+    <section class="evidence-strip" aria-label="已验证能力摘要">
+      <article><span>01</span><strong>真实房间</strong><p>浏览器、Agent 与媒体都是真实 Participant 和 Track。</p></article>
+      <article><span>02</span><strong>业务执行</strong><p>工具与 handoff 由 Agents 编排；审批和恢复由本项目业务层实现。</p></article>
+      <article><span>03</span><strong>多模态</strong><p>语音闭环和按需单帧视觉已经过真实模型验证。</p></article>
+      <article><span>04</span><strong>可运营</strong><p>Dispatch、Job、Worker、延迟和失败状态均可观察。</p></article>
+    </section>
+
+    <section id="architecture" class="section-block architecture" aria-labelledby="architectureTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">WHAT THE LIBRARY ACTUALLY DOES</p>
+          <h2 id="architectureTitle">它不是模型，而是实时 AI 的运行与编排层。</h2>
+        </div>
+        <p>理解这个库的关键，是区分房间、Agent、模型和业务系统四类组件。它们不是从上到下的串行流水线；Agents 在中心连接房间，并分别调用模型和业务工具。</p>
+      </div>
+
+      <div class="layer-map" aria-label="LiveKit Agents 四类协作组件">
+        <article data-layer="transport">
+          <span>01 · TRANSPORT</span>
+          <h3>LiveKit Server</h3>
+          <p>房间、参与者、WebRTC、音视频轨道与数据通道。</p>
+          <small>回答：人和媒体怎样实时连接？</small>
+        </article>
+        <article data-layer="orchestration">
+          <span>02 · ORCHESTRATION</span>
+          <h3>LiveKit Agents</h3>
+          <p>AI Participant、回合、工具、角色交接、Job 与 Worker。</p>
+          <small>回答：AI 怎样在连接中工作？</small>
+        </article>
+        <article data-layer="models">
+          <span>03 · INTELLIGENCE</span>
+          <h3>模型服务</h3>
+          <p>ASR 识别、LLM 推理、视觉理解和 TTS 合成。</p>
+          <small>回答：AI 怎样听、想、看和说？</small>
+        </article>
+        <article data-layer="business">
+          <span>04 · ACTION</span>
+          <h3>业务系统</h3>
+          <p>用户、知识库、预约、工单、审批、权限与真实数据。</p>
+          <small>回答：这次对话最终完成什么？</small>
+        </article>
+      </div>
+
+      <div class="architecture-conclusion">
+        <span aria-hidden="true">→</span>
+        <p><strong>核心差异：</strong>普通模型 API 只生成内容；LiveKit Agents 负责 AI 在实时通信中的运行与编排，业务结果仍由应用自己的工具、状态和权限系统完成。</p>
+      </div>
+    </section>
+
+    <section id="demo" class="section-block demo-section" aria-labelledby="demoTitle">
+      <div class="section-heading demo-heading">
+        <div>
+          <p class="eyebrow">PRODUCT CAPABILITY DEMO</p>
+          <h2 id="demoTitle">同一套框架，可以组合成不同产品。</h2>
+        </div>
+        <p>选择一个场景，查看输入如何经过实时房间、Agent 编排和业务动作，最后形成用户可感知的结果。</p>
+      </div>
+
+      <div class="scenario-tabs" role="tablist" aria-label="产品场景">
+        <button id="tabAppointment" role="tab" type="button" aria-selected="true" aria-controls="scenarioPanel" data-scenario="appointment">
+          <span>优先产品化</span><strong>AI 预约接待</strong>
+        </button>
+        <button id="tabVision" role="tab" type="button" aria-selected="false" aria-controls="scenarioPanel" data-scenario="vision" tabindex="-1">
+          <span>已验证原型</span><strong>远程视觉协助</strong>
+        </button>
+        <button id="tabService" role="tab" type="button" aria-selected="false" aria-controls="scenarioPanel" data-scenario="service" tabindex="-1">
+          <span>组合扩展</span><strong>实时业务客服</strong>
+        </button>
+      </div>
+
+      <div id="scenarioPanel" class="scenario-panel" role="tabpanel" aria-labelledby="tabAppointment">
+        <div class="scenario-context">
+          <div class="scenario-title-row">
+            <span id="scenarioMaturity" class="status-badge" data-state="verified">已验证原型</span>
+            <small id="scenarioLabel">AI APPOINTMENT</small>
+          </div>
+          <h3 id="scenarioTitle">AI 预约与业务接待助手</h3>
+          <p id="scenarioSummary">用户通过语音或文字提出需求，Agent 收集信息、交给审核角色，并在人工批准后完成任务。</p>
+          <div class="input-example">
+            <span>用户输入</span>
+            <blockquote id="scenarioInput">“帮我预约明天下午三点的产品演示。”</blockquote>
+          </div>
+          <div class="demo-controls">
+            <button id="playDemo" class="primary-button" type="button">播放完整流程</button>
+            <button id="nextDemoStep" class="secondary-button" type="button">下一步</button>
+            <button id="resetDemo" class="text-button" type="button">重置</button>
+          </div>
+          <p class="demo-disclaimer">本地界面流程预览，不调用模型、不写入预约数据。进入研究控制台可执行真实实验。</p>
+        </div>
+
+        <div class="scenario-runner">
+          <ol id="scenarioSteps" class="scenario-steps" aria-label="当前场景处理步骤">
+            <li data-step="0" data-state="active"><span>01</span><div><strong>接收需求</strong><p>语音或文字进入实时房间。</p></div></li>
+            <li data-step="1"><span>02</span><div><strong>理解与路由</strong><p>Agent 判断意图和需要的专家。</p></div></li>
+            <li data-step="2"><span>03</span><div><strong>调用业务工具</strong><p>收集结构化字段并保存任务状态。</p></div></li>
+            <li data-step="3"><span>04</span><div><strong>人工审批</strong><p>高风险动作停在人工决策门。</p></div></li>
+            <li data-step="4"><span>05</span><div><strong>返回结果</strong><p>语音回复、任务卡和审计轨迹同步更新。</p></div></li>
+          </ol>
+
+          <article class="result-card" aria-live="polite">
+            <div class="result-heading"><span>PRODUCT OUTPUT</span><strong id="resultState">等待流程</strong></div>
+            <h4 id="resultTitle">预约任务卡</h4>
+            <p id="resultDetail">播放流程后，这里会展示用户真正得到的业务结果，而不是底层模型或 Worker 参数。</p>
+            <dl id="resultFacts">
+              <div><dt>客户</dt><dd>—</dd></div>
+              <div><dt>时间</dt><dd>—</dd></div>
+              <div><dt>状态</dt><dd>等待处理</dd></div>
+            </dl>
+            <a id="scenarioLabLink" href="./#workflow-lab">在研究控制台验证真实链路 →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block capability-section" aria-labelledby="capabilityTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">CAPABILITY STATUS</p>
+          <h2 id="capabilityTitle">哪些已经成立，哪些按需求再接。</h2>
+        </div>
+        <p>能力状态依据当前代码、自动化和真实房间实验，不把供应商宣传或模板代码当作完成证据。</p>
+      </div>
+
+      <div class="capability-columns">
+        <article class="capability-column" data-state="verified">
+          <header><span>●</span><div><small>VERIFIED</small><h3>本项目已验证</h3></div></header>
+          <ul>
+            <li>真实房间、文字与稳定单轮语音</li>
+            <li>Function Tool 与双向 Agent handoff</li>
+            <li>本项目业务层实现的可恢复工作流、人工审批和审计</li>
+            <li>命名调度、Worker 池与故障隔离</li>
+            <li>视频轨道与按需单帧视觉理解</li>
+          </ul>
+        </article>
+        <article class="capability-column" data-state="extendable">
+          <header><span>◆</span><div><small>EXTENDABLE</small><h3>框架可扩展</h3></div></header>
+          <ul>
+            <li>替换 STT、LLM、TTS 或 Realtime 模型</li>
+            <li>接入 CRM、ERP、工单、日历和 RAG</li>
+            <li>增加专家 Agent、人工坐席和权限工具</li>
+            <li>配合 LiveKit SIP、屏幕共享和第三方数字人</li>
+            <li>扩展监控、评测、成本与质量体系</li>
+          </ul>
+        </article>
+        <article id="boundary" class="capability-column" data-state="pending">
+          <header><span>○</span><div><small>NOT YET</small><h3>当前未完成</h3></div></header>
+          <ul>
+            <li>音频帧实时输入的流式 ASR</li>
+            <li>自然随时打断和连续视频理解</li>
+            <li>真实 CRM、日历和生产身份权限</li>
+            <li>可靠自动重派与跨机器 Worker</li>
+            <li>生产公网、弱网、规模、成本与合规验证</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-block use-cases" aria-labelledby="useCaseTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">WHERE IT FITS</p>
+          <h2 id="useCaseTitle">优先选择“实时交流 + 真实任务”的场景。</h2>
+        </div>
+        <p>如果只是普通文本问答，直接调用模型 API 更简单；当场景需要媒体、工具、交接和长期状态时，这个框架的价值才会明显。</p>
+      </div>
+      <div class="use-case-grid">
+        <article><span>01 · HIGH FIT</span><h3>AI 预约与接待</h3><p>信息收集、审核、人工批准、恢复和审计已经形成原型闭环。</p></article>
+        <article><span>02 · HIGH FIT</span><h3>实时客服与人工接管</h3><p>AI 先处理意图与工具，复杂问题携带完整上下文交给专家或人工。</p></article>
+        <article><span>03 · MEDIUM–HIGH</span><h3>远程视觉协助</h3><p>用户展示设备或现场画面，Agent 按需分析并联动知识库与工单。</p></article>
+        <article><span>04 · MEDIUM</span><h3>现场作业与语音工单</h3><p>边沟通边补全字段、生成记录，并把关键操作交给人工确认。</p></article>
+        <article><span>05 · MEDIUM</span><h3>访谈、培训与陪练</h3><p>多个角色持续提问、评估和反馈，保留会话与任务状态。</p></article>
+        <article><span>06 · FUTURE</span><h3>电话 Agent</h3><p>配合 LiveKit SIP 后，可复用现有语音、工具、handoff 与本项目业务流程。</p></article>
+      </div>
+    </section>
+
+    <section class="section-block roadmap" aria-labelledby="roadmapTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">PRODUCTIZATION ROADMAP</p>
+          <h2 id="roadmapTitle">先做一个业务闭环，再按需要优化实时性。</h2>
+        </div>
+        <p>当前不新增流式 ASR。下一次优化应由明确的产品场景、用户量、延迟目标和合规要求触发。</p>
+      </div>
+      <ol class="roadmap-list">
+        <li data-state="current"><span>现在</span><strong>能力说明与产品外壳</strong><p>把研究成果转成产品可理解的价值、流程和边界。</p></li>
+        <li><span>按需求</span><strong>连接一个真实业务系统</strong><p>优先选择日历、CRM 或工单中的一个，验证任务成功率。</p></li>
+        <li><span>体验瓶颈出现后</span><strong>流式 ASR 与自然打断</strong><p>用真实延迟和用户行为决定是否替换当前稳定单轮。</p></li>
+        <li><span>准备上线时</span><strong>身份、权限与生产控制面</strong><p>补齐 RBAC、可靠调度、监控、成本、弱网和合规。</p></li>
+      </ol>
+    </section>
+
+    <section class="closing-cta" aria-labelledby="closingTitle">
+      <div>
+        <p class="eyebrow">NEXT DECISION</p>
+        <h2 id="closingTitle">现在不需要再堆模型，先选择一个值得完成的业务任务。</h2>
+      </div>
+      <div>
+        <p>研究控制台保留全部技术证据。后续只有当产品场景明确需要更低延迟、电话、连续视觉或生产规模时，再继续对应方向。</p>
+        <a class="primary-button" href="./">打开研究控制台</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>LiveKit Agents 1.6.8 · 本地研究原型</span>
+    <span><a href="https://github.com/yydshly/0807_githubcode_study/blob/main/livekit-agents-study/TECHNICAL_SUMMARY.md">阅读技术总结</a> · 产品说明与真实技术证据分层呈现</span>
+  </footer>
+
+  <noscript><p class="noscript">产品流程预览需要启用 JavaScript；技术说明仍可直接阅读。</p></noscript>
+</body>
+</html>

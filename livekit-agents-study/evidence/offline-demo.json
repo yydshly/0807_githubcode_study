@@ -1,0 +1,63 @@
+{
+  "demo": "LiveKit Agents deterministic AgentSession tool loop",
+  "livekit_agents_version": "1.6.8",
+  "mode": "offline-text",
+  "external_credentials_used": false,
+  "input": "请检查这个房间当前是否正常。",
+  "events": [
+    {
+      "type": "function_call",
+      "name": "get_room_status",
+      "arguments": {
+        "room_name": "demo-room"
+      }
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "content": "我先调用房间状态工具，而不是猜测。"
+    },
+    {
+      "type": "function_call_output",
+      "name": "get_room_status",
+      "output": {
+        "agent_state": "listening",
+        "media": [
+          "audio",
+          "text"
+        ],
+        "participants": [
+          "访客",
+          "AI Agent"
+        ],
+        "room": "demo-room"
+      },
+      "is_error": false
+    },
+    {
+      "type": "message",
+      "role": "assistant",
+      "content": "房间 demo-room 已连接；参与者为 访客、AI Agent；AI 当前处于 listening 状态。"
+    }
+  ],
+  "assertions": {
+    "expected_event_order": [
+      "function_call",
+      "function_call_output",
+      "message"
+    ],
+    "actual_event_order": [
+      "function_call",
+      "message",
+      "function_call_output",
+      "message"
+    ],
+    "actual_core_event_order": [
+      "function_call",
+      "function_call_output",
+      "message"
+    ],
+    "passed": true
+  },
+  "elapsed_ms": 82.12
+}

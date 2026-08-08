@@ -18,6 +18,40 @@
 | [mattpocock-skills-study](mattpocock-skills-study/) | Matt Pocock 面向真实软件工程的 Agent Skill 库 | 开发流程地图完成；按八阶段整理 25 个技能，并归纳 4 个思想簇、14 项软件工程理念 | 核心价值不是增加模型知识，而是把需求澄清、领域建模、规格、纵向切片、TDD、诊断、双轴审查和交接做成可组合工程纪律 | [公开工程流程地图](https://yydshly.github.io/0807_githubcode_study/mattpocock-skills.html) · [沟通结论摘要](mattpocock-skills-study/README.md#本次沟通结论摘要) · [软件工程思想谱系](mattpocock-skills-study/README.md#背后的软件工程设计思想) · [上游原库](https://github.com/mattpocock/skills) · [与 David 双库对比](mattpocock-skills-study/README.md#与-david-ondrej-skills-对比) | 纯静态专题页；未安装或执行上游技能，未连接 Issue Tracker、账号或生产系统 |
 | [AIComicBuilder](AIComicBuilder/) | AI 漫剧/短剧生产工作台与多模型执行流水线 | Windows 安装、MiniMax、Codex 控制、外部视频接力和两条完整样片均已验证 | 它解决项目、分集、分镜、关键帧、视频调用和资产管理，属于生产执行层；不独立负责剧本质量、导演判断和自动审片 | [在线研究专题](https://yydshly.github.io/0807_githubcode_study/aicomicbuilder.html) · [完整报告](AIComicBuilder/REPORT.md) · [控制架构](AIComicBuilder/docs/CAPABILITY_CONTROL_ARCHITECTURE.md) · [生产指南](AIComicBuilder/docs/SAMPLE_PRODUCTION_GUIDE.md) · [上游原库](https://github.com/LingyiChen-AI/AIComicBuilder) | GitHub Pages 在线展示报告与两条可播放样片；完整 Next.js 应用使用 `AIComicBuilder` 子项目独立部署，密钥和运行数据库不进入 Pages |
 | [qm-study](qm-study/) | QM 组织级 Agent 运行平台 | 架构与源码接口研究完成；未部署真实组织实例 | 核心是以 Scope 和共同权限为基础，动态装配记忆、文件、Skills、凭据、网络与持久沙箱；它管理每次 Agent 执行的安全边界，不是总管多个子 Agent 的上级 Agent | [公开架构专题](https://yydshly.github.io/0807_githubcode_study/qm.html) · [上游原库](https://github.com/yc-software/qm) · [阶段报告](qm-study/REPORT.md) · [架构与实现](qm-study/docs/architecture-and-implementation.md) · [采用与风险](qm-study/docs/adoption-and-risk.md) | 纯静态研究专题页；未部署 QM 后端、Postgres、云沙箱、Slack 或组织凭据 |
+| [livekit-agents-study](livekit-agents-study/) | LiveKit Agents 实时 AI Agent 运行与编排框架 | Windows 本地 LiveKit Server 1.13.5、Agents 1.6.8、真实 RTC 和 46 项自动化通过 | **LiveKit Agents 是 LiveKit 实时应用中 AI Agent 的运行与编排核心**：管理 AI Participant、回合、工具、handoff、Job 与 Worker；模型和业务系统由应用接入 | [公开能力演示](https://yydshly.github.io/0807_githubcode_study/livekit-agents.html) · [公开产品页](https://yydshly.github.io/0807_githubcode_study/livekit-agents-study/local-app/product.html) · [上游原库](https://github.com/livekit/agents) · [技术总结](livekit-agents-study/TECHNICAL_SUMMARY.md) · [项目说明](livekit-agents-study/README.md) · [能力矩阵](livekit-agents-study/CAPABILITY_MATRIX.md) · [实测报告](livekit-agents-study/REPORT.md) | Pages 提供静态说明、产品流程与控制台界面；本地用 `start-local.cmd` 或 `start-minimax-local.cmd` 运行真实链路 |
+
+### LiveKit Agents：实时 AI Agent 的运行与编排核心
+
+**LiveKit Agents 是 LiveKit 实时应用中 AI Agent 的运行与编排核心。** 它把 AI 作为服务端 Participant 放进 LiveKit Room，管理输入输出、对话回合、模型调用、Function Tool、Agent handoff，以及 Job/Worker 的调度与运行。
+
+它不是整套系统的全部：
+
+| 组件 | 主要职责 |
+|---|---|
+| LiveKit Server | 房间、参与者、WebRTC、文字/音频/视频轨道与数据通道 |
+| LiveKit Agents | AI Participant、AgentSession、回合、工具调用、角色交接、Job 与 Worker |
+| ASR / LLM / 视觉 / TTS | 让 Agent 具备听、想、看、说的模型能力 |
+| 日历 / CRM / 工单 / 权限 / 审批 | 由应用通过工具和 API 接入，完成真实业务动作 |
+
+真实连接关系是：
+
+```text
+用户 / 网页 / App ↔ LiveKit Server ↔ Agent Worker（LiveKit Agents）
+                                            ├─ 模型服务
+                                            └─ 业务工具与 API
+```
+
+因此，它可以用于在语音房、群聊或视频会议中加入一个或多个 Agent，进行实时应答、按需总结、工具执行和角色交接。但要总结“所有人”的会议，应用还需要聚合多名参与者的轨道/转录、区分说话人并处理权限；审批、持久化恢复和真实订单/预约写入同样属于业务层实现，不是 SDK 自带功能。
+
+本子项目已经真实验证：本地房间、物理麦克风稳定单轮、小米 MiMo ASR、MiniMax M3、Speech 2.8、Function Tool、双向 handoff、应用层审批/恢复、Worker 池和按需单帧视觉。当前 MiMo 是停顿后整句上传，主动关闭自然随时打断；多人会议总结、连续视频、SIP、生产并发和可靠自动重派仍未验证。
+
+阅读与演示入口：
+
+- 先读：[技术总结与产品边界](livekit-agents-study/TECHNICAL_SUMMARY.md)
+- 公开产品能力页：[GitHub Pages](https://yydshly.github.io/0807_githubcode_study/livekit-agents-study/local-app/product.html)
+- 公开研究控制台界面：[GitHub Pages](https://yydshly.github.io/0807_githubcode_study/livekit-agents-study/local-app/index.html)（静态预览，不连接本地服务）
+- 本地真实链路：`http://127.0.0.1:17828/product.html` 与 `http://127.0.0.1:17828/`
+- 完整证据：[能力矩阵](livekit-agents-study/CAPABILITY_MATRIX.md) · [实测报告](livekit-agents-study/REPORT.md)
 
 ## 子项目之间的协作关系
 
@@ -35,6 +69,7 @@ flowchart LR
     M["Matt Pocock Skills 研究<br/>真实软件工程流程与质量门禁"]
     X["AIComicBuilder 研究<br/>AI短剧生产执行、模型编排与素材管理"]
     Q["QM 研究<br/>身份、Scope、权限、沙箱、任务与审计"]
+    L["LiveKit Agents 研究<br/>实时房间、语音、视频、工具与 handoff"]
     C["规范化对象、事件和证据"]
     D["AgentScope 研究<br/>工具调用、核验、结构化研判"]
     F["后续独立研究项目<br/>卫星、新闻、空间计算、专题产品等"]
@@ -44,7 +79,7 @@ flowchart LR
     A --> Y --> C
     S --> D
     M --> D
-    D --> Q --> E
+    D --> Q --> L --> E
     F --> E
     D --> X --> E
 ```
@@ -57,6 +92,7 @@ flowchart LR
 - AgentScope 研究回答“怎样让 Agent 调用确定性工具、核验来源并输出可审计结论”。
 - AIComicBuilder 研究回答“怎样把已审批的故事和导演方案组织成角色、分镜、关键帧、短视频与合成资产，并让 Codex 在模型调用外负责审批、审片和返工”。
 - QM 研究回答“怎样让多个人、频道和项目在各自权限边界内长期使用 Agent，并让每次执行的资源、凭据、沙箱和副作用可控、可追踪”。
+- LiveKit Agents 研究回答“接好相应模型和业务工具后，怎样让 AI 作为可编程参与者加入实时房间，并管理回合、工具、角色交接与任务运行”；当前 MiniMax 稳定单轮主动关闭自然打断。
 - 这些研究之间未来应通过稳定的数据模型或 API 连接，而不是直接互相依赖内部代码。
 
 ### AIComicBuilder：AI短剧的生产执行层
@@ -182,6 +218,7 @@ Fish Speech 是生成式文生语音（TTS）模型及推理工具库。它接�
 | Matt Pocock Skills | 软件工程流程与 25 个 Skill 能力地图 | 无后端运行入口 | [Matt Pocock Skills 工程流程地图](https://yydshly.github.io/0807_githubcode_study/mattpocock-skills.html) | 静态展示八阶段开发流程、完整 Skill 目录、能力与实现原理；没有安装或执行上游技能 |
 | AIComicBuilder | AI短剧生产执行、模型接入与Codex控制 | 完整应用可在子项目中独立运行；Pages只展示报告和样例 | [AIComicBuilder 在线研究专题](https://yydshly.github.io/0807_githubcode_study/aicomicbuilder.html) | Windows、MiniMax、Codex控制和外部视频接力已验证；两条完整样片可在线播放；API Key、SQLite和原始uploads未公开 |
 | QM | 组织级 Agent 权限、隔离与运行机制 | 无后端运行入口 | [QM 架构专题](https://yydshly.github.io/0807_githubcode_study/qm.html) | 静态展示 Scope、ACL、Harness、Sandbox、Memory、Keychain 与后台任务链；没有部署 QM、云资源、数据库、Slack 或组织凭据 |
+| LiveKit Agents | 实时 AgentSession、工具、handoff、Worker 与视频输入 | `livekit-agents-study/start-local.cmd`；本地产品页 `http://127.0.0.1:17828/product.html`；研究台 `http://127.0.0.1:17828/` | [能力演示](https://yydshly.github.io/0807_githubcode_study/livekit-agents.html) · [产品能力页](https://yydshly.github.io/0807_githubcode_study/livekit-agents-study/local-app/product.html) · [控制台界面](https://yydshly.github.io/0807_githubcode_study/livekit-agents-study/local-app/index.html) | Pages 只提供静态说明和界面预览；46 项契约及真实本地链路已验证，密钥与运行数据不进入 Pages |
 
 增加新的在线演示时，应同时补充：代码目录、用途、数据来源、运行状态、公开URL、部署方式和最后验证日期。
 

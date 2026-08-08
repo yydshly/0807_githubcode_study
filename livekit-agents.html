@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="LiveKit Agents 是 LiveKit 实时应用中 AI Agent 的运行与编排核心：连接房间、模型与业务工具。"
+    />
+    <meta name="theme-color" content="#f1eee5" />
+    <title>LiveKit Agents · AI 进入实时房间</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./assets/livekit-agents.css" />
+    <script>
+      (() => {
+        try {
+          const saved = localStorage.getItem('study-theme');
+          const preferred = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          document.documentElement.dataset.theme = saved || preferred;
+        } catch (_) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href="./index.html" aria-label="返回研究总索引">
+          <span>08/08</span><strong>LIVEKIT AGENTS STUDY</strong>
+        </a>
+        <nav aria-label="专题导航">
+          <a href="#layers">分工</a>
+          <a href="#demo">演示</a>
+          <a href="#evidence">实测</a>
+          <a href="#use">使用</a>
+        </nav>
+        <div class="header-actions">
+          <a class="back-link" href="./index.html">返回索引 ↗</a>
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            type="button"
+            aria-label="切换深色主题"
+            aria-pressed="false"
+          ><span aria-hidden="true"></span></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="shell hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow"><span></span>LOCAL INSTALL · VERIFIED 2026/08/09</p>
+            <h1>让 AI 不再只是接口，<em>而是进入房间的<span class="keep">参与者。</span></em></h1>
+            <p class="hero-lead">
+              LiveKit Agents 是 LiveKit 实时应用中 AI Agent 的运行与编排核心：它让 AI 成为房间参与者，并管理回合、模型、工具、handoff、Job 与 Worker。
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="./livekit-agents-study/local-app/product.html">打开产品能力页 ↗</a>
+              <a class="button secondary" href="./livekit-agents-study/local-app/index.html">查看研究控制台界面 ↗</a>
+            </div>
+            <dl class="hero-facts">
+              <div><dt>安装版本</dt><dd>1.6.8</dd></div>
+              <div><dt>上游提交</dt><dd>2f218b6</dd></div>
+              <div><dt>自动化契约</dt><dd>46 passed</dd></div>
+            </dl>
+          </div>
+
+          <aside class="room-card" aria-label="实时房间参与者示意">
+            <div class="room-card-head">
+              <span><i></i>ROOM / DEMO</span>
+              <b id="heroRoomState">READY</b>
+            </div>
+            <div class="room-stage">
+              <article class="participant human">
+                <span class="avatar" aria-hidden="true">访</span>
+                <div><b>访客</b><small>麦克风 · 摄像头</small></div>
+                <i class="signal" aria-hidden="true"><span></span><span></span><span></span></i>
+              </article>
+              <div class="media-line" aria-hidden="true"><span>WebRTC</span></div>
+              <article class="participant agent">
+                <span class="avatar" aria-hidden="true">AI</span>
+                <div><b>Room Agent</b><small id="heroAgentState">等待会话</small></div>
+                <i class="agent-pulse" aria-hidden="true"></i>
+              </article>
+            </div>
+            <div class="room-caption">
+              <span>LiveKit Room</span>
+              <p>用户和 AI 都是 Participant，都能订阅或发布实时媒体轨道。</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section layers" id="layers">
+        <div class="shell section-heading">
+          <div><span class="index">01 / WHO DOES WHAT</span><h2>四层协作，Agents 位于中间</h2></div>
+          <p>它不提供新的“大脑”，也不替代媒体服务器或业务控制面；它在中心连接房间，并分别编排模型和业务工具。</p>
+        </div>
+        <div class="shell layer-grid">
+          <article data-layer="media"><span>01</span><b>实时媒体层</b><h3>LiveKit</h3><p>房间、参与者、音视频轨道、WebRTC、弱网传输和 SIP 电话。</p></article>
+          <article data-layer="agent"><span>02</span><b>会话编排层</b><h3>Agents</h3><p>轮次、打断、管线、工具循环、Agent 交接、事件和任务调度。</p></article>
+          <article data-layer="model"><span>03</span><b>模型能力层</b><h3>STT · LLM · TTS</h3><p>把声音变成文字、理解与决策，再把回答变回声音。</p></article>
+          <article data-layer="tool"><span>04</span><b>业务执行层</b><h3>Tools · API</h3><p>查询订单、日历、数据库或设备，并把确定性结果返回给模型。</p></article>
+        </div>
+        <div class="shell one-line">
+          <strong>一句话：</strong>
+          <span>LiveKit 是会议室和线路；Agents 是 AI 在其中运行、协作和执行任务的编排核心。</span>
+        </div>
+      </section>
+
+      <section class="section demo" id="demo">
+        <div class="shell section-heading inverse">
+          <div><span class="index">02 / CAPABILITY REPLAY</span><h2>观察一场 Agent 会话怎样推进</h2></div>
+          <p>这是静态页面中的事件回放；步骤来自本地 AgentSession、工具调用、SDK 打断机制和 handoff 测试，不连接麦克风或云服务。当前 MiMo 稳定单轮没有启用自然打断。</p>
+        </div>
+
+        <div class="shell scenario-tabs" role="tablist" aria-label="选择能力场景">
+          <button type="button" role="tab" aria-selected="true" data-scenario="tool">工具调用</button>
+          <button type="button" role="tab" aria-selected="false" data-scenario="interrupt">SDK 打断机制</button>
+          <button type="button" role="tab" aria-selected="false" data-scenario="handoff">Agent 交接</button>
+        </div>
+
+        <div class="shell demo-console">
+          <div class="demo-room">
+            <header>
+              <div><span class="live-dot"></span><b>demo-room</b><small>2 participants</small></div>
+              <span class="state-badge" id="sessionState">待机</span>
+            </header>
+            <div class="participant-stack">
+              <article id="userParticipant">
+                <span class="mini-avatar">访</span>
+                <div><b>访客</b><small id="userState">等待连接</small></div>
+                <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+              </article>
+              <article id="agentParticipant">
+                <span class="mini-avatar agent">AI</span>
+                <div><b id="agentName">Room Agent</b><small id="agentState">等待连接</small></div>
+                <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+              </article>
+            </div>
+            <div class="transcript-card">
+              <span>当前对话</span>
+              <p id="transcript">选择场景后点击“开始回放”。</p>
+            </div>
+            <div class="demo-controls">
+              <button class="run-button" id="runDemo" type="button">开始回放</button>
+              <button class="reset-button" id="resetDemo" type="button">重置</button>
+            </div>
+          </div>
+
+          <div class="event-panel">
+            <header><span>SESSION EVENTS</span><b id="eventCount">0 / 6</b></header>
+            <ol id="eventLog" aria-live="polite" aria-label="会话事件日志">
+              <li class="placeholder">尚未产生事件</li>
+            </ol>
+            <div class="event-legend">
+              <span><i data-kind="media"></i>媒体</span>
+              <span><i data-kind="agent"></i>Agent</span>
+              <span><i data-kind="tool"></i>工具</span>
+            </div>
+          </div>
+        </div>
+        <noscript><p class="shell noscript">浏览器脚本已关闭。核心结论与真实验证记录仍可在下方阅读；交互事件回放不可用。</p></noscript>
+      </section>
+
+      <section class="section evidence" id="evidence">
+        <div class="shell section-heading">
+          <div><span class="index">03 / LOCAL EVIDENCE</span><h2>哪些能力真的在本机跑过</h2></div>
+          <p>46 项自动化与真实房间 smoke 已通过；用户也已完成物理麦克风稳定单轮。当前未验证自然打断、多人会议总结和生产部署。</p>
+        </div>
+        <div class="shell evidence-grid">
+          <article class="evidence-summary">
+            <span>VERIFIED LOCALLY</span>
+            <strong>46<small>项自动化契约 + 真实 RTC / 模型 smoke</small></strong>
+            <dl>
+              <div><dt>Python</dt><dd>3.10.11</dd></div>
+              <div><dt>Agents</dt><dd>1.6.8 · editable</dd></div>
+              <div><dt>外部 Key</dt><dd>MiniMax 已实测</dd></div>
+              <div><dt>本地房间</dt><dd>已接入</dd></div>
+            </dl>
+          </article>
+          <div class="test-list">
+            <article><span>4 PASS</span><div><b>本地令牌与 HTTP</b><p>验证房间 JWT 权限、secret 不进入响应、非法 identity 拒绝，以及控制台静态资源。</p></div></article>
+            <article><span>2 PASS</span><div><b>工具调用循环</b><p>自建离线演示和上游测试均验证：模型请求工具 → Python 工具执行 → 结果回填 → Agent 生成回答。</p></div></article>
+            <article><span>PASS</span><div><b>会话事件与延迟指标</b><p>模拟 VAD、STT、LLM、TTS，得到 listening/thinking/speaking 与 EOU、TTFT、TTFB 指标。</p></div></article>
+            <article><span>2 PASS</span><div><b>SDK 打断机制</b><p>离线参数测试验证 SDK 可中断输出；当前真实 MiMo 稳定单轮主动关闭自然打断。</p></div></article>
+            <article><span>PASS</span><div><b>Agent 交接</b><p>会话切换活动 Agent，并捕获新 Agent 的进入输出。</p></div></article>
+            <article><span>LIVE</span><div><b>自托管真实房间</b><p>浏览器先加入本机 LiveKit；命名 MiniMax Agent 经显式 Dispatch 入房，工具通过 Text Stream 返回真实参与者列表。</p></div></article>
+            <article><span>LIVE</span><div><b>MiniMax M3 + Speech 2.8</b><p>M3 调用真实房间工具；客户端同时收到回答文字流和 Agent 发布的语音音频帧。</p></div></article>
+            <article><span>LIVE</span><div><b>业务层工作流</b><p>本项目用工具、handoff、SQLite 与审批门实现暂停、恢复、人工批准和审计；这些不是 SDK 自带业务功能。</p></div></article>
+            <article><span>LIVE</span><div><b>Worker 与单帧视觉</b><p>两个同名 Worker、容量与显式恢复已验；确定性 640×360 合成帧经 MiniMax 正确识别。</p></div></article>
+          </div>
+        </div>
+
+        <div class="shell boundary-grid">
+          <article class="done"><span>本次已经证明</span><ul><li>LiveKit Server 可在 Windows 本机运行</li><li>浏览器、物理麦克风和 Agent 能进入真实房间链路</li><li>AgentSession 能调用工具并完成双向 handoff</li><li>应用可以组合状态、审批、Worker 池和按需单帧视觉</li></ul></article>
+          <article class="pending"><span>当前没有证明</span><ul><li>音频帧实时输入、边说边出字和自然随时打断</li><li>多人会议的全员转录聚合、说话人区分和总结</li><li>连续视频、SIP、数字人、可靠自动重派和生产并发</li></ul></article>
+        </div>
+      </section>
+
+      <section class="section use" id="use">
+        <div class="shell section-heading inverse">
+          <div><span class="index">04 / RUN IT</span><h2>三步进入真实本地房间</h2></div>
+          <p>LiveKit、令牌服务和无 Key 文字 Agent 由一个脚本统一启动。</p>
+        </div>
+        <div class="shell run-grid">
+          <ol>
+            <li><span>01</span><div><b>进入子项目</b><code>cd livekit-agents-study</code></div></li>
+            <li><span>02</span><div><b>启动本地完整栈</b><code>.\start-local.cmd</code></div></li>
+            <li><span>03</span><div><b>打开真实房间控制台</b><code>http://127.0.0.1:17828/</code></div></li>
+          </ol>
+          <aside>
+            <span>NEXT REAL STEP</span>
+            <h3>已有 MiniMax 套餐，优先复用它</h3>
+            <p>运行 <code>.\start-minimax-local.cmd</code> 即可使用已经实测的 MiniMax M3 与 Speech 2.8；再配置独立的 <code>MIMO_API_KEY</code>，页面会自动启用小米 ASR 麦克风输入。</p>
+            <a href="https://docs.livekit.io/agents/models/tts/minimax/" target="_blank" rel="noreferrer">查看 LiveKit MiniMax 插件说明 ↗</a>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="shell">
+        <div><span>LIVEKIT AGENTS STUDY</span><p>能力、原理、安装与真实边界的本地验证记录。</p></div>
+        <div><a href="./index.html">研究总索引</a><a href="https://github.com/yydshly/0807_githubcode_study/blob/main/livekit-agents-study/TECHNICAL_SUMMARY.md">技术总结</a><a href="./livekit-agents-study/local-app/product.html">公开产品页</a><a href="https://github.com/livekit/agents" target="_blank" rel="noreferrer">上游仓库</a></div>
+      </div>
+    </footer>
+
+    <script src="./assets/livekit-agents.js"></script>
+  </body>
+</html>
