@@ -1,6 +1,6 @@
 # 0807 GitHub Code Study
 
-这是一个持续扩展的研究总仓库，用于拆解、运行和评估尚未掌握的开源项目、技术路线与产品形态。当前已有七个独立子项目，后续会继续接入更多彼此独立或可以组合的研究项目。
+这是一个持续扩展的研究总仓库，用于拆解、运行和评估尚未掌握的开源项目、技术路线与产品形态。当前已有多个独立子项目，后续会继续接入更多彼此独立或可以组合的研究项目。
 
 仓库不以收集大量第三方源码为目标。每个子项目独立保存研究过程、实际运行结果、技术结论和复用建议；根 README 只负责总览、关联和入口导航。
 
@@ -16,6 +16,7 @@
 | [yichen-skills-study](yichen-skills-study/) | Yichen Skills 中文内容平台工作流集合 | 阶段性归档；不做整库集成，保留平台技术路线供后续专项验证 | 上层搜索、总结和文案能力较通用；真正有参考价值的是 X、小红书、抖音、公众号、小宇宙、B站和 YouTube 的差异化搜索、读取、下载、授权与回退方法 | [公开专题总结](https://yydshly.github.io/0807_githubcode_study/yichen-skills.html) · [上游原库](https://github.com/mcncarl/yichen-skills) · [平台技术矩阵](yichen-skills-study/docs/platform-acquisition-matrix.md) · [能力地图](yichen-skills-study/docs/skill-capability-map.md) | 静态研究专题页；没有部署登录态抓取器、后端服务或平台凭据 |
 | [davidondrej-skills-study](davidondrej-skills-study/) | David Ondrej 的个人 Agent Skill 工作流库 | 能力储备归档；完整整理 47 个技能，不做整库安装 | 最有价值的是 Skill 设计、Agent 编排、长任务契约、研究提示、安全边界和思考文档方法；具体流程普遍需要按 Windows/Codex 和我们的权限模型改造 | [公开能力雷达](https://yydshly.github.io/0807_githubcode_study/davidondrej-skills.html) · [上游原库](https://github.com/davidondrej/skills) · [完整目录](davidondrej-skills-study/docs/skill-catalog.md) · [调度与实现详解](davidondrej-skills-study/docs/skill-dispatch-implementation-guide.md) · [采用矩阵](davidondrej-skills-study/docs/adoption-matrix.md) | 静态研究专题页；未安装技能，未使用 API Key、账号、生产数据库或作者工具链 |
 | [mattpocock-skills-study](mattpocock-skills-study/) | Matt Pocock 面向真实软件工程的 Agent Skill 库 | 开发流程地图完成；按八阶段整理 25 个技能，并归纳 4 个思想簇、14 项软件工程理念 | 核心价值不是增加模型知识，而是把需求澄清、领域建模、规格、纵向切片、TDD、诊断、双轴审查和交接做成可组合工程纪律 | [公开工程流程地图](https://yydshly.github.io/0807_githubcode_study/mattpocock-skills.html) · [沟通结论摘要](mattpocock-skills-study/README.md#本次沟通结论摘要) · [软件工程思想谱系](mattpocock-skills-study/README.md#背后的软件工程设计思想) · [上游原库](https://github.com/mattpocock/skills) · [与 David 双库对比](mattpocock-skills-study/README.md#与-david-ondrej-skills-对比) | 纯静态专题页；未安装或执行上游技能，未连接 Issue Tracker、账号或生产系统 |
+| [AIComicBuilder](AIComicBuilder/) | AI 漫剧/短剧生产工作台与多模型执行流水线 | Windows 安装、MiniMax、Codex 控制、外部视频接力和两条完整样片均已验证 | 它解决项目、分集、分镜、关键帧、视频调用和资产管理，属于生产执行层；不独立负责剧本质量、导演判断和自动审片 | [在线研究专题](https://yydshly.github.io/0807_githubcode_study/aicomicbuilder.html) · [完整报告](AIComicBuilder/REPORT.md) · [控制架构](AIComicBuilder/docs/CAPABILITY_CONTROL_ARCHITECTURE.md) · [生产指南](AIComicBuilder/docs/SAMPLE_PRODUCTION_GUIDE.md) · [上游原库](https://github.com/LingyiChen-AI/AIComicBuilder) | GitHub Pages 在线展示报告与两条可播放样片；完整 Next.js 应用使用 `AIComicBuilder` 子项目独立部署，密钥和运行数据库不进入 Pages |
 | [qm-study](qm-study/) | QM 组织级 Agent 运行平台 | 架构与源码接口研究完成；未部署真实组织实例 | 核心是以 Scope 和共同权限为基础，动态装配记忆、文件、Skills、凭据、网络与持久沙箱；它管理每次 Agent 执行的安全边界，不是总管多个子 Agent 的上级 Agent | [公开架构专题](https://yydshly.github.io/0807_githubcode_study/qm.html) · [上游原库](https://github.com/yc-software/qm) · [阶段报告](qm-study/REPORT.md) · [架构与实现](qm-study/docs/architecture-and-implementation.md) · [采用与风险](qm-study/docs/adoption-and-risk.md) | 纯静态研究专题页；未部署 QM 后端、Postgres、云沙箱、Slack 或组织凭据 |
 
 ## 子项目之间的协作关系
@@ -32,6 +33,7 @@ flowchart LR
     Y["Yichen Skills 研究<br/>中文内容平台路由、读取与归档参考"]
     S["David Ondrej Skills 研究<br/>Agent 工作流与个人技能库方法储备"]
     M["Matt Pocock Skills 研究<br/>真实软件工程流程与质量门禁"]
+    X["AIComicBuilder 研究<br/>AI短剧生产执行、模型编排与素材管理"]
     Q["QM 研究<br/>身份、Scope、权限、沙箱、任务与审计"]
     C["规范化对象、事件和证据"]
     D["AgentScope 研究<br/>工具调用、核验、结构化研判"]
@@ -44,6 +46,7 @@ flowchart LR
     M --> D
     D --> Q --> E
     F --> E
+    D --> X --> E
 ```
 
 - ShadowBroker 研究回答“信息从哪里来、怎样接入、怎样表示和展示”。
@@ -52,8 +55,22 @@ flowchart LR
 - David Ondrej Skills 研究回答“怎样把重复的 Agent 工作方法写成可路由、可验证、可审计的技能，47 项能力分别由提示、文件、CLI、脚本、API、外部时钟或 Goal 循环怎样调度，以及哪些值得我们按需吸收”。
 - Matt Pocock Skills 研究回答“怎样按项目开发流程，让 Agent 完成需求澄清、领域建模、规格、纵向切片、TDD、诊断、审查和跨会话交接”。
 - AgentScope 研究回答“怎样让 Agent 调用确定性工具、核验来源并输出可审计结论”。
+- AIComicBuilder 研究回答“怎样把已审批的故事和导演方案组织成角色、分镜、关键帧、短视频与合成资产，并让 Codex 在模型调用外负责审批、审片和返工”。
 - QM 研究回答“怎样让多个人、频道和项目在各自权限边界内长期使用 Agent，并让每次执行的资源、凭据、沙箱和副作用可控、可追踪”。
 - 这些研究之间未来应通过稳定的数据模型或 API 连接，而不是直接互相依赖内部代码。
+
+### AIComicBuilder：AI短剧的生产执行层
+
+AIComicBuilder 把“项目/分集 → 剧本 → 角色/场景 → 分镜 → 关键帧 → 视频提示词 → 逐镜视频 → 合成”固化成可运行流水线，并保存镜头与资产状态。它可以调用大模型生成大纲、剧本和分镜，但没有真正解决故事质量、导演表演和视觉验收，因此不应被视为独立导演。
+
+本地增强将 ChatGPT/Codex 放在它的上方：ChatGPT/Codex 负责故事、人物圣经、导演方案、审批、审片和返工；`comicctl` 与 Orchestrator 负责 dry-run、幂等、并发和任务状态；AIComicBuilder 继续作为项目与资产事实源；MiniMax、图片模型、视频模型或外部网页负责具体生成。
+
+- [在线研究专题与两条样片](https://yydshly.github.io/0807_githubcode_study/aicomicbuilder.html)
+- [能力、限制与接入报告](AIComicBuilder/REPORT.md)
+- [Codex 控制架构](AIComicBuilder/docs/CAPABILITY_CONTROL_ARCHITECTURE.md)
+- [可复现生产指南](AIComicBuilder/docs/SAMPLE_PRODUCTION_GUIDE.md)
+
+GitHub Pages 只承载静态报告、封面和压缩后的样例视频；完整 Next.js 应用、SQLite、上传素材和模型密钥仍属于独立运行层，不会部署进公开静态站点。
 
 ### David Ondrej 与 Matt Pocock 两个 Skill 库怎么选
 
@@ -163,6 +180,7 @@ Fish Speech 是生成式文生语音（TTS）模型及推理工具库。它接�
 | Yichen Skills | 中文内容平台获取与处理路线 | 无后端运行入口 | [Yichen Skills 专题总结](https://yydshly.github.io/0807_githubcode_study/yichen-skills.html) | 静态展示平台矩阵、Skill 能力、归档格式与阶段判断；没有部署账号登录态、Cookie、平台抓取器或付费 ASR |
 | David Ondrej Skills | Agent 工作流储备与采用判断 | 无后端运行入口 | [David Ondrej Skills 能力雷达](https://yydshly.github.io/0807_githubcode_study/davidondrej-skills.html) | 静态展示 47 个技能的分类、依赖、风险和采用等级；没有安装或执行上游技能 |
 | Matt Pocock Skills | 软件工程流程与 25 个 Skill 能力地图 | 无后端运行入口 | [Matt Pocock Skills 工程流程地图](https://yydshly.github.io/0807_githubcode_study/mattpocock-skills.html) | 静态展示八阶段开发流程、完整 Skill 目录、能力与实现原理；没有安装或执行上游技能 |
+| AIComicBuilder | AI短剧生产执行、模型接入与Codex控制 | 完整应用可在子项目中独立运行；Pages只展示报告和样例 | [AIComicBuilder 在线研究专题](https://yydshly.github.io/0807_githubcode_study/aicomicbuilder.html) | Windows、MiniMax、Codex控制和外部视频接力已验证；两条完整样片可在线播放；API Key、SQLite和原始uploads未公开 |
 | QM | 组织级 Agent 权限、隔离与运行机制 | 无后端运行入口 | [QM 架构专题](https://yydshly.github.io/0807_githubcode_study/qm.html) | 静态展示 Scope、ACL、Harness、Sandbox、Memory、Keychain 与后台任务链；没有部署 QM、云资源、数据库、Slack 或组织凭据 |
 
 增加新的在线演示时，应同时补充：代码目录、用途、数据来源、运行状态、公开URL、部署方式和最后验证日期。
@@ -175,7 +193,7 @@ Fish Speech 是生成式文生语音（TTS）模型及推理工具库。它接�
 https://yydshly.github.io/0807_githubcode_study/
 ```
 
-门户后续可以持续增加项目卡片和静态演示，不受当前六个项目限制。但 GitHub Pages 是静态托管，不运行 Python 后端、数据库、定时采集器或服务端长连接，也不应存放 API Key。因此建议采用两层结构：
+门户后续可以持续增加项目卡片和静态演示，不受当前项目数量限制。但 GitHub Pages 是静态托管，不运行 Python 后端、数据库、定时采集器或服务端长连接，也不应存放 API Key。因此建议采用两层结构：
 
 ```text
 GitHub Pages：总项目导航、研究结论、静态样例和演示入口
